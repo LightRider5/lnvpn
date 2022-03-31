@@ -1,0 +1,22 @@
+{
+  "name": "lnvpn",
+  "version": "1.0.0",
+  "description": "Simple vpn with Lightning",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LightRider5/lnvpn.git"
+  },
+  "author": "LightRider",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LightRider5/lnvpn/issues"
+  },
+  "homepage": "https://github.com/LightRider5/lnvpn#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
