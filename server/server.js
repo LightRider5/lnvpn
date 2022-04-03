@@ -1,12 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
-app.use(express.static('public'))
-app.listen(5000, () => {
-  console.log('listening on 5000');
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-/*
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/client/public/index.html`);
-});*/
+app.listen(5000);
