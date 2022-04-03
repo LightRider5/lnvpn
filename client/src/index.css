@@ -42,6 +42,9 @@ h1 {
   
   
 }
+.dropdown {
+  margin: 10px;
+}
 
 .length-alert{
 color: red;  
