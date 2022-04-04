@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app"
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/LightRider5/lnvpn#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "express": "^4.17.3",
+    "socket.io": "^4.4.1",
     "wireguard-tools": "^0.1.0"
   },
   "devDependencies": {

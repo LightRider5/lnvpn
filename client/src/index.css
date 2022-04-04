@@ -38,7 +38,10 @@ h1 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 15vh;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  
+  
   
   
 }
