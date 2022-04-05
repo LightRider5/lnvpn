@@ -5,16 +5,13 @@ const HeaderInfo = () => {
   return (
     <div>
         <Alert variant="success">
-            <Alert.Heading>Hey, nice to see you</Alert.Heading>
+            <Alert.Heading>Hey, nice to see you on LN VPN</Alert.Heading>
               <p>
-                Aww yeah, you successfully read this important alert message. This example
-                text is going to run a bit longer so that you can see how spacing within an
-                alert works with this kind of content.
+               Generate a private Key, selcect a country and duration and pay via Lightning. 100% no trace left. 
               </p>
             <hr />
               <p className="mb-0">
-                Whenever you need to, be sure to use margin utilities to keep things nice
-                and tidy.
+                We generate your private Keys only within the browser and nothing is stored on our server!
               </p>
         </Alert>
       

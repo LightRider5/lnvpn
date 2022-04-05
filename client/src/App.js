@@ -1,8 +1,9 @@
 import {Row, Col, Container, Alert} from 'react-bootstrap'
 import socketIOClient from "socket.io-client";
 import Button from './components/Button'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import KeyInput from './components/KeyInput'
+import CountrySelector from './components/CountrySelector';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
 const ENDPOINT = "http://127.0.0.1:5001";
@@ -12,7 +13,7 @@ var keyPair ;
 
 
 function App() {
-  const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair());
+  const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
   return (
     <div>
       <Container className="main-middle">
@@ -21,8 +22,9 @@ function App() {
           <h1>LN VPN</h1>
           <HeaderInfo/>
           <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey}/>
+          <CountrySelector/>
             <div className='buttons'>
-              <Button onClick={()=>displayNewPair(window.wireguard.generateKeypair())} text="Generate New Key"/>
+              <Button onClick={() => displayNewPair (window.wireguard.generateKeypair)} text="Generate New Key"/>
               <Button onClick={getInvoice} text="Get Invoice"/>
             </div>
           </Col>
