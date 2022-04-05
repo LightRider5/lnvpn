@@ -1,20 +1,28 @@
-import {Row, Col, Container} from 'react-bootstrap'
+import {Row, Col, Container, Alert} from 'react-bootstrap'
 import socketIOClient from "socket.io-client";
 import Button from './components/Button'
+import {useEffect, useState} from 'react'
+import KeyInput from './components/KeyInput'
 import  './wireguard.js'
+import HeaderInfo from './components/HeaderInfo';
 const ENDPOINT = "http://127.0.0.1:5001";
 const socket = socketIOClient(ENDPOINT);
+var keyPair ;
+
+
 
 function App() {
+  const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair());
   return (
-   
     <div>
       <Container className="main-middle">
         <Row>
           <Col>
           <h1>LN VPN</h1>
+          <HeaderInfo/>
+          <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey}/>
             <div className='buttons'>
-              <Button onClick={generateRandomKey} text="Generate New Key"/>
+              <Button onClick={()=>displayNewPair(window.wireguard.generateKeypair())} text="Generate New Key"/>
               <Button onClick={getInvoice} text="Get Invoice"/>
             </div>
           </Col>
@@ -23,9 +31,7 @@ function App() {
     </div>
     
   );
-  function click(){
-    console.log("Huhu")
-  }
+  
 }
 const getInvoice = () => {
   console.log("Click")
@@ -33,10 +39,13 @@ const getInvoice = () => {
   console.log("Click")
   });
 }
-const generateRandomKey = () => {
-  console.log(window.wireguard.generateKeypair());
 
+const generateRandomKey = () => {
+  console.log("Click")
+  keyPair = window.wireguard.generateKeypair()
+  console.log(keyPair)
 }
+
 
 
 export default App;

@@ -237,3 +237,7 @@ color: red;
 #invoice-button{
   display: none;
 }
+
+.form-label{
+  color: white;
+}
