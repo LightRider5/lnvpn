@@ -23,7 +23,8 @@ app.listen(5000);
 io.on('connection', (socket) => {
   console.log("New connection");
   socket.on('getInvoice', (amount) =>{
-    getInvoice(amount)
+    console.log("Get Invoice")
+    getWireguardConfig()
     
   })
 
@@ -48,5 +49,41 @@ return axios({
 
 });
 }
+
+////////Get Bitcoin Price in Satoshi per Dollar
+async function getPrice() {
+  return axios({
+    method: "get",
+    url: "https://blockchain.info/ticker"
+  }).then(function (respons){
+     const priceBTC = (respons.data.USD.buy);
+     var priceOneDollar = (100000000 / priceBTC) / 2;
+     return priceOneDollar
+  })    
+};     
+
+
+//////////////////Get Wireguard Config
+async function getWireguardConfig(privateKey) {
+  return axios({
+    method: "post",
+    url: "http://5.161.92.1:8443/manager/key",
+    headers: { 'Content-Type': 'application/json'},
+    data: {
+      "publicKey": privateKey,
+      "presharedKey": "2mlByyAqpN6pF+nGcmdM47NDyGgy1PkzmpBjagh79w0=",
+      "bwLimit": 1000,
+      "subExpiry": "2022-Apr-15 12:39:05 PM",
+      "ipIndex": 0
+    }
+  }).then(function (respons){        
+    console.log(respons.data)
+  
+  }).catch(error => {
+    console.log(error)
+  });
+  }
+
+
 
 
