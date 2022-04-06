@@ -241,3 +241,22 @@ color: red;
 .form-label{
   color: white;
 }
+.input-group{
+  margin: 10px 0 10px 0;
+}
+.input-group-text{
+  min-width: 150px;
+}
+
+.price{
+  color: white;
+}
+
+#countryselector {
+  width : 100%;
+  margin: 10px 0 10px 0; 
+}
+#runtimeselector {
+  width : 100%;
+  margin: 10px 0 10px 0; 
+}

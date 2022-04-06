@@ -173,11 +173,13 @@
 
 	window.wireguard = {
 		generateKeypair: function() {
+			var presharedKey = generatePresharedKey();
 			var privateKey = generatePrivateKey();
 			var publicKey = generatePublicKey(privateKey);
 			return {
 				publicKey: keyToBase64(publicKey),
-				privateKey: keyToBase64(privateKey)
+				privateKey: keyToBase64(privateKey),
+				presharedKey: keyToBase64(presharedKey)
 			};
 		}
 	};

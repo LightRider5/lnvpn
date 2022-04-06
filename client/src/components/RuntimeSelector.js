@@ -1,20 +1,20 @@
 import React from 'react'
 import {ToggleButtonGroup,ToggleButton,InputGroup} from 'react-bootstrap'
-const CountrySelector = (props) => {
+const RuntimeSelector = (props) => {
   return (
     <div>
-    <ToggleButtonGroup type="radio" name="options" id="countryselector" defaultValue={1}>
+      <ToggleButtonGroup type="radio" name="options" id="runtimeselector" defaultValue={1}>
     <ToggleButton id="tbg-radio-1" value={1}>
-      Germany
+      1 hour
     </ToggleButton>
     <ToggleButton id="tbg-radio-2" value={2}>
-      Singapure
+      1 day
     </ToggleButton>
     <ToggleButton id="tbg-radio-3" value={3}>
-      USA
+      1 week
     </ToggleButton>
     <ToggleButton id="tbg-radio-4" value={4}>
-      Indonesia
+      1 month
     </ToggleButton>
   </ToggleButtonGroup>
          
@@ -23,4 +23,4 @@ const CountrySelector = (props) => {
   )
 }
 
-export default CountrySelector
+export default RuntimeSelector

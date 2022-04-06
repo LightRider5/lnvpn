@@ -21,12 +21,13 @@ app.listen(5000);
 
 //////Socket Connections
 io.on('connection', (socket) => {
-  console.log("New connection");
-  socket.on('getInvoice', (amount) =>{
-    console.log("Get Invoice")
-    getWireguardConfig()
-    
+  console.log("New connection")
+  socket.on('getInvoice',(amount) =>{
+    getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
+  socket.on('getWireguardConfig', (keyPair) =>{
+    getWireguardConfig(keyPair)
+    })
 
 });
 
@@ -39,14 +40,13 @@ return axios({
   headers: { "X-Api-Key": invoice_read_key},
   data: {
     "out": false, 
-    "amount": 2000, 
+    "amount": amount, 
     "memo": "LNVPN"
   }
 }).then(function (respons){        
   payment_request = respons.data.payment_request;
   payment_hash = respons.data.payment_hash;
-  console.log(payment_hash,payment_request);
-
+  return {payment_hash,payment_request}
 });
 }
 
@@ -64,20 +64,20 @@ async function getPrice() {
 
 
 //////////////////Get Wireguard Config
-async function getWireguardConfig(privateKey) {
+async function getWireguardConfig(keyPair) {
   return axios({
     method: "post",
     url: "http://5.161.92.1:8443/manager/key",
     headers: { 'Content-Type': 'application/json'},
     data: {
-      "publicKey": privateKey,
-      "presharedKey": "2mlByyAqpN6pF+nGcmdM47NDyGgy1PkzmpBjagh79w0=",
+      "publicKey": keyPair.publicKey,
+      "presharedKey": keyPair.presharedKey,
       "bwLimit": 1000,
       "subExpiry": "2022-Apr-15 12:39:05 PM",
       "ipIndex": 0
     }
   }).then(function (respons){        
-    console.log(respons.data)
+    console.log(respons)
   
   }).catch(error => {
     console.log(error)

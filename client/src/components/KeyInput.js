@@ -12,13 +12,14 @@ function KeyInput(props) {
                 <InputGroup.Text>Private Key</InputGroup.Text>
                 <Form.Control value={props.privateKey} disabled/>
             </InputGroup>        
-            <Form.Text>
-              This Key will never be stored anywhere else.
-            </Form.Text>
             <InputGroup>
                 <InputGroup.Text>Public Key</InputGroup.Text>
                 <Form.Control value={props.publicKey} disabled/>
-            </InputGroup> 
+            </InputGroup>
+            <InputGroup>
+                <InputGroup.Text>Preshared Key</InputGroup.Text>
+                <Form.Control value={props.presharedKey} disabled/>
+            </InputGroup>      
             </Form.Group>
 
         </Form> 
