@@ -1,6 +1,5 @@
 import {Row, Col, Container, Alert} from 'react-bootstrap'
 import socketIOClient from "socket.io-client";
-import axios from 'axios';
 import Button from './components/Button'
 import {useState} from 'react'
 import KeyInput from './components/KeyInput'
