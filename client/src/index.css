@@ -36,6 +36,7 @@ h1 {
 }
 .main-middle{
   display: flex;
+  margin-top: 5vh;
   align-items: center;
   flex-direction: column;
   border-radius: 12px;
@@ -256,7 +257,32 @@ color: red;
   width : 100%;
   margin: 10px 0 10px 0; 
 }
+#countryselector label {
+  width: 25%;
+}
 #runtimeselector {
   width : 100%;
   margin: 10px 0 10px 0; 
+}
+#runtimeselector label {
+  text-align: center;
+  width: 25%;
+}
+#runtimeselector label.btn.active {
+  background-color: white;
+  color: #007bff;
+}
+#countryselector label.btn.active {
+  background-color: white;
+  color: #007bff;
+  
+}
+#invoicestring { 
+  display:inline-block;
+  width: 100%;
+  white-space: pre-wrap;      /* CSS3 */   
+  white-space: -moz-pre-wrap; /* Firefox */    
+  white-space: -pre-wrap;     /* Opera <7 */   
+  white-space: -o-pre-wrap;   /* Opera 7 */    
+  word-wrap: break-word;      /* IE */
 }

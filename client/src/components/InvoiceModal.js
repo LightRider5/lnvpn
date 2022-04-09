@@ -1,6 +1,6 @@
 import React from 'react'
 import {QRCodeCanvas} from 'qrcode.react'
-import {Modal,Button,Spinner}from 'react-bootstrap'
+import {Modal,Button,Spinner,Form}from 'react-bootstrap'
 function InvoiceModal(props) {
    
   if(!props.show){
@@ -11,9 +11,11 @@ function InvoiceModal(props) {
     <div>
         <Modal show={props.show} onHide={props.handleClose}>
         <Modal.Header closeButton> 
-          <Modal.Title>Invoice</Modal.Title>
+          <Modal.Title>Scan or copy invoice</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}</Modal.Body>
+        <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
+        {props.showSpinner ? null : <div id="invoicestring"> {props.value} </div>}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>
             Close

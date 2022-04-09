@@ -9,7 +9,7 @@ import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
-const ENDPOINT = "http://127.0.0.1:5001";
+const ENDPOINT = "http://localhost:5001";
 const socket = socketIOClient(ENDPOINT);
 var keyPair;
 
@@ -33,7 +33,7 @@ function App() {
       <Container className="main-middle">
         <Row>
           <Col>
-          <h1>LN VPN</h1>
+          <h1>LN ⚡ VPN</h1>
           <HeaderInfo/>
           <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey} presharedKey={keyPair.presharedKey}/>
           <CountrySelector/>
