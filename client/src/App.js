@@ -1,4 +1,4 @@
-import {Row, Col, Container, Alert} from 'react-bootstrap'
+import {Row, Col, Container} from 'react-bootstrap'
 import socketIOClient from "socket.io-client";
 import Button from './components/Button'
 import {useState} from 'react'
@@ -13,36 +13,50 @@ const ENDPOINT = "http://localhost:5001";
 const socket = socketIOClient(ENDPOINT);
 var keyPair;
 
-
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
-  const [priceDollar, updatePrice] =  useState(1)
+  const [priceDollar, updatePrice] =  useState(0.1)
   const [showSpinner, setSpinner] = useState(true)
-  const [payment_request, setPaymentrequest] = useState(true) 
+  const [payment_request, setPaymentrequest] = useState(0) 
+  
+  
   const updatePaymentrequest = () => {
     socket.on('lnbitsInvoice',invoiceData => {
       setPaymentrequest(invoiceData.payment_request)
       setSpinner(false)
     })
   }
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  
+  ///////////Change Runtime
+  const runtimeSelect = (e) =>{
+    updatePrice(e.target.value)
+    
+  } 
+  
+  ///////InvoiceModal
+  const [visibleInvoiceModal, setShowInvoiceModal] = useState(false);
+  const closeInvoiceModal = () => setShowInvoiceModal(false);
+  const showInvoiceModal = () => setShowInvoiceModal(true);
+
+ 
+
+
   return (
     <div>
       <Container className="main-middle">
         <Row>
           <Col>
           <h1>LN ⚡ VPN</h1>
+         
           <HeaderInfo/>
           <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey} presharedKey={keyPair.presharedKey}/>
           <CountrySelector/>
-          <RuntimeSelector/>
-          <InvoiceModal show={show} showSpinner={showSpinner} value={payment_request} handleClose={handleClose}/>
+          <RuntimeSelector onClick={runtimeSelect}/>
+          <InvoiceModal show={visibleInvoiceModal} showSpinner={showSpinner} value={payment_request} handleClose={closeInvoiceModal}/>
           <Price dollar={priceDollar}/>
             <div className='buttons'>
               <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} text="Generate New Key"/>
-              <Button onClick={() => {getInvoice(priceDollar);handleShow();updatePaymentrequest();setSpinner(true)}} text="Get Invoice"/>
+              <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();updatePaymentrequest();setSpinner(true)}} text="Get Invoice"/>
             </div>
           </Col>
         </Row>
@@ -55,6 +69,7 @@ function App() {
 const getInvoice = (price) => {
   socket.emit("getInvoice", (price))
 }
+
 
 const generateRandomKey = () => {
   console.log(keyPair)

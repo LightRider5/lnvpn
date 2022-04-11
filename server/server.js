@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require("body-parser")
 const axios = require('axios');
 const app = express();
 const invoice_read_key = "e2d06b8ab7584f6a96ef4f2f79379c99";
@@ -12,9 +13,18 @@ const io = require("socket.io")(5001, {
 
 ////////////// Set up the Webserver
 app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(bodyParser.json())
+
+///////Serving the index site
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
+
+/////////Invoice Webhook
+app.post('/invoicehook', (req, res) => {
+  console.log(req.body) // Call your action on the request here
+  res.status(200).end() // Responding is important
+})
 
 app.listen(5000);
 ////////////// Finish Server Setup
@@ -34,20 +44,24 @@ io.on('connection', (socket) => {
 
 ///////// Get Invoice 
 async function getInvoice(amount) {
-return axios({
+ 
+  var satoshis = await getPrice().then((result) => {return result})
+  return axios({
   method: "post",
   url: "https://legend.lnbits.com/api/v1/payments",
   headers: { "X-Api-Key": invoice_read_key},
   data: {
     "out": false, 
-    "amount": amount, 
-    "memo": "LNVPN"
+    "amount": satoshis*amount, 
+    "memo": "LNVPN",
+    "webhook" : "https://lnvpn.net/invoicehook"
   }
-}).then(function (respons){        
-  payment_request = respons.data.payment_request;
-  payment_hash = respons.data.payment_hash;
-  return {payment_hash,payment_request}
-});
+    }).then(function (respons){        
+      console.log(respons)
+      payment_request = respons.data.payment_request;
+      payment_hash = respons.data.payment_hash;
+      return {payment_hash,payment_request}
+    });  
 }
 
 ////////Get Bitcoin Price in Satoshi per Dollar
@@ -57,7 +71,7 @@ async function getPrice() {
     url: "https://blockchain.info/ticker"
   }).then(function (respons){
      const priceBTC = (respons.data.USD.buy);
-     var priceOneDollar = (100000000 / priceBTC) / 2;
+     var priceOneDollar = (100000000 / priceBTC);
      return priceOneDollar
   })    
 };     
