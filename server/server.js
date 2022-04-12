@@ -57,7 +57,7 @@ async function getInvoice(amount) {
     "webhook" : "https://lnvpn.net/invoicehook"
   }
     }).then(function (respons){        
-      console.log(respons)
+      //console.log(respons)
       payment_request = respons.data.payment_request;
       payment_hash = respons.data.payment_hash;
       return {payment_hash,payment_request}
@@ -96,7 +96,7 @@ async function getWireguardConfig(keyPair) {
   }).catch(error => {
     console.log(error)
   });
-  }
+}
 
 
 

@@ -1,5 +1,5 @@
 import {Row, Col, Container} from 'react-bootstrap'
-import socketIOClient from "socket.io-client";
+import {io} from "socket.io-client";
 import Button from './components/Button'
 import {useState} from 'react'
 import KeyInput from './components/KeyInput'
@@ -9,8 +9,8 @@ import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
-const ENDPOINT = "http://localhost:5001";
-const socket = socketIOClient(ENDPOINT);
+//const ENDPOINT = "http://localhost:5001";
+var socket =  io.connect();
 var keyPair;
 
 function App() {
