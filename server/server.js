@@ -2,9 +2,12 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require("body-parser")
 const axios = require('axios');
+const { response } = require('express');
 const app = express();
 const invoice_read_key = "e2d06b8ab7584f6a96ef4f2f79379c99";
 var payment_hash,payment_request;
+
+
 const io = require("socket.io")(5001, {
   cors: {
     origin: true
@@ -22,8 +25,9 @@ app.get('/', function (req, res) {
 
 /////////Invoice Webhook
 app.post('/invoicehook', (req, res) => {
-  console.log(req.body) // Call your action on the request here
-  res.status(200).end() // Responding is important
+    console.log('Hook called')
+    io.sockets.emit('invoicePaid',req.body.payment_hash)
+    res.status(200).end() 
 })
 
 app.listen(5000);
@@ -32,17 +36,24 @@ app.listen(5000);
 //////Socket Connections
 io.on('connection', (socket) => {
   console.log("New connection")
+  console.log(' %s socket connected', io.engine.clientsCount) 
+  console.log(socket.id)
+  /////Geting the Invoice from lnbits and forwarding it to the frontend
+
   socket.on('getInvoice',(amount) =>{
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
-  socket.on('getWireguardConfig', (keyPair) =>{
-    getWireguardConfig(keyPair)
-    })
 
-});
+  socket.on('getWireguardConfig',keyPair => {
+    console.log("functoin called")
+    getWireguardConfig(keyPair).then(result => socket.emit('reciveConfigData',result))
+  })
 
 
-///////// Get Invoice 
+}); 
+
+
+///////// Get Invoice Function
 async function getInvoice(amount) {
  
   var satoshis = await getPrice().then((result) => {return result})
@@ -54,10 +65,9 @@ async function getInvoice(amount) {
     "out": false, 
     "amount": satoshis*amount, 
     "memo": "LNVPN",
-    "webhook" : "https://lnvpn.net/invoicehook"
+    "webhook" : "https://06d3-217-252-114-173.eu.ngrok.io/invoicehook"
   }
     }).then(function (respons){        
-      //console.log(respons)
       payment_request = respons.data.payment_request;
       payment_hash = respons.data.payment_hash;
       return {payment_hash,payment_request}
@@ -88,13 +98,12 @@ async function getWireguardConfig(keyPair) {
       "presharedKey": keyPair.presharedKey,
       "bwLimit": 1000,
       "subExpiry": "2022-Apr-15 12:39:05 PM",
-      "ipIndex": 0
+      "ipIndex": 0 
     }
   }).then(function (respons){        
-    console.log(respons)
-  
-  }).catch(error => {
-    console.log(error)
+    return respons.data
+  }).catch(error => {   
+    //console.log(error) 
   });
 }
 

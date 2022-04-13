@@ -9,9 +9,10 @@ import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
-//const ENDPOINT = "http://localhost:5001";
-var socket =  io.connect();
-var keyPair;
+var socket =  io.connect('http://localhost:5001');
+var clientPaymentHash;
+var iteration = 1;
+
 
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
@@ -23,9 +24,36 @@ function App() {
   const updatePaymentrequest = () => {
     socket.on('lnbitsInvoice',invoiceData => {
       setPaymentrequest(invoiceData.payment_request)
+      clientPaymentHash = invoiceData.payment_hash;
       setSpinner(false)
     })
   }
+  socket.on("connect", () => {
+    console.log(socket.id); 
+  });
+  //Get the invoice and send also the keypair
+  const getInvoice = (price) => {
+    socket.emit("getInvoice", price)
+  }
+
+  const getWireguardConfig = (keyPair) =>{
+    socket.emit('getWireguardConfig',keyPair)
+  }
+
+  socket.off('invoicePaid').on('invoicePaid', paymentHash => {
+    
+    if(paymentHash === clientPaymentHash)
+    {
+      console.log("Its paid")
+      getWireguardConfig(keyPair)
+    }
+  })
+
+  socket.off('reciveConfigData').on('reciveConfigData',wireguardConfig =>{
+    console.log(wireguardConfig) 
+    setPaymentrequest(JSON.stringify(wireguardConfig))
+  })
+
   
   ///////////Change Runtime
   const runtimeSelect = (e) =>{
@@ -37,9 +65,6 @@ function App() {
   const [visibleInvoiceModal, setShowInvoiceModal] = useState(false);
   const closeInvoiceModal = () => setShowInvoiceModal(false);
   const showInvoiceModal = () => setShowInvoiceModal(true);
-
- 
-
 
   return (
     <div>
@@ -66,16 +91,7 @@ function App() {
   );
   
 }
-const getInvoice = (price) => {
-  socket.emit("getInvoice", (price))
-}
 
-
-const generateRandomKey = () => {
-  console.log(keyPair)
-  keyPair = window.wireguard.generateKeypair()
-  console.log(keyPair)
-}
 
 export default App;
 

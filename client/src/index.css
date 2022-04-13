@@ -278,8 +278,14 @@ color: red;
   
 }
 #invoicestring { 
+  margin-top: 10px;
   display:inline-block;
+  border: 1px;
+  padding: 5px;
+  border-style: solid;
+  border-radius: 12px;
   width: 100%;
+  height: 100%;
   white-space: pre-wrap;      /* CSS3 */   
   white-space: -moz-pre-wrap; /* Firefox */    
   white-space: -pre-wrap;     /* Opera <7 */   
