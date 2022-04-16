@@ -278,6 +278,8 @@ color: red;
   
 }
 #invoicestring { 
+  
+  text-align: left;
   margin-top: 10px;
   display:inline-block;
   border: 1px;

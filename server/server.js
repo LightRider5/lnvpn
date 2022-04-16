@@ -2,15 +2,14 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require("body-parser")
 const axios = require('axios');
-const { response } = require('express');
 const app = express();
-const invoice_read_key = "e2d06b8ab7584f6a96ef4f2f79379c99";
 var payment_hash,payment_request;
+require('dotenv').config()
 
 
-const io = require("socket.io")(5001, {
+const io = require("socket.io")(process.env.PORT, {
   cors: {
-    origin: true
+    origin: true  
   }
 })
 
@@ -24,12 +23,12 @@ app.get('/', function (req, res) {
 });
 
 /////////Invoice Webhook
-app.post('/invoicehook', (req, res) => {
+app.post(process.env.WEBHOOK, (req, res) => {
     console.log('Hook called')
     io.sockets.emit('invoicePaid',req.body.payment_hash)
     res.status(200).end() 
 })
-
+ 
 app.listen(5000);
 ////////////// Finish Server Setup
 
@@ -41,6 +40,7 @@ io.on('connection', (socket) => {
   /////Geting the Invoice from lnbits and forwarding it to the frontend
 
   socket.on('getInvoice',(amount) =>{
+    console.log('New Invoice');
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
 
@@ -50,23 +50,22 @@ io.on('connection', (socket) => {
   })
 
 
-}); 
+});
 
 
 ///////// Get Invoice Function
 async function getInvoice(amount) {
- 
   var satoshis = await getPrice().then((result) => {return result})
   return axios({
   method: "post",
-  url: "https://legend.lnbits.com/api/v1/payments",
-  headers: { "X-Api-Key": invoice_read_key},
+  url: process.env.URL_INVOICE_API,
+  headers: { "X-Api-Key": process.env.INVOICE_KEY},
   data: {
     "out": false, 
     "amount": satoshis*amount, 
     "memo": "LNVPN",
-    "webhook" : "https://06d3-217-252-114-173.eu.ngrok.io/invoicehook"
-  }
+    "webhook" : process.env.URL_WEBHOOK
+  } 
     }).then(function (respons){        
       payment_request = respons.data.payment_request;
       payment_hash = respons.data.payment_hash;
@@ -78,7 +77,7 @@ async function getInvoice(amount) {
 async function getPrice() {
   return axios({
     method: "get",
-    url: "https://blockchain.info/ticker"
+    url: process.env.URL_PRICE_API
   }).then(function (respons){
      const priceBTC = (respons.data.USD.buy);
      var priceOneDollar = (100000000 / priceBTC);
@@ -88,22 +87,22 @@ async function getPrice() {
 
 
 //////////////////Get Wireguard Config
-async function getWireguardConfig(keyPair) {
+async function getWireguardConfig(keyPair,timestamp) {
   return axios({
     method: "post",
-    url: "http://5.161.92.1:8443/manager/key",
+    url: process.env.IP_USA,
     headers: { 'Content-Type': 'application/json'},
     data: {
       "publicKey": keyPair.publicKey,
       "presharedKey": keyPair.presharedKey,
       "bwLimit": 1000,
-      "subExpiry": "2022-Apr-15 12:39:05 PM",
-      "ipIndex": 0 
+      "subExpiry": "2022-Apr-16 12:39:05 PM",
+      "ipIndex": 0
     }
   }).then(function (respons){        
     return respons.data
   }).catch(error => {   
-    //console.log(error) 
+    console.log(error) 
   });
 }
 
