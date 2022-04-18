@@ -57,7 +57,7 @@ function App() {
   /////////Get wireguard config from Server
   socket.off('reciveConfigData').on('reciveConfigData',wireguardConfig =>{
     setSpinner(false)
-    setPaymentrequest(buildConfigFile(wireguardConfig))
+    setPaymentrequest(buildConfigFile(wireguardConfig).join('\n'))
     
   })
   /////////Construct the Config File
@@ -73,23 +73,35 @@ function App() {
     'PresharedKey = '+keyPair.presharedKey,
     'Endpoint = '+serverResponse.ipAddress+':'+serverResponse.listenPort,
     'AllowedIPs = '+serverResponse.allowedIPs];
-    return configArray.join('\n');
+    return configArray
   }
 
   ///////////Change Runtime
   const runtimeSelect = (e) =>{
     updatePrice(e.target.value)
     
-  } 
-  function download(filename, text) {
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
+   } 
+  // function download(filename, text) {
+  //   var element = document.createElement('a');
+  //   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  //   element.setAttribute('download', filename);
+  //   element.style.display = 'none';
+  //   document.body.appendChild(element);
+  //   element.click();
+  //   document.body.removeChild(element);
+  // }
+
+  const download = (filename,text) => {
+    const textArray = [text]
+    const element = document.createElement("a");
+    const file = new Blob(textArray, {
+      type: "text/plain",endings:'native'
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = filename;
     document.body.appendChild(element);
     element.click();
-    document.body.removeChild(element);
-  }
+  };
   
  
 

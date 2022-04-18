@@ -12,7 +12,7 @@ function InvoiceModal(props) {
      return null
    } 
 
-  if(props.value === undefined || null){
+  if(props.value === (undefined || null)){
     return (
       <div>
         <Modal show={props.show} onHide={props.handleClose}>
@@ -38,9 +38,15 @@ function InvoiceModal(props) {
    
   return (
     <div>
-        <Modal show={props.show} onHide={props.handleClose}>
+        <Modal show={props.show} 
+        onHide={props.handleClose} 
+        backdrop="static"
+        keyboard={false}>
         <Modal.Header closeButton> 
-          <Modal.Title>Scan or copy invoice</Modal.Title>
+        {props.isConfigModal ? 
+          <Modal.Title>Scan or download config</Modal.Title>:
+          <Modal.Title>Scan or copy invoice</Modal.Title> 
+          }
         </Modal.Header>
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
         <Collapse in={openCollapse}>
