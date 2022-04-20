@@ -41,7 +41,9 @@ function InvoiceModal(props) {
         <Modal show={props.show} 
         onHide={props.handleClose} 
         backdrop="static"
-        keyboard={false}>
+        keyboard={false}
+        id="main_modal" 
+        >
         <Modal.Header closeButton> 
         {props.isConfigModal ? 
           <Modal.Title>Scan or download config</Modal.Title>:
@@ -51,7 +53,7 @@ function InvoiceModal(props) {
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
         <Collapse in={openCollapse}>
           <div id="example-collapse-text">
-          {props.showSpinner ? null : <div id="invoicestring" className="container">{props.value}</div>}
+          {props.showSpinner ? null : <div id="invoicestring" class="container">{props.value}</div>}
           </div>
         </Collapse>
         </Modal.Body>

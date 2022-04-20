@@ -10,6 +10,7 @@ import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
 var socket =  io.connect('http://localhost:5001');
+var date;
 var clientPaymentHash;
 
 
@@ -68,8 +69,9 @@ function App() {
     'PrivateKey = ' + keyPair.privateKey,
     'Address = '+serverResponse.ipv4Address,
     'DNS = '+serverResponse.dns,
+    ' ',
     '[Peer]',
-    'PublicKey = '+keyPair.publicKey,
+    'PublicKey = '+serverResponse.publicKey,
     'PresharedKey = '+keyPair.presharedKey,
     'Endpoint = '+serverResponse.ipAddress+':'+serverResponse.listenPort,
     'AllowedIPs = '+serverResponse.allowedIPs];
@@ -79,8 +81,32 @@ function App() {
   ///////////Change Runtime
   const runtimeSelect = (e) =>{
     updatePrice(e.target.value)
-    
-   } 
+    console.log(e.target.value)
+
+    if(e.target.value == 4){
+      date = addMonths(date = new Date(),1)
+      console.log(date)
+    }
+    if(e.target.value == 2){
+      date = addWeeks(date = new Date(),1)
+      console.log(date)
+    }
+
+  }
+  function addWeeks (date = new Date(), weeks) {  
+    date.setDate(date.getDate() + weeks * 7)
+  
+    return date
+  }
+
+  function addMonths(date = new Date(), months) {
+    var d = date.getDate();
+    date.setMonth(date.getMonth() + +months);
+    if (date.getDate() != d) {
+      date.setDate(0);
+    }
+    return date;
+  } 
   // function download(filename, text) {
   //   var element = document.createElement('a');
   //   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -116,13 +142,13 @@ function App() {
           <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey} presharedKey={keyPair.presharedKey}/>
           <CountrySelector/>
           <RuntimeSelector onClick={runtimeSelect}/>
-          
+
           <InvoiceModal 
           show={visibleInvoiceModal} 
           showSpinner={showSpinner} 
           isConfigModal={isConfigModal} 
           value={payment_request} 
-          download={() => {download("Wireguard.config",payment_request)}} 
+          download={() => {download("Wireguard.conf",payment_request)}} 
           showNewInvoice={() => {getInvoice(priceDollar);setSpinner(true)}} 
           handleClose={closeInvoiceModal}
           />
