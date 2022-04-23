@@ -9,6 +9,7 @@ function InvoiceModal(props) {
   const target = useRef(null);
    
   if(!props.show){
+      // setOpen(!openCollapse)
      return null
    } 
 

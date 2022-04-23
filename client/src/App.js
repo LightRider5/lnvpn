@@ -42,7 +42,7 @@ function App() {
 
   ////Connect to WebSocket Server
   socket.on("connect", () => {
-    console.log(socket.id); 
+    //console.log(socket.id); 
   });
 
   //Get the invoice and send also the keypair
@@ -71,6 +71,7 @@ function App() {
   })
   /////////Construct the Config File
   const buildConfigFile = (serverResponse) => {
+    showInvoiceModal ()
     renderConfigModal()
     const configArray = [
     '[Interface]',
@@ -89,12 +90,11 @@ function App() {
   ///////////Change Runtime
   const runtimeSelect = (e) =>{
     updatePrice(e.target.value)
-    console.log(e.target.value)
+    
   }
 
   const countrySelect = (e) => {
     updateCountry(e.target.value)
-    console.log(e.target.value)
 
   }
 

@@ -47,13 +47,35 @@ io.on('connection', (socket) => {
   })
 
   socket.on('getWireguardConfig',(publicKey,presharedKey,selectedValue,country) => {
-    console.log(county)
-    getWireguardConfig(publicKey,presharedKey,getTimeStamp(selectedValue),country).then(result => socket.emit('reciveConfigData',result))
+    getWireguardConfig(publicKey,presharedKey,getTimeStamp(selectedValue),getServer(country)).then(result => socket.emit('reciveConfigData',result))
   })
 
 
 });
+///Transforms country into server
+var getServer = (countrySelector) => {
+  var server 
+  if (countrySelector == 1){
+  var server = process.env.IP_SINGAPUR  
+  }
+  if (countrySelector == 2){
+    var server = process.env.IP_USA  
+  }
+  if (countrySelector == 3){
+    var server = process.env.IP_FIN    
+  }   
+  if (countrySelector == 4){
+    var server = process.env.IP_UK  
+  } 
+  if (countrySelector == 5){
+    var server = process.env.IP_CANADA 
+  } 
+  console.log(server)
+  return server 
+}
 
+
+///Transforms duration into timestamp
 var getTimeStamp = (selectedValue) =>{
   var date = new Date()
 
@@ -136,12 +158,15 @@ async function getPrice() {
 
 
 //////////////////Get Wireguard Config
-async function getWireguardConfig(publicKey,presharedKey,timestamp,country) {
+async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
  
   return axios({
     method: "post",
-    url: process.env.IP_USA,
-    headers: { 'Content-Type': 'application/json'},
+    url: server,
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : process.env.AUTH
+      },
     data: {
       "publicKey": publicKey,
       "presharedKey": presharedKey,
@@ -149,9 +174,10 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,country) {
       "subExpiry": parseDate(timestamp),
       "ipIndex": 0
     }
-  }).then(function (respons){        
+  }).then(function (respons){   
     return respons.data
-  }).catch(error => {   
+  }).catch(error => { 
+    console.log(error)  
     return error
   });
 }
