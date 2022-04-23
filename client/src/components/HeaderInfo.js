@@ -5,13 +5,15 @@ const HeaderInfo = () => {
   return (
     <div>
         <Alert variant="success">
-            <Alert.Heading>Hey, nice to see you on LN VPN</Alert.Heading>
+            <Alert.Heading>How it works:</Alert.Heading>
               <p>
-               Generate a private Key, selcect a country and duration and pay via Lightning. 100% no trace left. 
+               Generate a private key, select a country + duration and pay with Lightning. 
+               <br></br>Instant delivery. 100% no trace left.
+               <br></br>You need the < a href='https://www.wireguard.com/'>Wireguard</a> VPN client.  
               </p>
             <hr />
               <p className="mb-0">
-                We generate your private Keys only within the browser and nothing is stored on our server!
+                We generate your private keys only within the browser and nothing is ever stored on our server!
               </p>
         </Alert>
       

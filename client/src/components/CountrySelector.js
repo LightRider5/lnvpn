@@ -1,20 +1,23 @@
 import React from 'react'
-import {ToggleButtonGroup,ToggleButton,InputGroup} from 'react-bootstrap'
+import {ToggleButtonGroup,ToggleButton} from 'react-bootstrap'
 const CountrySelector = (props) => {
   return (
     <div>
       <ToggleButtonGroup type="radio" name="options" id="countryselector" defaultValue={1}>
-        <ToggleButton id="tbg-radio-1" value={1}>
-          Germany
+        <ToggleButton value={1} onClick={props.onClick}>
+          🇸🇬 <br></br>SIG
         </ToggleButton>
-        <ToggleButton id="tbg-radio-2" value={2}>
-          Singapure
+        <ToggleButton value={2} onClick={props.onClick}>
+          🇺🇸 <br></br>USA 
         </ToggleButton>
-        <ToggleButton id="tbg-radio-3" value={3}>
-          USA
+        <ToggleButton value={3} onClick={props.onClick}>
+         🇫🇮 <br></br>FIN 
         </ToggleButton>
-        <ToggleButton id="tbg-radio-4" value={4}>
-          Indonesia
+        <ToggleButton value={4} onClick={props.onClick}>
+          🇬🇧 <br></br> UK
+        </ToggleButton>
+        <ToggleButton value={5} onClick={props.onClick}>
+          🇨🇦 <br></br> CAD
         </ToggleButton>
       </ToggleButtonGroup>
      </div>

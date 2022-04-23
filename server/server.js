@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require("body-parser")
 const axios = require('axios');
+var dayjs = require('dayjs')
+// var customParseFormat = require('dayjs/plugin/customParseFormat')
+// // dayjs.extend(customParseFormat)
 const app = express();
 var payment_hash,payment_request;
 require('dotenv').config()
@@ -20,7 +23,7 @@ app.use(bodyParser.json())
 ///////Serving the index site
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+}); 
 
 /////////Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
@@ -40,17 +43,61 @@ io.on('connection', (socket) => {
   /////Geting the Invoice from lnbits and forwarding it to the frontend
 
   socket.on('getInvoice',(amount) =>{
-    console.log('New Invoice');
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
 
-  socket.on('getWireguardConfig',keyPair => {
-    console.log("functoin called")
-    getWireguardConfig(keyPair).then(result => socket.emit('reciveConfigData',result))
+  socket.on('getWireguardConfig',(publicKey,presharedKey,selectedValue,country) => {
+    console.log(county)
+    getWireguardConfig(publicKey,presharedKey,getTimeStamp(selectedValue),country).then(result => socket.emit('reciveConfigData',result))
   })
 
 
 });
+
+var getTimeStamp = (selectedValue) =>{
+  var date = new Date()
+
+  if(selectedValue == 4){
+    date = addMonths(date = new Date(),1)
+   
+    return date
+  }
+  if(selectedValue == 2){
+    date = addWeeks(date = new Date(),1)
+    
+    return date
+  }
+  if(selectedValue == 0.5){
+    date = addHour(date = new Date(),24)
+    
+    return date
+  }
+
+  if(selectedValue == 0.1){
+    date = addHour(date = new Date(),1)
+    
+    return date
+  }
+
+  function addHour (date = new Date(), hour) {  
+    date.setHours(date.getHours() + hour)
+    return date
+  }
+  function addWeeks (date = new Date(), weeks) {  
+    date.setDate(date.getDate() + weeks * 7)
+    return date
+  }
+
+  function addMonths(date = new Date(), months) {
+    var d = date.getDate();
+    date.setMonth(date.getMonth() + +months);
+    if (date.getDate() != d) {
+      date.setDate(0);
+    }
+    return date;
+  }   
+  
+}
 
 
 ///////// Get Invoice Function
@@ -70,7 +117,9 @@ async function getInvoice(amount) {
       payment_request = respons.data.payment_request;
       payment_hash = respons.data.payment_hash;
       return {payment_hash,payment_request}
-    });  
+    }).catch(error => {   
+      return error
+    }); 
 }
 
 ////////Get Bitcoin Price in Satoshi per Dollar
@@ -87,24 +136,34 @@ async function getPrice() {
 
 
 //////////////////Get Wireguard Config
-async function getWireguardConfig(keyPair,timestamp) {
+async function getWireguardConfig(publicKey,presharedKey,timestamp,country) {
+ 
   return axios({
     method: "post",
     url: process.env.IP_USA,
     headers: { 'Content-Type': 'application/json'},
     data: {
-      "publicKey": keyPair.publicKey,
-      "presharedKey": keyPair.presharedKey,
+      "publicKey": publicKey,
+      "presharedKey": presharedKey,
       "bwLimit": 1000,
-      "subExpiry": "2022-Apr-16 12:39:05 PM",
+      "subExpiry": parseDate(timestamp),
       "ipIndex": 0
     }
   }).then(function (respons){        
     return respons.data
   }).catch(error => {   
-    console.log(error) 
+    return error
   });
 }
+ 
+const parseDate = (date) => {
+  
+  var durationEnd = dayjs(date).format("YYYY-MMM-DD hh:mm:ss A")
+ 
+  return durationEnd
+}
+
+
 
 
 

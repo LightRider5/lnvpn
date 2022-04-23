@@ -53,13 +53,13 @@ function InvoiceModal(props) {
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
         <Collapse in={openCollapse}>
           <div id="example-collapse-text">
-          {props.showSpinner ? null : <div id="invoicestring" class="container">{props.value}</div>}
+          {props.showSpinner ? null : <div id="invoicestring" className="container">{props.value}</div>}
           </div>
         </Collapse>
         </Modal.Body>
         <Modal.Footer>
           {props.isConfigModal ? 
-          <Button variant='primary'>Send via Email</Button>
+          <Button variant='primary' onClick={props.sendEmail}>Send via Email</Button>
           :
           <Button variant="secondary" onClick={props.showNewInvoice}>
             Get new Invoice

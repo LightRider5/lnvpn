@@ -9,8 +9,9 @@ import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
-var socket =  io.connect('http://localhost:5001');
-var date;
+var socket =  io.connect('http://localhost:5001')
+
+
 var clientPaymentHash;
 
 
@@ -18,15 +19,19 @@ var clientPaymentHash;
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
   const [priceDollar, updatePrice] =  useState(0.1)
+  const [country, updateCountry] =  useState(1)
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
-   ///////Modal
+   ///////Modal Invoice
    const [visibleInvoiceModal, setShowInvoiceModal] = useState(false);
    const closeInvoiceModal = () => setShowInvoiceModal(false);
    const showInvoiceModal = () => setShowInvoiceModal(true);
+  ///////Modal Configdata
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
+
+  //////Updates the QR-Code
   const updatePaymentrequest = () => {
     socket.on('lnbitsInvoice',invoiceData => {
       setPaymentrequest(invoiceData.payment_request)
@@ -34,27 +39,30 @@ function App() {
       setSpinner(false)
     })
   }
+
+  ////Connect to WebSocket Server
   socket.on("connect", () => {
     console.log(socket.id); 
   });
+
   //Get the invoice and send also the keypair
   const getInvoice = (price) => {
     socket.emit("getInvoice", price)
     console.log("New Invoice called")
   }
-
-  const getWireguardConfig = (keyPair) =>{
-    socket.emit('getWireguardConfig',keyPair)
+  ///////////GetWireguardConfig 
+  const getWireguardConfig = (publicKey,presharedKey,priceDollar,country) =>{
+    socket.emit('getWireguardConfig',publicKey,presharedKey,priceDollar,country)
   }
 
-  socket.off('invoicePaid').on('invoicePaid', paymentHash => {
-    
+  socket.off('invoicePaid').on('invoicePaid', paymentHash => {  
     if(paymentHash === clientPaymentHash)
     {
       setSpinner(true)
-      getWireguardConfig(keyPair)
+      getWireguardConfig(keyPair.publicKey,keyPair.presharedKey,priceDollar,country)
     }
   })
+
   /////////Get wireguard config from Server
   socket.off('reciveConfigData').on('reciveConfigData',wireguardConfig =>{
     setSpinner(false)
@@ -82,40 +90,14 @@ function App() {
   const runtimeSelect = (e) =>{
     updatePrice(e.target.value)
     console.log(e.target.value)
-
-    if(e.target.value == 4){
-      date = addMonths(date = new Date(),1)
-      console.log(date)
-    }
-    if(e.target.value == 2){
-      date = addWeeks(date = new Date(),1)
-      console.log(date)
-    }
-
-  }
-  function addWeeks (date = new Date(), weeks) {  
-    date.setDate(date.getDate() + weeks * 7)
-  
-    return date
   }
 
-  function addMonths(date = new Date(), months) {
-    var d = date.getDate();
-    date.setMonth(date.getMonth() + +months);
-    if (date.getDate() != d) {
-      date.setDate(0);
-    }
-    return date;
-  } 
-  // function download(filename, text) {
-  //   var element = document.createElement('a');
-  //   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  //   element.setAttribute('download', filename);
-  //   element.style.display = 'none';
-  //   document.body.appendChild(element);
-  //   element.click();
-  //   document.body.removeChild(element);
-  // }
+  const countrySelect = (e) => {
+    updateCountry(e.target.value)
+    console.log(e.target.value)
+
+  }
+
 
   const download = (filename,text) => {
     const textArray = [text]
@@ -128,6 +110,10 @@ function App() {
     document.body.appendChild(element);
     element.click();
   };
+  const sendEmail = (configString) => {
+
+    socket.emit("sendMail", configString) 
+  }
   
  
 
@@ -140,15 +126,16 @@ function App() {
          
           <HeaderInfo/>
           <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey} presharedKey={keyPair.presharedKey}/>
-          <CountrySelector/>
-          <RuntimeSelector onClick={runtimeSelect}/>
+          <CountrySelector onClick={countrySelect}/>
+          <RuntimeSelector onClick={runtimeSelect} />
 
-          <InvoiceModal 
+          <InvoiceModal  
           show={visibleInvoiceModal} 
           showSpinner={showSpinner} 
           isConfigModal={isConfigModal} 
           value={payment_request} 
-          download={() => {download("Wireguard.conf",payment_request)}} 
+          download={() => {download("Wireguard.conf",payment_request)}}
+          sendEmail={() => sendEmail(payment_request)}
           showNewInvoice={() => {getInvoice(priceDollar);setSpinner(true)}} 
           handleClose={closeInvoiceModal}
           />
