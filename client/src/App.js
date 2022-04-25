@@ -11,7 +11,7 @@ import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
 var socket =  io.connect('http://localhost:5001')
 
-
+var emailAddress;
 var clientPaymentHash;
 
 
@@ -31,7 +31,7 @@ function App() {
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
   ///////Email Address form EmailModal
-  const [emailAddress, setEmailAddress] = useState(""); 
+  
 
   //////Updates the QR-Code
   const updatePaymentrequest = () => {
@@ -50,7 +50,6 @@ function App() {
   //Get the invoice and send also the keypair
   const getInvoice = (price) => {
     socket.emit("getInvoice", price)
-    console.log("New Invoice called")
   }
   ///////////GetWireguardConfig 
   const getWireguardConfig = (publicKey,presharedKey,priceDollar,country) =>{
@@ -112,9 +111,9 @@ function App() {
     document.body.appendChild(element);
     element.click();
   };
-  const sendEmail = (emailAddress,configData) => {
-    socket.emit("sendMail",(emailAddress,configData))
-    console.log(emailAddress,configData) 
+
+  const sendEmail = (email,config) => {
+    socket.emit('sendEmail',email,config)
   }
   
  
@@ -137,7 +136,6 @@ function App() {
           isConfigModal={isConfigModal} 
           value={payment_request} 
           download={() => {download("Wireguard.conf",payment_request)}}
-          //sendEmail={() => sendEmail(payment_request)}
           showNewInvoice={() => {getInvoice(priceDollar);setSpinner(true)}} 
           handleClose={closeInvoiceModal}
           emailAddress = {emailAddress}
