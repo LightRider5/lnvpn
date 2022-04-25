@@ -2,7 +2,10 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require("body-parser")
 const axios = require('axios');
-var dayjs = require('dayjs')
+const sgMail = require('@sendgrid/mail');
+
+var dayjs = require('dayjs');
+const { btoa } = require('buffer');
 // var customParseFormat = require('dayjs/plugin/customParseFormat')
 // // dayjs.extend(customParseFormat)
 const app = express();
@@ -46,7 +49,7 @@ io.on('connection', (socket) => {
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
   socket.on('sendEmail',(emailAddress,configData) => {
-    sendEmail(emailAddress,configData).then(result => console.log(result))
+  sendEmail(emailAddress,configData).then(result => console.log(result))
   })
 
   socket.on('getWireguardConfig',(publicKey,presharedKey,selectedValue,country) => {
@@ -73,7 +76,6 @@ var getServer = (countrySelector) => {
   if (countrySelector == 5){
     var server = process.env.IP_CANADA 
   } 
-  console.log(server)
   return server 
 }
 
@@ -195,24 +197,53 @@ const parseDate = (date) => {
 
 //////Send Wireguard config file via email
 async function sendEmail(emailAddress,configData) {
+  sgMail.setApiKey(process.env.EMAIL_TOKEN);
+    const msg = {
+      to: emailAddress,
+      from: 'thanks@lnvpn.net', // Use the email address or domain you verified above
+      subject: 'Your LNVPN config file for Wireguard',
+      text: "Thank you for using lnvpn.net. Find your personal config File attached. Don't loose it.",
+      attachments: [
+        {
+          content: btoa(configData),
+          filename: 'wireguard.conf',
+          type : "text/plain",
+          endings:'native',
+          disposition: 'attachment'
+        }
+      ],
+    };
+
+    sgMail
+      .send(msg)
+      .then(() => {}, error => {
+        console.error(error);
+
+        if (error.response) {
+          console.error(error.response.body)
+        }
+      });
+
+
+
  
-  return axios({
-    method: "post",
-    url: process.env.EMAIL-URL,
-    headers: { 
-      'Content-Type': 'application/json',
-      'Authorization' : process.env.EMAIL-TOKEN
-      },
-    data: {
+  // return axios({
+  //   method: "post",
+  //   url: process.env.EMAIL_URL,
+  //   headers: { 
+  //     'Content-Type': 'application/json',
+  //     'Authorization' : process.env.EMAIL_TOKEN
+  //     },
+  //   data: {
       
-    }
-  }).then(function (respons){   
-    console.log(respons.data)
-    return respons.data
-  }).catch(error => { 
-    console.log(error)  
-    return error
-  });
+  //   }
+  // }).then(function (respons){   
+  //   console.log(respons.data)
+  //   return respons.data
+  // }).catch(error => { 
+  //   console.log(error)  
+  //   return error
+  // });
 }
 
 
