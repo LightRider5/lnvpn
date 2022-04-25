@@ -30,6 +30,8 @@ function App() {
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
+  ///////Email Address form EmailModal
+  const [emailAddress, setEmailAddress] = useState(""); 
 
   //////Updates the QR-Code
   const updatePaymentrequest = () => {
@@ -110,9 +112,9 @@ function App() {
     document.body.appendChild(element);
     element.click();
   };
-  const sendEmail = (configString) => {
-
-    socket.emit("sendMail", configString) 
+  const sendEmail = (emailAddress,configData) => {
+    socket.emit("sendMail",(emailAddress,configData))
+    console.log(emailAddress,configData) 
   }
   
  
@@ -135,9 +137,11 @@ function App() {
           isConfigModal={isConfigModal} 
           value={payment_request} 
           download={() => {download("Wireguard.conf",payment_request)}}
-          sendEmail={() => sendEmail(payment_request)}
+          //sendEmail={() => sendEmail(payment_request)}
           showNewInvoice={() => {getInvoice(priceDollar);setSpinner(true)}} 
           handleClose={closeInvoiceModal}
+          emailAddress = {emailAddress}
+          sendEmail = {(data) => sendEmail(data,payment_request)}
           />
           
           <Price dollar={priceDollar}/>

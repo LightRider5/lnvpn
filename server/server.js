@@ -45,11 +45,14 @@ io.on('connection', (socket) => {
   socket.on('getInvoice',(amount) =>{
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
+  socket.on('sendEmail',(emailAddress,configData) => {
+    sendEmail(emailAddress,configData).then(result => console.log(result))
+  })
 
   socket.on('getWireguardConfig',(publicKey,presharedKey,selectedValue,country) => {
     getWireguardConfig(publicKey,presharedKey,getTimeStamp(selectedValue),getServer(country)).then(result => socket.emit('reciveConfigData',result))
   })
-
+ 
 
 });
 ///Transforms country into server
@@ -181,7 +184,7 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
     return error
   });
 }
- 
+//////Parse Date object to string format: YYYY-MMM-DD hh:mm:ss A
 const parseDate = (date) => {
   
   var durationEnd = dayjs(date).format("YYYY-MMM-DD hh:mm:ss A")
@@ -189,6 +192,28 @@ const parseDate = (date) => {
   return durationEnd
 }
 
+
+//////Send Wireguard config file via email
+async function sendEmail(emailAddress,configData) {
+ 
+  return axios({
+    method: "post",
+    url: process.env.EMAIL-URL,
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : process.env.EMAIL-TOKEN
+      },
+    data: {
+      
+    }
+  }).then(function (respons){   
+    console.log(respons.data)
+    return respons.data
+  }).catch(error => { 
+    console.log(error)  
+    return error
+  });
+}
 
 
 

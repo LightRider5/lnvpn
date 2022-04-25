@@ -5,7 +5,7 @@ const HeaderInfo = () => {
   return (
     <div>
         <Alert variant="success">
-            <Alert.Heading>How it works:</Alert.Heading>
+            {/* <Alert.Heading>How it works:</Alert.Heading> */}
               <p>
                Generate a private key, select a country + duration and pay with Lightning. 
                <br></br>Instant delivery. 100% no trace left.
@@ -16,8 +16,15 @@ const HeaderInfo = () => {
                 We generate your private keys only within the browser and nothing is ever stored on our server!
               </p>
         </Alert>
+        
+        {/* <Container>
+          <Row id="guide_row">
+            <Button variant="primary">How it works?</Button>
+          </Row>
+        </Container> */}
+        </div>
       
-    </div>
+    
   )
 }
 
