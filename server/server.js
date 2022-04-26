@@ -43,6 +43,14 @@ io.on('connection', (socket) => {
   console.log("New connection")
   console.log(' %s socket connected', io.engine.clientsCount) 
   console.log(socket.id)
+
+  socket.on('checkInvoice',(hash)=>{
+    console.log("Check Invoice")  
+    checkInvoice(hash).then(result => io.sockets.emit('invoicePaid',result)) 
+  })
+    
+  
+  
   /////Geting the Invoice from lnbits and forwarding it to the frontend
 
   socket.on('getInvoice',(amount) =>{
@@ -223,28 +231,28 @@ async function sendEmail(emailAddress,configData) {
           console.error(error.response.body)
         }
       });
-
-
-
- 
-  // return axios({
-  //   method: "post",
-  //   url: process.env.EMAIL_URL,
-  //   headers: { 
-  //     'Content-Type': 'application/json',
-  //     'Authorization' : process.env.EMAIL_TOKEN
-  //     },
-  //   data: {
-      
-  //   }
-  // }).then(function (respons){   
-  //   console.log(respons.data)
-  //   return respons.data
-  // }).catch(error => { 
-  //   console.log(error)  
-  //   return error
-  // });
 }
+    
+    //////////////Check for Invoice
+    async function checkInvoice(hash) {
+      return axios({
+        method: "get",
+        url: "https://legend.lnbits.com/api/v1/payments/"+hash,
+        headers: { "X-Api-Key": process.env.INVOICE_KEY}
+  
+      }).then(function (respons){
+          
+          if(respons.data.paid)  {
+            console.log(respons.data.details.payment_hash)
+            return respons.data.payment_hash
+          }
+
+      })
+
+    }
+ 
+  
+
 
 
 

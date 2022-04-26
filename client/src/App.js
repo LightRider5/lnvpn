@@ -39,12 +39,15 @@ function App() {
       setPaymentrequest(invoiceData.payment_request)
       clientPaymentHash = invoiceData.payment_hash;
       setSpinner(false)
-    })
+    }) 
   }
 
   ////Connect to WebSocket Server
   socket.on("connect", () => {
-    //console.log(socket.id); 
+    if(clientPaymentHash !== undefined){
+      console.log(clientPaymentHash)
+      socket.send('checkInvoice',clientPaymentHash)
+    }
   });
 
   //Get the invoice and send also the keypair
