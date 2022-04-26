@@ -10,10 +10,10 @@ const RuntimeSelector = (props) => {
       <ToggleButton id="tbg-radio-2" value={0.5} onClick={props.onClick}>
         1 <br></br> day
       </ToggleButton>
-      <ToggleButton id="tbg-radio-3" value={2} onClick={props.onClick}>
+      <ToggleButton id="tbg-radio-3" value={1.5} onClick={props.onClick}>
         1 <br></br> week
       </ToggleButton>
-      <ToggleButton id="tbg-radio-4" value={4} onClick={props.onClick}>
+      <ToggleButton id="tbg-radio-4" value={3} onClick={props.onClick}>
         1 <br></br> month
       </ToggleButton>
       <ToggleButton id="tbg-radio-4" variant="secondary" value={5} onClick={props.onClick} disabled>
