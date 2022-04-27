@@ -44,15 +44,13 @@ io.on('connection', (socket) => {
   console.log(' %s socket connected', io.engine.clientsCount) 
   console.log(socket.id)
 
-  socket.on('checkInvoice',(hash)=>{
+  ////////Checks for a paid Invoice after reconnect
+  socket.on('checkInvoice',(clientPaymentHash) => {
     console.log("Check Invoice")  
-    checkInvoice(hash).then(result => io.sockets.emit('invoicePaid',result)) 
+    checkInvoice(clientPaymentHash).then(result => io.sockets.emit('invoicePaid',result)) 
   })
-    
-  
-  
-  /////Geting the Invoice from lnbits and forwarding it to the frontend
 
+  /////Getting the Invoice from lnbits and forwarding it to the frontend
   socket.on('getInvoice',(amount) =>{
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
@@ -244,8 +242,8 @@ async function sendEmail(emailAddress,configData) {
           
           if(respons.data.paid)  {
             console.log(respons.data.details.payment_hash)
-            return respons.data.payment_hash
-          }
+            return respons.data.details.payment_hash
+          } 
 
       })
 

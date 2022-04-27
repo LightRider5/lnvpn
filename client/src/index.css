@@ -169,3 +169,7 @@ h1 {
   min-width: 0;
 }
 
+#paid_message{
+  text-align: center;
+  color:green;
+}

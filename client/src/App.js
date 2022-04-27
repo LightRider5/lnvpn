@@ -13,7 +13,7 @@ var socket =  io.connect('http://localhost:5001')
 
 var emailAddress;
 var clientPaymentHash;
-
+var isPaid = false; //Is only necessary in the case of socket event is fireing multible times
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
-  ///////Email Address form EmailModal
+ 
   
 
   //////Updates the QR-Code
@@ -43,16 +43,21 @@ function App() {
   }
 
   ////Connect to WebSocket Server
-  socket.on("connect", () => {
-    if(clientPaymentHash !== undefined){
-      console.log(clientPaymentHash)
-      socket.send('checkInvoice',clientPaymentHash)
+  socket.off('connect').on("connect", () => {
+    console.log(socket.id)
+    /////Checks for already paid invoice if browser switche tab on mobile
+    if(clientPaymentHash != undefined){
+      checkInvoice()
     }
   });
 
+  const checkInvoice = () =>{ 
+      socket.emit('checkInvoice',clientPaymentHash)
+  }
+
   //Get the invoice and send also the keypair
   const getInvoice = (price) => {
-    socket.emit("getInvoice", price)
+    socket.emit('getInvoice', price)
   }
   ///////////GetWireguardConfig 
   const getWireguardConfig = (publicKey,presharedKey,priceDollar,country) =>{
@@ -60,8 +65,9 @@ function App() {
   }
 
   socket.off('invoicePaid').on('invoicePaid', paymentHash => {  
-    if(paymentHash === clientPaymentHash)
+    if(paymentHash === clientPaymentHash && !isPaid)
     {
+      isPaid = true;
       setSpinner(true)
       getWireguardConfig(keyPair.publicKey,keyPair.presharedKey,priceDollar,country)
     }

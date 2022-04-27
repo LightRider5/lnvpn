@@ -60,12 +60,15 @@ function InvoiceModal(props) {
         >
         <Modal.Header closeButton> 
         {props.isConfigModal ? 
-          <Modal.Title>Scan or download config</Modal.Title>:
-          <Modal.Title>Scan or copy invoice</Modal.Title> 
+        <Modal.Title>Scan or download config</Modal.Title>:
+        <Modal.Title>Scan or copy invoice</Modal.Title> 
           }
         </Modal.Header>
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
+        {props.isConfigModal ?
+         <h3 id="paid_message">PAID</h3> :
         <p>Once the invoice is paid, don't leave the site. We don't store session data and can't restore yours.</p>
+          }
         <Collapse in={openCollapse}>
           <div id="example-collapse-text">
           {props.showSpinner ? null : <div id="invoicestring" className="container">{props.value}</div>}
