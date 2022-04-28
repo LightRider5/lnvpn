@@ -4,7 +4,7 @@ import {Alert} from 'react-bootstrap'
 const HeaderInfo = () => {
   return (
     <div>
-        <Alert variant="success">
+        <Alert variant="primary">
             {/* <Alert.Heading>How it works:</Alert.Heading> */}
               <p>
                Generate a private key, select a country + duration and pay with Lightning. 

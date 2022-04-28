@@ -67,7 +67,7 @@ function InvoiceModal(props) {
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
         {props.isConfigModal ?
          <h3 id="paid_message">PAID</h3> :
-        <p>Once the invoice is paid, don't leave the site. We don't store session data and can't restore yours.</p>
+        <p>Once the invoice is paid, don't close the site. We don't store session data and can't restore yours.</p>
           }
         <Collapse in={openCollapse}>
           <div id="example-collapse-text">

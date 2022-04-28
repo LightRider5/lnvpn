@@ -91,10 +91,18 @@ h1 {
 
 
 .buttons{
+  margin: 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  flex-direction: column;
+}
+
+.buttons Button{
+  padding: 10px;
+  margin: 10px;
 }
 
 .inputfield {
@@ -113,6 +121,10 @@ h1 {
 
 .price{
   color: white;
+  text-align: center;
+}
+title {
+  text-align: center;
 }
 
 #countryselector {
@@ -160,6 +172,9 @@ h1 {
 #main_modal {
   min-width: 50%;
 }
+.modal-footer{
+  flex-wrap: unset;
+}
 
 #guide_row {
   text-align:   right;
@@ -172,4 +187,9 @@ h1 {
 #paid_message{
   text-align: center;
   color:green;
+}
+
+canvas{
+  padding: 10px;
+  background-color: white;
 }

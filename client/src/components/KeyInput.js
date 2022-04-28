@@ -7,7 +7,7 @@ function KeyInput(props) {
     return (
     <div>
         <Form>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-2">
             <InputGroup>
                 <InputGroup.Text>Private Key</InputGroup.Text>
                 <Form.Control value={props.privateKey} disabled/>

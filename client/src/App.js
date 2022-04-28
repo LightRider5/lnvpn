@@ -1,6 +1,6 @@
 import {Row, Col, Container} from 'react-bootstrap'
 import {io} from "socket.io-client";
-import Button from './components/Button'
+import {Button} from 'react-bootstrap'
 import {useState} from 'react'
 import KeyInput from './components/KeyInput'
 import Price from './components/Price';
@@ -153,8 +153,8 @@ function App() {
           
           <Price dollar={priceDollar}/>
             <div className='buttons'>
-              <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} text="Generate New Key"/>
-              <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();hideConfigModal();updatePaymentrequest();setSpinner(true)}} text="Get Invoice"/>
+              <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} variant="info">Generate New Key</Button>
+              <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();hideConfigModal();updatePaymentrequest();setSpinner(true)}} variant="success">Get Invoice</Button>
             </div>
           </Col>
         </Row>

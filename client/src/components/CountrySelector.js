@@ -10,9 +10,9 @@ const CountrySelector = (props) => {
         <ToggleButton value={2} onClick={props.onClick}>
           🇺🇸 <br></br>USA 
         </ToggleButton>
-        <ToggleButton value={3} onClick={props.onClick}>
+        <ToggleButton  value={3} onClick={props.onClick}>
          🇫🇮 <br></br>FIN 
-        </ToggleButton>
+        </ToggleButton >
         <ToggleButton value={4} onClick={props.onClick}>
           🇬🇧 <br></br>UK
         </ToggleButton>
