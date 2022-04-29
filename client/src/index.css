@@ -193,3 +193,7 @@ canvas{
   padding: 10px;
   background-color: white;
 }
+
+button.close {
+  color: white;
+}
