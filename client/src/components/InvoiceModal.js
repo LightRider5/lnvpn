@@ -105,6 +105,12 @@ function InvoiceModal(props) {
           <Button variant="primary" ref={target} onClick={() =>  {navigator.clipboard.writeText(props.value);renderTooltip(!showTooltip)}}>
             Copy Invoice
           </Button>}
+          {props.isConfigModal ? "" :
+          <a href={"lightning:" + props.value} > 
+          <Button variant="success">
+          Open Wallet
+          </Button></a>}
+
 
           <Overlay target={target.current} transition={true} show={showTooltip} placement="top">
             {(propsTooltip) => (

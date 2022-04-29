@@ -197,3 +197,6 @@ canvas{
 button.close {
   color: white;
 }
+.modal-content{
+  border: 1px solid #375a7f !important;
+}
