@@ -152,7 +152,7 @@ function App() {
           />
           
           <Price dollar={priceDollar}/>
-            <div className='buttons'>
+            <div className='main-buttons'>
               <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} variant="info">Generate New Key</Button>
               <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();hideConfigModal();updatePaymentrequest();setSpinner(true)}} variant="success">Get Invoice</Button>
             </div>

@@ -33,7 +33,7 @@ const EmailModal = (props) => {
                 />
             </InputGroup>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="emailbuttons">
           <Button variant="danger" onClick={props.handleClose}>
             Close
           </Button>
