@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
     console.log("Check Invoice")  
     checkInvoice(clientPaymentHash).then(result => io.sockets.emit('invoicePaid',result)) 
   })
-
+ 
   /////Getting the Invoice from lnbits and forwarding it to the frontend
   socket.on('getInvoice',(amount) =>{
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))

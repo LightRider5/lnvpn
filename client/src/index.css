@@ -172,8 +172,9 @@ title {
 #main_modal {
   min-width: 50%;
 }
-.modal-footer{
-  flex-wrap: unset;
+ .modal-footer{
+  
+  display: contents;
 }
 
 #guide_row {
@@ -182,6 +183,9 @@ title {
 
 #emailModal span.input-group-text{
   min-width: 0;
+}
+.walletbutton{
+  width: 100%;
 }
 
 #paid_message{

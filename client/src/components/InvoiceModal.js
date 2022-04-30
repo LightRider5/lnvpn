@@ -66,8 +66,14 @@ function InvoiceModal(props) {
         </Modal.Header>
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
         {props.isConfigModal ?
-         <h3 id="paid_message">PAID</h3> :
-        <p>Once the invoice is paid, don't close the site. We don't store session data and can't restore yours.</p>
+         <p>
+           WireGuard VPN config, scan via the <a href="https://www.wireguard.com/install/">WireGuard App on 
+          your smartphone</a>, download the config file for <a href="https://www.wireguard.com/install/">WireGuard 
+          for Windows and MacOS</a> or send it to yourself via Email to use it later on another device
+         </p> :
+        <p>
+        This is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/">Phoenix</a>, <a href="https://muun.com/">Muun</a>, <a href="https://breez.technology/">Breez</a> or <a href="https://bluewallet.io/">BlueWallet</a>.  
+        </p>
           }
         <Collapse in={openCollapse}>
           <div id="example-collapse-text">
@@ -96,20 +102,23 @@ function InvoiceModal(props) {
             onClick={() => setOpen(!openCollapse)}
             aria-controls="example-collapse-text"
             aria-expanded={!openCollapse}
-          >{!openCollapse ? 'Show PR' : 'Hide PR'}
+          >{!openCollapse ? 'Show Invoice' : 'Hide Invoice'}
           </Button>}
 
           {/*Render Copy Invoice or Download button  */}
           {props.isConfigModal ? 
-          <Button variant="primary" onClick={props.download}>Download File</Button> :
+          <Button variant="primary" onClick={props.download}>Download as File</Button> :
           <Button variant="primary" ref={target} onClick={() =>  {navigator.clipboard.writeText(props.value);renderTooltip(!showTooltip)}}>
             Copy Invoice
           </Button>}
           {props.isConfigModal ? "" :
-          <a href={"lightning:" + props.value} > 
-          <Button variant="success">
-          Open Wallet
-          </Button></a>}
+          <a href={"lightning:" + props.value} >
+            <Button className="walletbutton" variant="primary">
+              Open in Wallet
+            </Button>
+          </a>
+          }
+           
 
 
           <Overlay target={target.current} transition={true} show={showTooltip} placement="top">
