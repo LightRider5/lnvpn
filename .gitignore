@@ -3,3 +3,5 @@ Serverinfo.txt
 .env
 package-lock.json
 server/default
+faq.txt
+.gitignore
