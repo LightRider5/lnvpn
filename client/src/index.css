@@ -99,7 +99,7 @@ h1 {
   text-align: center;
 }
 
-.emailbuttons{
+.emailbuttons .modal-footer{
   display: flex;
 }
 
