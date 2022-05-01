@@ -13,7 +13,7 @@ const HeaderInfo = () => {
               </p>
             <hr />
               <p className="mb-0">
-                We generate your private keys only within the browser and nothing is ever stored on our server!
+                We generate your private keys only within the browser!
               </p>
         </Alert>
         
