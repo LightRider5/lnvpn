@@ -9,6 +9,7 @@ import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import HeaderInfo from './components/HeaderInfo';
+import FAQModal from './components/FAQModal';
 var socket =  io.connect('http://localhost:5001')
 
 var emailAddress;
@@ -30,7 +31,10 @@ function App() {
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
- 
+   //////FAQ - Modal
+   const [isFAQModal, showFAQModal] = useState(false) 
+   const renderFAQModal = () => showFAQModal(true);
+   const hideFAQModal = () => showFAQModal(false); 
   
 
   //////Updates the QR-Code
@@ -44,7 +48,7 @@ function App() {
 
   ////Connect to WebSocket Server
   socket.off('connect').on("connect", () => {
-    console.log(socket.id)
+  
     /////Checks for already paid invoice if browser switche tab on mobile
     if(clientPaymentHash != undefined){
       checkInvoice()
@@ -150,11 +154,24 @@ function App() {
           emailAddress = {emailAddress}
           sendEmail = {(data) => sendEmail(data,payment_request)}
           />
+
+          <FAQModal
+          
+          show={isFAQModal}
+          handleClose={hideFAQModal}
+          />
           
           <Price dollar={priceDollar}/>
             <div className='main-buttons'>
-              <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} variant="info">Generate New Key</Button>
-              <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();hideConfigModal();updatePaymentrequest();setSpinner(true)}} variant="success">Submit</Button>
+            <Row>
+              <Col>
+                <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} variant="info">Generate New Key</Button>
+              </Col>
+              <Col>
+                <Button onClick={() => renderFAQModal()} variant="info">Show FAQ</Button>
+              </Col>
+            </Row>
+              <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();hideConfigModal();updatePaymentrequest();setSpinner(true)}} variant="success">Generate Invoice</Button>
             </div>
           </Col>
         </Row>

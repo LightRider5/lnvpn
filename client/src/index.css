@@ -88,9 +88,10 @@ h1 {
 #invoice-button{
   background-color: #22C55E;
 }
-.main-buttons Button{
-  margin: 5px;
+.main-buttons button{
+  margin: 5px 0px 5px 0px;
   padding: 15px;
+  width: 100%;
 }
 
 .main-buttons{
@@ -98,6 +99,7 @@ h1 {
   align-items: center;
   text-align: center;
 }
+
 
 .emailbuttons .modal-footer{
   display: flex;
@@ -211,6 +213,9 @@ button.close {
   text-align: center;
   margin: 20px;
 }
+
+
+
 
 
 
