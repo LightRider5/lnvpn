@@ -3,7 +3,6 @@ const path = require('path');
 const bodyParser = require("body-parser")
 const axios = require('axios');
 const sgMail = require('@sendgrid/mail');
-
 var dayjs = require('dayjs');
 const { btoa } = require('buffer');
 // var customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -30,10 +29,10 @@ app.get('/', function (req, res) {
 
 /////////Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
-    console.log('Hook called')
+    console.log('Invoice paid')
     io.sockets.emit('invoicePaid',req.body.payment_hash)
     res.status(200).end() 
-})
+}) 
  
 app.listen(5000);
 ////////////// Finish Server Setup
@@ -54,8 +53,8 @@ io.on('connection', (socket) => {
   socket.on('getInvoice',(amount) =>{
     getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
   })
-  socket.on('sendEmail',(emailAddress,configData) => {
-  sendEmail(emailAddress,configData).then(result => console.log(result))
+  socket.on('sendEmail',(emailAddress,configData,date) => {
+  sendEmail(emailAddress,configData,date).then(result => console.log(result))
   })
 
   socket.on('getWireguardConfig',(publicKey,presharedKey,selectedValue,country) => {
@@ -88,27 +87,26 @@ var getServer = (countrySelector) => {
 
 ///Transforms duration into timestamp
 var getTimeStamp = (selectedValue) =>{
-  var date = new Date()
+  //var date = new Date()
 
-  if(selectedValue == 4){
+  if(selectedValue == 3){
     date = addMonths(date = new Date(),1)
-   
+    console.log(date)
     return date
   }
-  if(selectedValue == 2){
+  if(selectedValue == 1.5){
     date = addWeeks(date = new Date(),1)
-    
     return date
   }
   if(selectedValue == 0.5){
     date = addHour(date = new Date(),24)
-    
+    console.log(date)
     return date
   }
 
   if(selectedValue == 0.1){
     date = addHour(date = new Date(),1)
-    
+    console.log(date)
     return date
   }
 
@@ -189,7 +187,7 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
     return respons.data
   }).catch(error => { 
     console.log(error)  
-    return error
+    return error 
   });
 }
 //////Parse Date object to string format: YYYY-MMM-DD hh:mm:ss A
@@ -202,13 +200,13 @@ const parseDate = (date) => {
 
 
 //////Send Wireguard config file via email
-async function sendEmail(emailAddress,configData) {
+async function sendEmail(emailAddress,configData,date) {
   sgMail.setApiKey(process.env.EMAIL_TOKEN);
     const msg = {
       to: emailAddress,
       from: 'thanks@lnvpn.net', // Use the email address or domain you verified above
-      subject: 'Your LNVPN config file for Wireguard',
-      text: "Thank you for using lnvpn.net. Find your personal config File attached. Don't loose it.",
+      subject: 'Your LNVPN config file for Wireguard. Valid until: '+date.toString(),
+      text: "Thank you for using lnvpn.net. Find your personal config File attached. Don't loose it.\n Your subscription is valid until: "+date.toString(),
       attachments: [
         {
           content: btoa(configData),
@@ -217,7 +215,7 @@ async function sendEmail(emailAddress,configData) {
           endings:'native',
           disposition: 'attachment'
         }
-      ],
+      ], 
     };
 
     sgMail
@@ -241,7 +239,7 @@ async function sendEmail(emailAddress,configData) {
       }).then(function (respons){
           
           if(respons.data.paid)  {
-            console.log(respons.data.details.payment_hash)
+            //console.log(respons.data.details.payment_hash)
             return respons.data.details.payment_hash
           } 
 
