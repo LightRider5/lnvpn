@@ -8,6 +8,7 @@ import CountrySelector from './components/CountrySelector';
 import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
+import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import FAQModal from './components/FAQModal';
 var socket =  io.connect('http://localhost:5001')
@@ -87,6 +88,7 @@ function App() {
   const buildConfigFile = (serverResponse) => {
     showInvoiceModal ()
     renderConfigModal()
+    isPaid = false; ///Enables multible purchases
     const configArray = [
     '[Interface]',
     'PrivateKey = ' + keyPair.privateKey,
@@ -109,7 +111,6 @@ function App() {
 
   const countrySelect = (e) => {
     updateCountry(e.target.value)
-
   }
 
 
@@ -125,8 +126,8 @@ function App() {
     element.click();
   };
 
-  const sendEmail = (email,config) => {
-    socket.emit('sendEmail',email,config)
+  const sendEmail = (email,config,date) => {
+    socket.emit('sendEmail',email,config,date)
   }
   
  
@@ -152,7 +153,8 @@ function App() {
           showNewInvoice={() => {getInvoice(priceDollar);setSpinner(true)}} 
           handleClose={closeInvoiceModal}
           emailAddress = {emailAddress}
-          sendEmail = {(data) => sendEmail(data,payment_request)}
+          expiryDate = {getTimeStamp(priceDollar)}
+          sendEmail = {(data) => sendEmail(data,payment_request,getTimeStamp(priceDollar))}
           />
 
           <FAQModal

@@ -13,7 +13,8 @@ const FAQModal = (props) => {
   return (
     <div>
 
-<Modal
+    <Modal
+      id="faq_modal" 
       show={props.show} 
       onHide={props.handleClose}
       centered

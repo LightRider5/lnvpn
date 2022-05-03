@@ -98,6 +98,7 @@ h1 {
   display: grid;
   align-items: center;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 
@@ -212,6 +213,14 @@ button.close {
 .footer-text{
   text-align: center;
   margin: 20px;
+}
+
+#faq_modal {
+  min-width: 50%;
+}
+
+#expirydate{
+  color: red;
 }
 
 

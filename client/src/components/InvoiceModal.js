@@ -66,11 +66,21 @@ function InvoiceModal(props) {
         </Modal.Header>
         <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
         {props.isConfigModal ?
-         <p>
+         <div>
+           <p>
            WireGuard VPN config, scan via the <a href="https://www.wireguard.com/install/">WireGuard App on 
           your smartphone</a>, download the config file for <a href="https://www.wireguard.com/install/">WireGuard 
-          for Windows and MacOS</a> or send it to yourself via Email to use it later on another device
-         </p> :
+          for Windows and MacOS</a> or send it to yourself via Email to use it later on another device.
+          </p>
+         
+          <p id='expirydate'>
+            Valid until: {props.expiryDate.toString()}
+          </p>
+          {/* <p>
+            Selected Country: {props.country}
+          </p> */}
+          </div>
+          :
         <p>
         This is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/">Phoenix</a>, <a href="https://muun.com/">Muun</a>, <a href="https://breez.technology/">Breez</a> or <a href="https://bluewallet.io/">BlueWallet</a>.  
         </p>
@@ -134,7 +144,6 @@ function InvoiceModal(props) {
         show={visibleEmailModal} 
         handleClose={closeEmailModal}
         sendEmail={(data) => props.sendEmail(data)}
-        
       />
       
     </div>
