@@ -60,7 +60,7 @@ function InvoiceModal(props) {
         >
         <Modal.Header closeButton> 
         {props.isConfigModal ? 
-        <Modal.Title>Scan or download config</Modal.Title>:
+        <Modal.Title>Scan, send or download config</Modal.Title>:
         <Modal.Title>Scan or copy invoice</Modal.Title> 
           }
         </Modal.Header>
@@ -74,11 +74,10 @@ function InvoiceModal(props) {
           </p>
          
           <p id='expirydate'>
-            Valid until: {props.expiryDate.toString()}
+            Valid until: {props.expiryDate.toString()}<br></br>
+            Make sure to save your config before closing. Otherwise it is lost. 
           </p>
-          {/* <p>
-            Selected Country: {props.country}
-          </p> */}
+        
           </div>
           :
         <p>
