@@ -63,7 +63,6 @@ function App() {
   //Get the invoice 
   const getInvoice = (price) => {
     socket.emit('getInvoice', price)
-    console.log(keyPair)
   }
   ///////////GetWireguardConfig 
   const getWireguardConfig = (publicKey,presharedKey,priceDollar,country) =>{

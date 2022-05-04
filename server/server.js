@@ -75,7 +75,7 @@ var getServer = (countrySelector) => {
   if (countrySelector == 3){
     var server = process.env.IP_FIN    
   }   
-  if (countrySelector == 4){
+  if (countrySelector == 4){ 
     var server = process.env.IP_UK  
   } 
   if (countrySelector == 5){
@@ -179,7 +179,7 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
     data: {
       "publicKey": publicKey,
       "presharedKey": presharedKey,
-      "bwLimit": 50000,
+      "bwLimit": 10000,
       "subExpiry": parseDate(timestamp),
       "ipIndex": 0
     }
