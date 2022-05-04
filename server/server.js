@@ -209,7 +209,7 @@ async function sendEmail(emailAddress,configData,date) {
       text: "Thank you for using lnvpn.net. Find your personal config File attached. Don't loose it.\n Your subscription is valid until: "+date.toString(),
       attachments: [
         {
-          content: btoa(configData),
+          content: btoa(configData), 
           filename: 'wireguard.conf',
           type : "text/plain",
           endings:'native',
