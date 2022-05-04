@@ -35,7 +35,7 @@ h1 {
   font-family: arista;
 }
 .main-middle{
-  display: flex;
+  max-width: 700px;
   margin-top: 5vh;
   align-items: center;
   flex-direction: column;

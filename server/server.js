@@ -71,18 +71,18 @@ var getServer = (countrySelector) => {
   }
   if (countrySelector == 2){
     var server = process.env.IP_USA  
-  }
+  } 
   if (countrySelector == 3){
     var server = process.env.IP_FIN    
   }   
-  if (countrySelector == 4){
+  if (countrySelector == 4){ 
     var server = process.env.IP_UK  
   } 
-  if (countrySelector == 5){
+  if (countrySelector == 5){  
     var server = process.env.IP_CANADA 
   } 
   return server 
-}
+} 
 
 
 ///Transforms duration into timestamp
@@ -91,7 +91,6 @@ var getTimeStamp = (selectedValue) =>{
 
   if(selectedValue == 3){
     date = addMonths(date = new Date(),1)
-    console.log(date)
     return date
   }
   if(selectedValue == 1.5){
@@ -100,13 +99,11 @@ var getTimeStamp = (selectedValue) =>{
   }
   if(selectedValue == 0.5){
     date = addHour(date = new Date(),24)
-    console.log(date)
     return date
   }
 
   if(selectedValue == 0.1){
     date = addHour(date = new Date(),1)
-    console.log(date)
     return date
   }
 
@@ -179,7 +176,7 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
     data: {
       "publicKey": publicKey,
       "presharedKey": presharedKey,
-      "bwLimit": 50000,
+      "bwLimit": 10000,
       "subExpiry": parseDate(timestamp),
       "ipIndex": 0
     }
@@ -209,7 +206,7 @@ async function sendEmail(emailAddress,configData,date) {
       text: "Thank you for using lnvpn.net. Find your personal config File attached. Don't loose it.\n Your subscription is valid until: "+date.toString(),
       attachments: [
         {
-          content: btoa(configData),
+          content: btoa(configData), 
           filename: 'wireguard.conf',
           type : "text/plain",
           endings:'native',

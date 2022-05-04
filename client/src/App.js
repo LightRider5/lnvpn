@@ -60,7 +60,7 @@ function App() {
       socket.emit('checkInvoice',clientPaymentHash)
   }
 
-  //Get the invoice and send also the keypair
+  //Get the invoice 
   const getInvoice = (price) => {
     socket.emit('getInvoice', price)
   }
@@ -140,7 +140,15 @@ function App() {
           <h1>LN ⚡ VPN</h1>
          
           <HeaderInfo/>
-          <KeyInput publicKey={keyPair.publicKey} privateKey={keyPair.privateKey} presharedKey={keyPair.presharedKey}/>
+          <KeyInput 
+          publicKey={keyPair.publicKey} 
+          privateKey={keyPair.privateKey} 
+          presharedKey={keyPair.presharedKey}
+          newPrivateKey={(privateKey) => {keyPair.privateKey = privateKey}} 
+          newPublicKey={(publicKey) => {keyPair.publicKey = publicKey}} 
+          newPresharedKey={(presharedKey) => {keyPair.presharedKey = presharedKey}} 
+          />
+          
           <CountrySelector onClick={countrySelect}/>
           <RuntimeSelector onClick={runtimeSelect} />
 
@@ -158,7 +166,6 @@ function App() {
           />
 
           <FAQModal
-          
           show={isFAQModal}
           handleClose={hideFAQModal}
           />
