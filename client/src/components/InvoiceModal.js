@@ -9,9 +9,8 @@ function InvoiceModal(props) {
   const closeEmailModal = () => setShowEmailModal(false);
   const showEmailModal = () => setShowEmailModal(true);
 
-  // const initialStateTooltip = false;
+
   const [showTooltip, setShowTooltip] = useState(false);
-  
   const [openCollapse, setOpen] = useState(false);
   const target = useRef(null);
 

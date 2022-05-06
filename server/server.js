@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 
 /////////Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
-    console.log('Invoice paid')
+    
     io.sockets.emit('invoicePaid',req.body.payment_hash)
     res.status(200).end() 
 }) 
@@ -39,13 +39,12 @@ app.listen(5000);
 
 //////Socket Connections
 io.on('connection', (socket) => {
-  console.log("New connection")
-  console.log(' %s socket connected', io.engine.clientsCount) 
-  console.log(socket.id)
-
+  // console.log("New connection") 
+  
+ 
   ////////Checks for a paid Invoice after reconnect
   socket.on('checkInvoice',(clientPaymentHash) => {
-    console.log("Check Invoice")  
+    
     checkInvoice(clientPaymentHash).then(result => io.sockets.emit('invoicePaid',result)) 
   })
  
@@ -236,7 +235,6 @@ async function sendEmail(emailAddress,configData,date) {
       }).then(function (respons){
           
           if(respons.data.paid)  {
-            //console.log(respons.data.details.payment_hash)
             return respons.data.details.payment_hash
           } 
 

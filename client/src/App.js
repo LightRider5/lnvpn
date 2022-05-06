@@ -15,7 +15,7 @@ var socket =  io.connect('http://localhost:5001')
 
 var emailAddress;
 var clientPaymentHash;
-var isPaid = false; //Is only necessary in the case of socket event is fireing multible times
+var isPaid=false; //Is only necessary in the case of socket event is fireing multible times
 
 
 function App() {
@@ -58,9 +58,8 @@ function App() {
 
   ////Connect to WebSocket Server
   socket.off('connect').on("connect", () => {
-  
     /////Checks for already paid invoice if browser switche tab on mobile
-    if(clientPaymentHash != undefined){
+    if((clientPaymentHash !== undefined)){
       checkInvoice()
     }
   });
@@ -78,8 +77,8 @@ function App() {
     socket.emit('getWireguardConfig',publicKey,presharedKey,priceDollar,country)
   }
 
-  socket.off('invoicePaid').on('invoicePaid', paymentHash => {  
-    if(paymentHash === clientPaymentHash && !isPaid)
+  socket.off('invoicePaid').on('invoicePaid', paymentHash => { 
+    if((paymentHash === clientPaymentHash) && !isPaid)
     { 
       renderAlert(true)
       isPaid = true;
@@ -98,7 +97,6 @@ function App() {
   const buildConfigFile = (serverResponse) => {
     showInvoiceModal ()
     renderConfigModal()
-    isPaid = false; ///Enables multible purchases
     const configArray = [
     '[Interface]',
     'PrivateKey = ' + keyPair.privateKey,
@@ -188,10 +186,20 @@ function App() {
                 <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} variant="info">Generate New Key</Button>
               </Col>
               <Col>
-                <Button onClick={() => renderFAQModal()} variant="info">Show FAQ</Button>
+                <Button 
+                onClick={() => renderFAQModal()} 
+                variant="info">Show FAQ</Button>
               </Col>
             </Row>
-              <Button onClick={() => {getInvoice(priceDollar);showInvoiceModal();hideConfigModal();updatePaymentrequest();setSpinner(true)}} variant="success">Generate Invoice</Button>
+              <Button 
+              onClick={() => {getInvoice(priceDollar);
+                showInvoiceModal();
+                hideConfigModal();
+                updatePaymentrequest();
+                setSpinner(true);
+                isPaid=false;
+              }} 
+              variant="success">Generate Invoice</Button>
             </div>
           </Col>
         </Row>
