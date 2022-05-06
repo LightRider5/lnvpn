@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState,useRef} from 'react';
 import {QRCodeCanvas} from 'qrcode.react'
-import {Modal,Button,Spinner,Overlay,Tooltip,Collapse}from 'react-bootstrap'
+import {Modal,Button,Spinner,Overlay,Tooltip,Collapse,Alert}from 'react-bootstrap'
 import EmailModal from './EmailModal';
 
 function InvoiceModal(props) {
@@ -9,16 +9,19 @@ function InvoiceModal(props) {
   const closeEmailModal = () => setShowEmailModal(false);
   const showEmailModal = () => setShowEmailModal(true);
 
-  const initialStateTooltip = false;
-  const [showTooltip, setShowTooltip] = useState(initialStateTooltip);
+  // const initialStateTooltip = false;
+  const [showTooltip, setShowTooltip] = useState(false);
+  
   const [openCollapse, setOpen] = useState(false);
   const target = useRef(null);
 
 
   const renderTooltip = (show) => {
     setShowTooltip(show)
-    setTimeout(() => setShowTooltip(initialStateTooltip), [1000])
+    setTimeout(() => setShowTooltip(false), [1000])
   }
+
+  
    
   if(!props.show){
       
@@ -64,9 +67,20 @@ function InvoiceModal(props) {
         <Modal.Title>Scan or copy invoice</Modal.Title> 
           }
         </Modal.Header>
-        <Modal.Body>{props.showSpinner ? <Spinner animation="border" /> : <QRCodeCanvas value={props.value} size={256} />}
+
+        <Modal.Body>
+       
+            <Alert show={props.showPaymentAlert}   variant="success">
+              Payment successfull!
+            </Alert> 
+        
+          {props.showSpinner ? <Spinner animation="border" /> : 
+          <QRCodeCanvas value={props.value} size={256} />}
+        
+        
         {props.isConfigModal ?
          <div>
+           
            <p>
            WireGuard VPN config, scan via the <a href="https://www.wireguard.com/install/">WireGuard App on 
           your smartphone</a>, download the config file for <a href="https://www.wireguard.com/install/">WireGuard 

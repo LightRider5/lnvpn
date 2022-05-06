@@ -24,6 +24,7 @@ function App() {
   const [country, updateCountry] =  useState(1)
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
+  const [showPaymentSuccessfull, setPaymentAlert] = useState(false);
    ///////Modal Invoice
    const [visibleInvoiceModal, setShowInvoiceModal] = useState(false);
    const closeInvoiceModal = () => setShowInvoiceModal(false);
@@ -37,6 +38,14 @@ function App() {
    const renderFAQModal = () => showFAQModal(true);
    const hideFAQModal = () => showFAQModal(false); 
   
+
+
+
+  ///////Successfull payment alert
+   const renderAlert = (show) => {
+    setPaymentAlert(show)
+    setTimeout(() => setPaymentAlert(false), [2000])
+  } 
 
   //////Updates the QR-Code
   const updatePaymentrequest = () => {
@@ -71,7 +80,8 @@ function App() {
 
   socket.off('invoicePaid').on('invoicePaid', paymentHash => {  
     if(paymentHash === clientPaymentHash && !isPaid)
-    {
+    { 
+      renderAlert(true)
       isPaid = true;
       setSpinner(true)
       getWireguardConfig(keyPair.publicKey,keyPair.presharedKey,priceDollar,country)
@@ -163,6 +173,7 @@ function App() {
           emailAddress = {emailAddress}
           expiryDate = {getTimeStamp(priceDollar)}
           sendEmail = {(data) => sendEmail(data,payment_request,getTimeStamp(priceDollar))}
+          showPaymentAlert = {showPaymentSuccessfull}
           />
 
           <FAQModal
