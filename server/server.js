@@ -56,8 +56,8 @@ io.on('connection', (socket) => {
   sendEmail(emailAddress,configData,date).then(result => console.log(result))
   })
 
-  socket.on('getWireguardConfig',(publicKey,presharedKey,selectedValue,country) => {
-    getWireguardConfig(publicKey,presharedKey,getTimeStamp(selectedValue),getServer(country)).then(result => socket.emit('reciveConfigData',result))
+  socket.on('getWireguardConfig',(publicKey,presharedKey,priceDollar,country) => {
+    getWireguardConfig(publicKey,presharedKey,getTimeStamp(priceDollar),getServer(country),priceDollar).then(result => socket.emit('reciveConfigData',result))
   })
  
 
@@ -163,7 +163,7 @@ async function getPrice() {
 
 
 //////////////////Get Wireguard Config
-async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
+async function getWireguardConfig(publicKey,presharedKey,timestamp,server,priceDollar) {
  
   return axios({
     method: "post",
@@ -175,7 +175,7 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,server) {
     data: {
       "publicKey": publicKey,
       "presharedKey": presharedKey,
-      "bwLimit": 10000,
+      "bwLimit": 10000*priceDollar,
       "subExpiry": parseDate(timestamp),
       "ipIndex": 0
     }
