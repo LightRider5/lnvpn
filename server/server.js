@@ -169,7 +169,7 @@ async function getWireguardConfig(publicKey,presharedKey,timestamp,server,priceD
     method: "post",
     url: server,
     headers: { 
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', 
       'Authorization' : process.env.AUTH
       },
     data: {

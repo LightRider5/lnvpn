@@ -68,13 +68,20 @@ function InvoiceModal(props) {
         </Modal.Header>
 
         <Modal.Body>
-       
             <Alert show={props.showPaymentAlert}   variant="success">
               Payment successfull!
             </Alert> 
-        
-          {props.showSpinner ? <Spinner animation="border" /> : 
-          <QRCodeCanvas value={props.value} size={256} />}
+          {props.showSpinner ? 
+            <Spinner animation="border" /> :
+            <div>
+              {props.isConfigModal ?
+                <QRCodeCanvas value={props.value} size={256} /> :
+                <a href={"lightning:" + props.value}>
+                  <QRCodeCanvas value={props.value} size={256} />
+                </a>
+              }
+            </div> 
+          }
         
         
         {props.isConfigModal ?
