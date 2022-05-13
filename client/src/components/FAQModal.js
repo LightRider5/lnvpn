@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal,Button} from 'react-bootstrap'
+import {Modal,Button,ListGroup} from 'react-bootstrap'
 
 
 const FAQModal = (props) => {
@@ -54,7 +54,13 @@ const FAQModal = (props) => {
 
             <h4>Is there a data transfer limit?</h4>
             <p>
-            Currently, we limit the data transfer for every timeframe (1h, 1d, 1w, 1m) to 10 gigabytes each.
+            Currently, we have four data plans:
+              <ul id="dataplanlist">
+                  <li>1 hour = 1GB</li>
+                  <li>1 day = 5GB</li>
+                  <li>1 week = 10GB</li>
+                  <li>1 month = 30GB</li>
+              </ul>
             </p>
 
             <h4>Who build this?</h4>
