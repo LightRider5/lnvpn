@@ -188,7 +188,7 @@ function App() {
               </Col>
               <Col>
                 <Button 
-                onClick={() => renderFAQModal()} 
+                id="faq_button"
                 variant="info">Show FAQ</Button>
               </Col>
             </Row>
