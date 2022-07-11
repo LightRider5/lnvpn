@@ -7,8 +7,8 @@ const CountrySelector = (props) => {
       <ToggleButton value={5} onClick={props.onClick}>
           🇨🇦 <br></br>CAD
         </ToggleButton>
-        <ToggleButton value={2} onClick={props.onClick} variant="secondary" disabled>
-          🇺🇸 🙅‍♂️ <br></br>USA 
+        <ToggleButton value={2} onClick={props.onClick}>
+          🇺🇸 <br></br>USA 
         </ToggleButton>
         <ToggleButton  value={3} onClick={props.onClick}>
          🇫🇮 <br></br>FIN 
