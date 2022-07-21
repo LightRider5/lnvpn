@@ -87,7 +87,10 @@ var getServer = (countrySelector) => {
 ///Transforms duration into timestamp
 var getTimeStamp = (selectedValue) =>{
   //var date = new Date()
-
+  if(selectedValue == 7){
+    date = addMonths(date = new Date(),3)
+    return date
+  }
   if(selectedValue == 3){
     date = addMonths(date = new Date(),1)
     return date
