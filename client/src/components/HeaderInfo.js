@@ -9,7 +9,7 @@ const HeaderInfo = () => {
               <p>
                Generate a private key, select a country + duration and pay with Lightning. 
                <br></br>Instant delivery.
-               <br></br>You need the < a href='https://www.wireguard.com/'>Wireguard</a> VPN client.  
+               <br></br>You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.  
               </p>
             <hr />
               <p className="mb-0">
