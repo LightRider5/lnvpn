@@ -111,11 +111,13 @@ function App() {
     return configArray
   }
 
-  ///////////Change Runtime
+ 
+  //Change Runtime
   const runtimeSelect = (e) =>{
-    updatePrice(e.target.value)
-    
-  }
+    if(!isNaN(e.target.value)) {
+      updatePrice(e.target.value);
+    }
+  };
 
   const countrySelect = (e) => {
     updateCountry(e.target.value)
