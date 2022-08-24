@@ -84,7 +84,7 @@ app.post(process.env.WEBHOOK, (req, res) => {
     io.to(id).emit('invoicePaid', paymentDetails.payment_hash)
 
     // Looks through the invoice map saved into ram and sends the config ONLY to the relevant client
-    getWireguardConfig(publicKey, presharedKey, getTimeStamp(priceDollar), getServer(country))
+    getWireguardConfig(priceDollar, publicKey, presharedKey, getTimeStamp(priceDollar), getServer(country))
       .then(result => {
         io.to(id).emit('receiveConfigData', result)
         logDim(`Successfully created wg entry for pubkey ${publicKey}`)
