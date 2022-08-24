@@ -59,9 +59,6 @@ function isEmpty(obj) {
 }
 
 
-
-
-
 // Set up the Webserver
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(bodyParser.json())
