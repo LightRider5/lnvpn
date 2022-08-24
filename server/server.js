@@ -309,7 +309,7 @@ async function getWireguardConfig(priceDollar, publicKey, presharedKey, timestam
 
   const request1 = {
     method: 'post',
-    url: server + 'key',
+    url: server,
     headers: {
       'Content-Type': 'application/json',
       'Authorization': process.env.AUTH
