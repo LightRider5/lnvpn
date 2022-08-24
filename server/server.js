@@ -11,11 +11,56 @@ const app = express();
 require('dotenv').config();
 
 
-const io = require("socket.io")(process.env.PORT, {
+// Server Settings
+const createServer = require('http');
+const httpServer = createServer.createServer(app);
+const io = require("socket.io")(httpServer, {
   cors: {
-    origin: true
+    // restrict to SOP (Same Origin Policy)
+    origin: false
   }
-})
+});
+
+DEBUG = true;
+
+
+const dim = '\x1b[2m'
+const undim = '\x1b[0m'
+
+const getDate = timestamp => (timestamp !== undefined ? new Date(timestamp) : new Date()).toISOString()
+
+const logDim = (...args) => console.log(`${getDate()} ${dim}${args.join(' ')}${undim}`)
+
+
+
+// app.listen(5000);
+// Finish Server Setup
+httpServer.listen(process.env.PORT, '0.0.0.0');
+console.log(`httpServer listening on port ${process.env.PORT}`);
+
+
+
+
+// This array saves all invoices and wg keys (received by the client connection)
+// As soon as the invoice is paid the server sends the config information to the related client
+// This prevents sending all information to all clients and only sends a valid wg config to the related client
+// The socket is still open for all clients to connect to
+
+let invoiceWGKeysMap= [];
+
+// Restrict entries to prevent an attack to fill the ram memory
+const MAXINVOICES = 100;
+
+
+
+// helper
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
+
+
+
 
 // Set up the Webserver
 app.use(express.static(path.join(__dirname, '../client/build')));
@@ -29,34 +74,134 @@ app.get('/', function (req, res) {
 // Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
 
-    io.sockets.emit('invoicePaid',req.body.payment_hash)
-    res.status(200).end()
-})
+   
+    const index = invoiceWGKeysMap.findIndex((client) => {
+      return client.paymentDetails.payment_hash === req.body.payment_hash
+     });
 
-app.listen(5000);
-// Finish Server Setup
+      if(index !== -1) {
+    
+      const {paymentDetails, publicKey,presharedKey,priceDollar,country, id } = invoiceWGKeysMap[index]
+
+      // Needed for now to notify the client to stop the spinner
+      io.to(id).emit('invoicePaid',paymentDetails.payment_hash)
+
+      // Looks through the invoice map saved into ram and sends the config ONLY to the relevant client
+      getWireguardConfig(publicKey,presharedKey,getTimeStamp(priceDollar),getServer(country))
+      .then(result => {
+          io.to(id).emit('receiveConfigData',result)
+          logDim(`Successfully created wg entry for pubkey ${publicKey}`)
+
+          // Remove Invoice Key from ram
+          invoiceWGKeysMap.splice(index,1);
+
+          res.status(200).end()
+      })
+      .catch(error => {
+        DEBUG && logDim(`getConfig(): ${error.message}`)
+        res.status(500).end()
+
+      })
+    } else {
+        logDim(`No Invoice and corresponding connection found in memory`)
+        logDim(`Probably Server crashed and lost invoice memory`)
+
+        res.status(500).end()
+    }
+
+  
+});
+
 
 // Socket Connections
 io.on('connection', (socket) => {
   // console.log("New connection")
 
 
-  // Checks for a paid Invoice after reconnect
+  // Checks for a paid Invoice after reconnection of the client
+  // To allow for recovery in calse the client looses connection but pays the invoice
+  // an therefore reconnects with another userid
   socket.on('checkInvoice',(clientPaymentHash) => {
-    checkInvoice(clientPaymentHash).then(result => io.sockets.emit('invoicePaid',result))
+    DEBUG && logDim(`checkInvoice() called: ${socket.id}`)
+    checkInvoice(clientPaymentHash).then(result => {
+   
+      const index = invoiceWGKeysMap.findIndex((client) => {
+        return client.paymentDetails.payment_hash === result
+      });
+  
+        if(index !== -1) {
+         
+          const {paymentDetails, publicKey,presharedKey,priceDollar,country } = invoiceWGKeysMap[index]
+  
+          io.to(socket.id).emit('invoicePaid',paymentDetails.payment_hash)
+  
+          getWireguardConfig(priceDollar,publicKey,presharedKey,getTimeStamp(priceDollar),getServer(country))
+            .then(result => {io.to(socket.id).emit('receiveConfigData',result)
+                logDim(`Successfully created wg entry for pubkey ${publicKey}`)
+
+                // Remove Invoice Key from ram
+                invoiceWGKeysMap.splice(index,1);
+
+
+          })
+            .catch(error => {
+              DEBUG && logDim(error.message)
+        })
+      } else {
+          logDim(`No Invoice and corresponding connection found in memory ${socket.id}`)
+          logDim(`no way to recover this state in a secure manner | server crashed potentially or client already got the Config from the server`)
+
+      }
+  
+    }).catch((error)=> logDim(`${error.message}`))
   })
 
-  // Getting the Invoice from lnbits and forwarding it to the frontend
-  socket.on('getInvoice',(amount) =>{
-    getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
-  })
+   // Getting the Invoice from lnbits and forwarding it to the frontend
+  socket.on('getInvoice',(amount,publicKey,presharedKey,priceDollar,country) =>{
+    DEBUG && logDim(`getInvoice() called id: ${socket.id}`)
+    
+
+    if (invoiceWGKeysMap.length <= MAXINVOICES){
+
+      getInvoice(amount, priceDollar).then(result => {
+      
+        socket.emit("lnbitsInvoice",result)
+
+        // Safes the client request related to the socket id including the payment_hash to later send the config data only to the right client
+        invoiceWGKeysMap.push({paymentDetails: result, publicKey: publicKey, presharedKey: presharedKey, priceDollar: priceDollar, country: country , id : socket.id, amountSats: amount })
+        DEBUG && console.log(invoiceWGKeysMap)
+
+      })
+      .catch(error => logDim(error.message))
+     }else {
+        logDim(`restrict overall invoices to ${MAXINVOICES} to prevent mem overflow `)
+     }
+
+    })
+
   socket.on('sendEmail',(emailAddress,configData,date) => {
   sendEmail(emailAddress,configData,date).then(result => console.log(result))
   })
 
-  socket.on('getWireguardConfig',(publicKey,presharedKey,priceDollar,country) => {
-    getWireguardConfig(publicKey,presharedKey,getTimeStamp(priceDollar),getServer(country),priceDollar).then(result => socket.emit('reciveConfigData',result))
-  })
+
+   socket.on('disconnect', () => {
+    console.log(`User disconnected with ID: ${socket.id} `)
+
+    let index = 0
+
+    // Delete all user related invoices and wg information to free memory as soon as a user disconnects
+    // Needs to be a loop bc client can create more than one invoice (getNewInvoice)
+    while (index !== -1) {
+      index = invoiceWGKeysMap.findIndex((client) => {
+        return client.id === socket.id
+      });
+      if(index !== -1) {
+        invoiceWGKeysMap.splice(index,1);
+      }
+    }
+  })    
+
+
 
 
 });
@@ -159,30 +304,34 @@ async function getPrice() {
 };
 
 
-// Get Wireguard Config
-async function getWireguardConfig(publicKey, presharedKey, timestamp, server, priceDollar) {
 
-  return axios({
-    method: "post",
-    url: server,
+ // Get Wireguard Config
+async function getWireguardConfig(priceDollar,publicKey,presharedKey,timestamp,server) {
+  
+
+   const request1 = {
+    method: 'post',
+    url: server+'key',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization' : process.env.AUTH
-      },
+      'Authorization': process.env.AUTH
+    },
     data: {
-      "publicKey": publicKey,
-      "presharedKey": presharedKey,
-      "bwLimit": 10000*priceDollar,
-      "subExpiry": parseDate(timestamp),
-      "ipIndex": 0
+     "publicKey": publicKey,
+     "presharedKey": presharedKey,
+     "bwLimit": 1000*priceDollar,
+     "subExpiry": parseDate(timestamp),
+     "ipIndex": 0
     }
-  }).then(function (response){
-    return response.data;
-  }).catch(error => {
-    console.error(error)
-    return error;
-  });
-}
+   };
+
+   const response = await axios(request1).catch(error => { 
+      throw new Error(`Error - wgAPI createKey\n ${error.message}`);
+    });
+
+    return response.data
+
+  };
 // Parse Date object to string format: YYYY-MMM-DD hh:mm:ss A
 const parseDate = (date) => {
   return dayjs(date).format("YYYY-MMM-DD hh:mm:ss A");
@@ -223,7 +372,7 @@ async function sendEmail(emailAddress,configData, date) {
     async function checkInvoice(hash) {
       return axios({
         method: "get",
-        url: `https://legend.lnbits.com/api/v1/payments/${hash}`,
+        url: process.env.URL_INVOICE_API +"/"+hash,
         headers: { "X-Api-Key": process.env.INVOICE_KEY}
       }).then(function (response){
           if(response.data.paid)  {
