@@ -319,7 +319,7 @@ async function getWireguardConfig(priceDollar,publicKey,presharedKey,timestamp,s
     data: {
      "publicKey": publicKey,
      "presharedKey": presharedKey,
-     "bwLimit": 1000*priceDollar,
+     "bwLimit": 10000*priceDollar,
      "subExpiry": parseDate(timestamp),
      "ipIndex": 0
     }
@@ -330,7 +330,7 @@ async function getWireguardConfig(priceDollar,publicKey,presharedKey,timestamp,s
     });
 
     return response.data
-
+ 
   };
 // Parse Date object to string format: YYYY-MMM-DD hh:mm:ss A
 const parseDate = (date) => {
