@@ -11,11 +11,18 @@ import  './wireguard.js'
 import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import FAQModal from './components/FAQModal';
-var socket =  io.connect('http://localhost:5001')
+
+var socket =  io.connect('/')
 
 var emailAddress;
 var clientPaymentHash;
 var isPaid=false; //Is only necessary in the case of socket event is fireing multible times
+
+const getDate = timestamp => (timestamp !== undefined ? new Date(timestamp) : new Date()).toISOString();
+
+const DEBUG = false;
+
+
 
 
 function App() {
@@ -56,39 +63,43 @@ function App() {
     }) 
   }
 
-  ////Connect to WebSocket Server
-  socket.off('connect').on("connect", () => {
-    /////Checks for already paid invoice if browser switche tab on mobile
+
+  //Connect to WebSocket Server
+  socket.removeAllListeners("connect").on('connect', () => {
+    DEBUG && console.log(`${getDate()} App.js: connect with id: ${socket.id}`)
+    //Checks for already paid invoice if browser switche tab on mobile
     if((clientPaymentHash !== undefined)){
-      checkInvoice()
+      checkInvoice();
     }
   });
+
+
 
   const checkInvoice = () =>{ 
       socket.emit('checkInvoice',clientPaymentHash)
   }
 
-  //Get the invoice 
-  const getInvoice = (price) => {
-    socket.emit('getInvoice', price)
-  }
-  ///////////GetWireguardConfig 
-  const getWireguardConfig = (publicKey,presharedKey,priceDollar,country) =>{
-    socket.emit('getWireguardConfig',publicKey,presharedKey,priceDollar,country)
-  }
+    //Get the invoice
+  const getInvoice = (price,publicKey,presharedKey,priceDollar,country) => {
+      DEBUG && console.log(`${getDate()} App.js: getInvoice(price): `+price+`$`);
+      socket.emit('getInvoice', price,publicKey,presharedKey,priceDollar,country);
+  };
+
+
+  
 
   socket.off('invoicePaid').on('invoicePaid', paymentHash => { 
     if((paymentHash === clientPaymentHash) && !isPaid)
     { 
+      DEBUG && console.log('invoicePaid')
       renderAlert(true)
       isPaid = true;
       setSpinner(true)
-      getWireguardConfig(keyPair.publicKey,keyPair.presharedKey,priceDollar,country)
     }
   })
 
   /////////Get wireguard config from Server
-  socket.off('reciveConfigData').on('reciveConfigData',wireguardConfig =>{
+  socket.off('receiveConfigData').on('receiveConfigData',wireguardConfig =>{
     setSpinner(false)
     setPaymentrequest(buildConfigFile(wireguardConfig).join('\n'))
     
@@ -169,7 +180,7 @@ function App() {
           isConfigModal={isConfigModal} 
           value={payment_request} 
           download={() => {download("Wireguard.conf",payment_request)}}
-          showNewInvoice={() => {getInvoice(priceDollar);setSpinner(true)}} 
+          showNewInvoice={() => {getInvoice(priceDollar,keyPair.publicKey,keyPair.presharedKey,priceDollar,country);setSpinner(true)}} 
           handleClose={closeInvoiceModal}
           emailAddress = {emailAddress}
           expiryDate = {getTimeStamp(priceDollar)}
@@ -195,7 +206,7 @@ function App() {
               </Col>
             </Row>
               <Button 
-              onClick={() => {getInvoice(priceDollar);
+              onClick={() => {getInvoice(priceDollar,keyPair.publicKey,keyPair.presharedKey,priceDollar,country);
                 showInvoiceModal();
                 hideConfigModal();
                 updatePaymentrequest();
