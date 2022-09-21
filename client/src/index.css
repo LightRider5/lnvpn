@@ -4,6 +4,7 @@ html{
   height: 100vh;
 }  
 body{
+  font-size: large;
   background-color: black;
   height: 100vh;
   align-items: center;
@@ -33,6 +34,7 @@ body{
 h1 {
   color: #f9ba00;
   font-family: arista;
+  font-size: 3em;
 }
 .main-middle{
   max-width: 700px;
@@ -146,6 +148,7 @@ title {
   margin: 10px 0 10px 0; 
 }
 #runtimeselector label {
+  font-size: large;
   text-align: center;
   width: 25%;
   background-color: #21364c;
