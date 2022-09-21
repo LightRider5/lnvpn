@@ -12,7 +12,7 @@ require('dotenv').config();
 
 const io = require("socket.io")(process.env.PORT, {
   cors: {
-    origin: process.env.URL_CLIENT,
+    origin: process.env.URL_CLIENT
   }
 })
 
