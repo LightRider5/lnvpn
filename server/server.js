@@ -10,10 +10,9 @@ const { btoa } = require('buffer');
 const app = express();
 require('dotenv').config();
 
-
 const io = require("socket.io")(process.env.PORT, {
   cors: {
-    origin: "https://lnvpn.net"
+    origin: process.env.URL_CLIENT,
   }
 })
 
@@ -77,6 +76,12 @@ const getServer = (countrySelector) => {
   }
   if (countrySelector == 5){
     server = process.env.IP_CANADA
+  }
+  if (countrySelector == 6){
+    server = process.env.IP_IND
+  }
+  if (countrySelector == 7){
+    server = process.env.IP_NLD
   }
   return server
 }

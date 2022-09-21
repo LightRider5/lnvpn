@@ -9,9 +9,9 @@ body{
   align-items: center;
   justify-content: center;
   text-align: center;
-
-
 }
+
+
 @media (max-width: 900px) {
   body{
       background-image: url("media/background-s.jpg");
@@ -74,11 +74,6 @@ h1 {
   background: #E5E5E5;
 }
 
-
-
-
-
-
 #paid_button{
   font-weight: 500;
   background-color: #22C55E;
@@ -92,6 +87,7 @@ h1 {
   margin: 5px 0px 5px 0px;
   padding: 15px;
   width: 100%;
+  
 }
 
 .main-buttons{
@@ -134,11 +130,16 @@ title {
 }
 
 #countryselector {
+  display: inline;
   width : 100%;
   margin: 10px 0 10px 0; 
 }
 #countryselector label {
+  font-size: large;
   width: 20%;
+  margin: 5px;
+  border-radius: 30px;
+  background-color: #21364c;
 }
 #runtimeselector {
   width : 100%;
@@ -147,6 +148,7 @@ title {
 #runtimeselector label {
   text-align: center;
   width: 25%;
+  background-color: #21364c;
 }
 #runtimeselector label.btn.active {
   background-color: white;

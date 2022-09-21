@@ -202,7 +202,7 @@ function App() {
                 setSpinner(true);
                 isPaid=false;
               }} 
-              variant="success">Generate Invoice</Button>
+              variant="success">Pay with Lightning</Button>
             </div>
           </Col>
         </Row>
