@@ -17,7 +17,6 @@ const CountrySelector = (props) => {
             <ToggleButton  value={3} onClick={props.onClick}>
             🇫🇮 <br></br>FIN 
             </ToggleButton >
-            
             <ToggleButton value={4} onClick={props.onClick}>
               🇬🇧 <br></br>UK
             </ToggleButton>
@@ -26,6 +25,9 @@ const CountrySelector = (props) => {
             </ToggleButton>
             <ToggleButton value={1} onClick={props.onClick}>
               🇸🇬 <br></br>SGP
+            </ToggleButton>
+            <ToggleButton value={8} onClick={props.onClick}>
+              🇷🇺 <br></br>RUS
             </ToggleButton>
           </ToggleButtonGroup>
       </ButtonToolbar>
