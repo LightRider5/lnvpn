@@ -88,13 +88,14 @@ function App() {
   })
 
   /////////Get wireguard config from Server
-  socket.off('reciveConfigData').on('reciveConfigData',wireguardConfig =>{
+  socket.off('reciveConfigData').on('reciveConfigData', (wireguardConfig, timestamp,location) =>{
     setSpinner(false)
-    setPaymentrequest(buildConfigFile(wireguardConfig).join('\n'))
+    setPaymentrequest(buildConfigFile(wireguardConfig,timestamp,location).join('\n'))
     
   })
   /////////Construct the Config File
-  const buildConfigFile = (serverResponse) => {
+  const buildConfigFile = (serverResponse,timestamp,location) => {
+    console.log(serverResponse)
     showInvoiceModal ()
     renderConfigModal()
     const configArray = [
@@ -102,6 +103,9 @@ function App() {
     'PrivateKey = ' + keyPair.privateKey,
     'Address = '+serverResponse.ipv4Address,
     'DNS = '+serverResponse.dns,
+    ' ',
+    '# Valid until: '+ timestamp +'UTC',
+    '# Location: '+ location,
     ' ',
     '[Peer]',
     'PublicKey = '+serverResponse.publicKey,

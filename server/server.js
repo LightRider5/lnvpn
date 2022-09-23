@@ -54,34 +54,45 @@ io.on('connection', (socket) => {
   })
 
   socket.on('getWireguardConfig',(publicKey,presharedKey,priceDollar,country) => {
-    getWireguardConfig(publicKey,presharedKey,getTimeStamp(priceDollar),getServer(country),priceDollar).then(result => socket.emit('reciveConfigData',result))
+    getWireguardConfig(publicKey,presharedKey,getTimeStamp(priceDollar),getServer(country).ip,priceDollar).then(result => socket.emit('reciveConfigData',result,getTimeStamp(priceDollar),getServer(country).location))
   })
 
 
 });
 ///Transforms country into server
 const getServer = (countrySelector) => {
-  let server
+  let server = new Object();
   if (countrySelector == 1){
-  server = process.env.IP_SINGAPUR
+  server.ip = process.env.IP_SINGAPUR
+  server.location = "Singapur"
   }
   if (countrySelector == 2){
-    server = process.env.IP_USA
+    server.ip = process.env.IP_USA
+    server.location = "USA"
   }
   if (countrySelector == 3){
-    server = process.env.IP_FIN
+    server.ip = process.env.IP_FIN
+    server.location = "Finland"
   }
   if (countrySelector == 4){
-    server = process.env.IP_UK
+    server.ip = process.env.IP_UK
+    server.location = "United Kingdom"
   }
   if (countrySelector == 5){
-    server = process.env.IP_CANADA
+    server.ip = process.env.IP_CANADA
+    server.location = "Canada"
   }
   if (countrySelector == 6){
-    server = process.env.IP_IND
+    server.ip = process.env.IP_IND
+    server.location = "India"
   }
   if (countrySelector == 7){
-    server = process.env.IP_NLD
+    server.ip = process.env.IP_NLD
+    server.location = "Netherlands"
+  }
+  if (countrySelector == 8){
+    server.ip = process.env.IP_RUS
+    server.location = "Russia"
   }
   return server
 }
