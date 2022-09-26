@@ -18,7 +18,7 @@ Very simple: On this website you automatically generate WireGuard VPN keys via J
 
 # What services did you use to build this, which VPN service do you use?
 
-For this website, we use the service LNBits for lightning payments, Sendgrid for (optionally) sending WireGuard config file via email, React and socket.IO for WebSockets. On the VPN endpoints we don't use a commercial VPN service but our rented virtual servers from Hetzner (FI and US), Contabo (SG) and OVH (UK and CA) with Wireguard Manager And API managing the WireGuard setup and keys.
+For this website, we use the service LNBits for lightning payments, Sendgrid for (optionally) sending WireGuard config file via email, React and socket.IO for WebSockets. On the VPN endpoints we don't use a commercial VPN services but have rented virtual servers with Wireguard Manager And API managing the WireGuard setup and keys.
 
 # What data do you store about your users? How anonymous is this? What privacy do you offer?
 
