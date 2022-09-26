@@ -224,11 +224,12 @@ button.close {
   min-width: 80%;
   
 }
+
+@media (min-width: 900px) {
 #faq_modal div.modal-dialog {
  max-width: 80%;
-  
+  }
 }
-
 #expirydate{
   color: red;
 }
