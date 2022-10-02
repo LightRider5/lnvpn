@@ -94,6 +94,18 @@ const getServer = (countrySelector) => {
     server.ip = process.env.IP_RUS
     server.location = "Russia"
   }
+  if (countrySelector == 9){
+    server.ip = process.env.IP_UKR
+    server.location = "Ukraine"
+  }
+  if (countrySelector == 10){
+    server.ip = process.env.IP_CHE
+    server.location = "Switzerland"
+  }
+  if (countrySelector == 11){
+    server.ip = process.env.IP_KAZ
+    server.location = "Kazakhstan"
+  }
   return server
 }
 
