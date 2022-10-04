@@ -95,7 +95,6 @@ function App() {
   })
   /////////Construct the Config File
   const buildConfigFile = (serverResponse,timestamp,location) => {
-    console.log(serverResponse)
     showInvoiceModal ()
     renderConfigModal()
     const configArray = [
