@@ -33,7 +33,7 @@ body{
 
 h1 {
   color: #f9ba00;
-  font-family: arista;
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
   font-size: 3em;
 }
 .main-middle{
@@ -97,6 +97,14 @@ h1 {
   align-items: center;
   text-align: center;
   padding-bottom: 10px;
+}
+.main-buttons button.btn-success{
+   font-size: large; 
+  
+}
+.modal-footer button{
+  font-size: large;
+  padding: 10px;
 }
 
 

@@ -62,51 +62,61 @@ io.on('connection', (socket) => {
 ///Transforms country into server
 const getServer = (countrySelector) => {
   let server = new Object();
-  if (countrySelector == 1){
-  server.ip = process.env.IP_SINGAPUR
-  server.location = "Singapur"
+  switch (countrySelector) {
+    case '1':
+      server.ip = process.env.IP_SINGAPUR
+      server.location = "Singapur"
+     break;
+    case '2':
+      server.ip = process.env.IP_USA
+      server.location = "USA"
+    break;  
+    case '3':
+      server.ip = process.env.IP_FIN
+      server.location = "Finland"
+    break;
+    case '4':
+      server.ip = process.env.IP_UK
+      server.location = "United Kingdom"
+    break;
+    case '5':
+      server.ip = process.env.IP_CANADA
+      server.location = "Canada"
+    break;
+    case '6':
+      server.ip = process.env.IP_IND
+      server.location = "India"
+    break;
+    case '7':
+      server.ip = process.env.IP_NLD
+      server.location = "Netehrlands"
+    break;
+    case '8':
+      server.ip = process.env.IP_RUS
+      server.location = "Russia"
+    break;
+    case '9':
+      server.ip = process.env.IP_UKR
+      server.location = "Ukraine"
+    break;
+    case '10':
+      server.ip = process.env.IP_CHE
+      server.location = "Switzerland"
+    break;
+    case '11':
+      server.ip = process.env.IP_ISR
+      server.location = "Israel"
+    break;
+    case '12':
+      server.ip = process.env.IP_KAZ
+      server.location = "Kazakhstan"
+    break;
+
+    default:
+      console.log(`Error with country selector: ${countrySelector}`);
+      
   }
-  if (countrySelector == 2){
-    server.ip = process.env.IP_USA
-    server.location = "USA"
-  }
-  if (countrySelector == 3){
-    server.ip = process.env.IP_FIN
-    server.location = "Finland"
-  }
-  if (countrySelector == 4){
-    server.ip = process.env.IP_UK
-    server.location = "United Kingdom"
-  }
-  if (countrySelector == 5){
-    server.ip = process.env.IP_CANADA
-    server.location = "Canada"
-  }
-  if (countrySelector == 6){
-    server.ip = process.env.IP_IND
-    server.location = "India"
-  }
-  if (countrySelector == 7){
-    server.ip = process.env.IP_NLD
-    server.location = "Netherlands"
-  }
-  if (countrySelector == 8){
-    server.ip = process.env.IP_RUS
-    server.location = "Russia"
-  }
-  if (countrySelector == 9){
-    server.ip = process.env.IP_UKR
-    server.location = "Ukraine"
-  }
-  if (countrySelector == 10){
-    server.ip = process.env.IP_CHE
-    server.location = "Switzerland"
-  }
-  if (countrySelector == 11){
-    server.ip = process.env.IP_KAZ
-    server.location = "Kazakhstan"
-  }
-  return server
+  return server;
 }
 
 
