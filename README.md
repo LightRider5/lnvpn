@@ -23,7 +23,8 @@ For this website, we use the service LNBits for lightning payments, Sendgrid for
 # What data do you store about your users? How anonymous is this? What privacy do you offer?
 
 On the lnvpn.net website, we don't use cookies and we only store the first half of your ip address in our webserver logs. For example the IP 1.12.123.234 would be stored as 1.12.0.0. On the VPN endpoints we store your WireGuard public key, the PSK and the total amount of bandwidth you used. While you maintain an active connection to a LNVPN VPN endpoint, we have to keep your IP address in memory, but after 5 minutes of inactivity we remove your IP address from memory. We never store it on disk. As payments are only possible via Bitcoin Lightning, we don't know where the money comes from, we can only verify whether an invoice was paid or not 🤷. If you use the "Send via email" feature for your WireGuard configuration, the email is send via Sendgrid.
-What happens after the timeframe I paid my VPN for?
+
+# What happens after the timeframe I paid my VPN for?
 
 You won't be able to transfer any data over the VPN connection anymore. Your VPN client may indicate it is successfully connected, though.
 
