@@ -11,6 +11,10 @@ body{
   justify-content: center;
   text-align: center;
 }
+#header-image {
+  width:50%;
+  margin-bottom: 2%;
+}
 
 
 @media (max-width: 900px) {

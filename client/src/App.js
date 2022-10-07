@@ -11,6 +11,7 @@ import  './wireguard.js'
 import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import FAQModal from './components/FAQModal';
+import logo from './media/logo2.svg';
 var socket =  io.connect('http://localhost:5001')
 
 var emailAddress;
@@ -20,7 +21,7 @@ var isPaid=false; //Is only necessary in the case of socket event is fireing mul
 
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
-  const [priceDollar, updatePrice] =  useState(0.1)
+  const [priceDollar, updatePrice] =  useState(0.5)
   const [country, updateCountry] =  useState("1")
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
@@ -152,7 +153,7 @@ function App() {
       <Container className="main-middle">
         <Row>
           <Col>
-          <h1>LN ⚡ VPN</h1>
+          <img src={logo} alt="LN ⚡ VPN" id="header-image"></img>
          
           <HeaderInfo/>
           <KeyInput 

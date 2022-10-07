@@ -7,7 +7,7 @@ const HeaderInfo = () => {
         <Alert variant="info">
             {/* <Alert.Heading>How it works:</Alert.Heading> */}
               <p>
-               Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN 
+               Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN ✅
                </p>
             <hr />
               <p className="mb-0">
