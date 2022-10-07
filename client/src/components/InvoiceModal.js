@@ -112,7 +112,7 @@ function InvoiceModal(props) {
         </Modal.Body>
         <Modal.Footer>
           {props.isConfigModal ? 
-          <Button variant='primary' onClick={()=> {showEmailModal(true)}}>Send via Email</Button>
+          <Button variant='info' onClick={()=> {showEmailModal(true)}}>Send via Email</Button>
           :
           <Button variant="secondary" onClick={props.showNewInvoice}>
             Get new Invoice
@@ -121,13 +121,14 @@ function InvoiceModal(props) {
           {/*Render Show Config or Show PR button  */}
           {props.isConfigModal ? 
           <Button 
-            variant="primary"
+            variant="info"
             onClick={() => setOpen(!openCollapse)}
             aria-controls="example-collapse-text"
             aria-expanded={!openCollapse}
           >{!openCollapse ? 'Show Config' : 'Hide Config'}
           </Button> :
           <Button
+            variant="info"
             onClick={() => setOpen(!openCollapse)}
             aria-controls="example-collapse-text"
             aria-expanded={!openCollapse}
@@ -136,13 +137,13 @@ function InvoiceModal(props) {
 
           {/*Render Copy Invoice or Download button  */}
           {props.isConfigModal ? 
-          <Button variant="primary" onClick={props.download}>Download as File</Button> :
-          <Button variant="primary" ref={target} onClick={() =>  {navigator.clipboard.writeText(props.value);renderTooltip(!showTooltip)}}>
+          <Button variant="info" onClick={props.download}>Download as File</Button> :
+          <Button variant="info" ref={target} onClick={() =>  {navigator.clipboard.writeText(props.value);renderTooltip(!showTooltip)}}>
             Copy Invoice
           </Button>}
           {props.isConfigModal ? "" :
           <a href={"lightning:" + props.value} >
-            <Button className="walletbutton" variant="primary">
+            <Button className="walletbutton" variant="info">
               Open in Wallet
             </Button>
           </a>

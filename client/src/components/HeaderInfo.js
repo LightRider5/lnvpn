@@ -4,7 +4,7 @@ import {Alert} from 'react-bootstrap'
 const HeaderInfo = () => {
   return (
     <div>
-        <Alert variant="primary">
+        <Alert variant="info">
             {/* <Alert.Heading>How it works:</Alert.Heading> */}
               <p>
                Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN 

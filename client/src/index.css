@@ -155,6 +155,10 @@ title {
   border-radius: 30px;
   background-color: #21364c;
 }
+#runtimeselector label.btn.active {
+  background-color: #fff;
+  color: #007bff;
+}
 @media screen and (max-width:450px) {
   #countryselector {
     display: flex;
@@ -172,6 +176,7 @@ title {
     border-radius: 30px;
     background-color: #21364c;
   }
+
   
 }
 
@@ -183,7 +188,7 @@ title {
 
 #runtimeselector {
   width : 100%;
-  margin: 10px 0 10px 0; 
+  margin: 2% 0 2% 0; 
 }
 #runtimeselector label {
   font-size: large;
@@ -191,15 +196,11 @@ title {
   width: 25%;
   background-color: #21364c;
 }
-#runtimeselector label.btn.active {
-  background-color: white;
-  color: #007bff;
+.btn-check:checked+.btn-primary {
+  border-color: #3498db;
+  border-width: 5px;
 }
-#countryselector label.btn.active {
-  background-color: white;
-  color: #007bff;
-  
-}
+
 #invoicestring { 
   
   text-align: left;

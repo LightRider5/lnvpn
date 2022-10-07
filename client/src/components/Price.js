@@ -3,7 +3,7 @@ import React from 'react'
 const Price = (props) => {
   return (
     <div>
-      <h4 className='price'>Total: {props.dollar} $ </h4>
+      <h3 className='price'>Total: {props.dollar} $ </h3>
     </div>
   )
 }

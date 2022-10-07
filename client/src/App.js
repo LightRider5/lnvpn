@@ -1,10 +1,9 @@
 import {Row, Col, Container} from 'react-bootstrap'
 import {io} from "socket.io-client";
 import {Button} from 'react-bootstrap'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import KeyInput from './components/KeyInput'
 import Price from './components/Price';
-import InfoField from './components/InfoField';
 import CountrySelector from './components/CountrySelector';
 import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
@@ -22,9 +21,7 @@ var isPaid=false; //Is only necessary in the case of socket event is fireing mul
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
   const [priceDollar, updatePrice] =  useState(0.1)
-  const [country, updateCountry] =  useState(7)
-  const [countryName, updateCountryName] =  useState('Netherlands')
-  const [durationName, updateDurationName] =  useState("1 hour")
+  const [country, updateCountry] =  useState("1")
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
   const [showPaymentSuccessfull, setPaymentAlert] = useState(false);
@@ -37,7 +34,8 @@ function App() {
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
    //////FAQ - Modal
-   const [isFAQModal, showFAQModal] = useState(false); 
+   const [isFAQModal, showFAQModal] = useState(false) 
+   const renderFAQModal = () => showFAQModal(true);
    const hideFAQModal = () => showFAQModal(false); 
   
 
@@ -46,7 +44,6 @@ function App() {
   ///////Successfull payment alert
    const renderAlert = (show) => {
     setPaymentAlert(show)
-    setTimeout(() => setPaymentAlert(false), [2000])
   } 
 
   //////Updates the QR-Code
@@ -121,15 +118,13 @@ function App() {
   const runtimeSelect = (e) =>{
     if(!isNaN(e.target.value)) {
       updatePrice(e.target.value);
-      updateDurationName(e.currentTarget.title);
     }
   };
 
   const countrySelect = (e) => {
-      if(!isNaN(e.target.value)) {
-      updateCountry(e.target.value)
-      updateCountryName(e.currentTarget.title)
-      }
+    if(!isNaN(e.target.value)) {
+    updateCountry(e.target.value)
+    }
   }
 
 
@@ -169,8 +164,8 @@ function App() {
           newPresharedKey={(presharedKey) => {keyPair.presharedKey = presharedKey}} 
           />
           
-          <CountrySelector onClick={countrySelect}/>
-          <RuntimeSelector onClick={runtimeSelect} />
+          <CountrySelector onChange={countrySelect}/>
+          <RuntimeSelector onChange={runtimeSelect} />
 
           <InvoiceModal  
           show={visibleInvoiceModal} 
@@ -190,14 +185,8 @@ function App() {
           show={isFAQModal}
           handleClose={hideFAQModal}
           />
-            <Row>
-              <Col> 
-                <InfoField name={countryName} duration={durationName} />
-              </Col>
-              <Col> 
-                <Price dollar={priceDollar}/>
-              </Col>
-            </Row>
+          
+          <Price dollar={priceDollar}/>
             <div className='main-buttons'>
             <Row>
               <Col>
@@ -211,6 +200,7 @@ function App() {
             </Row>
               <Button 
               onClick={() => {getInvoice(priceDollar);
+                renderAlert(false);
                 showInvoiceModal();
                 hideConfigModal();
                 updatePaymentrequest();

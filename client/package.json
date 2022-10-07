@@ -13,7 +13,7 @@
     "popper.js": "^1.16.1",
     "qrcode.react": "^3.0.1",
     "react": "^18.0.0",
-    "react-bootstrap": "^1.6.1",
+    "react-bootstrap": "2.5.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "socket.io-client": "^4.4.1",
