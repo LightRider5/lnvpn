@@ -8,9 +8,7 @@ const HeaderInfo = () => {
             {/* <Alert.Heading>How it works:</Alert.Heading> */}
               <p>
                Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN 
-               {/* <br></br>Instant delivery.
-               <br></br>You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.   */}
-              </p>
+               </p>
             <hr />
               <p className="mb-0">
                 We generate your private keys only within the browser!

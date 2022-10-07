@@ -1,9 +1,10 @@
 import {Row, Col, Container} from 'react-bootstrap'
 import {io} from "socket.io-client";
 import {Button} from 'react-bootstrap'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import KeyInput from './components/KeyInput'
 import Price from './components/Price';
+import InfoField from './components/InfoField';
 import CountrySelector from './components/CountrySelector';
 import RuntimeSelector from './components/RuntimeSelector';
 import InvoiceModal from './components/InvoiceModal';
@@ -21,7 +22,9 @@ var isPaid=false; //Is only necessary in the case of socket event is fireing mul
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
   const [priceDollar, updatePrice] =  useState(0.1)
-  const [country, updateCountry] =  useState(5)
+  const [country, updateCountry] =  useState(7)
+  const [countryName, updateCountryName] =  useState('Netherlands')
+  const [durationName, updateDurationName] =  useState("1 hour")
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
   const [showPaymentSuccessfull, setPaymentAlert] = useState(false);
@@ -34,8 +37,7 @@ function App() {
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
    //////FAQ - Modal
-   const [isFAQModal, showFAQModal] = useState(false) 
-   const renderFAQModal = () => showFAQModal(true);
+   const [isFAQModal, showFAQModal] = useState(false); 
    const hideFAQModal = () => showFAQModal(false); 
   
 
@@ -119,11 +121,15 @@ function App() {
   const runtimeSelect = (e) =>{
     if(!isNaN(e.target.value)) {
       updatePrice(e.target.value);
+      updateDurationName(e.currentTarget.title);
     }
   };
 
   const countrySelect = (e) => {
-    updateCountry(e.target.value)
+      if(!isNaN(e.target.value)) {
+      updateCountry(e.target.value)
+      updateCountryName(e.currentTarget.title)
+      }
   }
 
 
@@ -184,8 +190,14 @@ function App() {
           show={isFAQModal}
           handleClose={hideFAQModal}
           />
-          
-          <Price dollar={priceDollar}/>
+            <Row>
+              <Col> 
+                <InfoField name={countryName} duration={durationName} />
+              </Col>
+              <Col> 
+                <Price dollar={priceDollar}/>
+              </Col>
+            </Row>
             <div className='main-buttons'>
             <Row>
               <Col>
