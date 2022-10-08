@@ -11,6 +11,7 @@ import  './wireguard.js'
 import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import FAQModal from './components/FAQModal';
+import logo from './media/logo2.svg';
 var socket =  io.connect('http://localhost:5001')
 
 var emailAddress;
@@ -20,8 +21,8 @@ var isPaid=false; //Is only necessary in the case of socket event is fireing mul
 
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
-  const [priceDollar, updatePrice] =  useState(0.1)
-  const [country, updateCountry] =  useState(5)
+  const [priceDollar, updatePrice] =  useState(0.5)
+  const [country, updateCountry] =  useState("1")
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
   const [showPaymentSuccessfull, setPaymentAlert] = useState(false);
@@ -44,7 +45,6 @@ function App() {
   ///////Successfull payment alert
    const renderAlert = (show) => {
     setPaymentAlert(show)
-    setTimeout(() => setPaymentAlert(false), [2000])
   } 
 
   //////Updates the QR-Code
@@ -123,7 +123,9 @@ function App() {
   };
 
   const countrySelect = (e) => {
+    if(!isNaN(e.target.value)) {
     updateCountry(e.target.value)
+    }
   }
 
 
@@ -151,7 +153,7 @@ function App() {
       <Container className="main-middle">
         <Row>
           <Col>
-          <h1>LN ⚡ VPN</h1>
+          <img src={logo} alt="LN ⚡ VPN" id="header-image"></img>
          
           <HeaderInfo/>
           <KeyInput 
@@ -163,8 +165,8 @@ function App() {
           newPresharedKey={(presharedKey) => {keyPair.presharedKey = presharedKey}} 
           />
           
-          <CountrySelector onClick={countrySelect}/>
-          <RuntimeSelector onClick={runtimeSelect} />
+          <CountrySelector onChange={countrySelect}/>
+          <RuntimeSelector onChange={runtimeSelect} />
 
           <InvoiceModal  
           show={visibleInvoiceModal} 
@@ -199,6 +201,7 @@ function App() {
             </Row>
               <Button 
               onClick={() => {getInvoice(priceDollar);
+                renderAlert(false);
                 showInvoiceModal();
                 hideConfigModal();
                 updatePaymentrequest();

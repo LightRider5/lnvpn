@@ -11,6 +11,10 @@ body{
   justify-content: center;
   text-align: center;
 }
+#header-image {
+  width:50%;
+  margin-bottom: 2%;
+}
 
 
 @media (max-width: 900px) {
@@ -140,20 +144,55 @@ title {
 }
 
 #countryselector {
-  display: inline;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   width : 100%;
   margin: 10px 0 10px 0; 
 }
 #countryselector label {
   font-size: large;
-  width: 20%;
+  min-width: 20%;
+  max-width: 40%;
   margin: 5px;
   border-radius: 30px;
   background-color: #21364c;
 }
+#runtimeselector label.btn.active {
+  background-color: #fff;
+  color: #007bff;
+}
+@media screen and (max-width:450px) {
+  #countryselector {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: flex-ends;
+    width : 70%;
+    margin: 10px 0 10px 0; 
+  }
+  #countryselector label {
+    font-size: large;
+    min-width: 20%;
+    max-width: 80%;
+    border-radius: 30px;
+    background-color: #21364c;
+  }
+
+  
+}
+
+ #continentselector {
+  font-size: x-large;
+  display: flex;
+} 
+
+
 #runtimeselector {
   width : 100%;
-  margin: 10px 0 10px 0; 
+  margin: 2% 0 2% 0; 
 }
 #runtimeselector label {
   font-size: large;
@@ -161,15 +200,11 @@ title {
   width: 25%;
   background-color: #21364c;
 }
-#runtimeselector label.btn.active {
-  background-color: white;
-  color: #007bff;
+.btn-check:checked+.btn-primary {
+  border-color: #3498db;
+  border-width: 5px;
 }
-#countryselector label.btn.active {
-  background-color: white;
-  color: #007bff;
-  
-}
+
 #invoicestring { 
   
   text-align: left;
