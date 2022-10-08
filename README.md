@@ -1,15 +1,10 @@
-# lnvpn
-Simple VPN with Lightning
+# Simple VPN with Lightning
 
 Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN
 
 LNVPN is a privay focuse VPN provider. We accept only Lightning payments. 
 
-
-
-
-
-<img width="542" alt="Bildschirmfoto 2022-09-26 um 14 19 35" src="https://user-images.githubusercontent.com/48626097/192274414-200a9950-be03-460f-9dc4-a4c21a662577.png">
+<img width="542" alt="Bildschirmfoto 2022-10-08 um 22 39 33" src="https://user-images.githubusercontent.com/48626097/194727012-aa24d2cd-eb73-461b-ae83-b44a7d72bcc0.png">
 
 
 # How does it work?
