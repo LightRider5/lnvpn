@@ -27,7 +27,6 @@ You won't be able to transfer any data over the VPN connection anymore. Your VPN
 
 Currently, we have four data plans:
 
-    1 hour = 1GB
     1 day = 5GB
     1 week = 10GB
     1 month = 30GB
