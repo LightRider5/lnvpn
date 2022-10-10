@@ -21,7 +21,7 @@ var isPaid=false; //Is only necessary in the case of socket event is fireing mul
 
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
-  const [priceDollar, updatePrice] =  useState(0.5)
+  const [priceDollar, updatePrice] =  useState(0.1)
   const [country, updateCountry] =  useState("1")
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 

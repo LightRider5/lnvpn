@@ -16,8 +16,8 @@ const CountrySelector = (props) => {
           <option value="10">🇨🇭 Switzerland</option>
           <option value="11">🇮🇱 Israel</option>
           <option value="12">🇰🇿 Kazakhstan</option>
-          {/* <option value="13">🇿🇦 South Africa</option>
-          <option value="14">🇧🇷 Brazil</option> */}
+          {/* <option value="13">🇹🇷 Turkey</option> */}
+          {/* <option value="14">🇧🇷 Brazil</option> */}
         </Form.Select>
 {/* 
       <Tab.Container id="left-tabs-example" defaultActiveKey="europe">
