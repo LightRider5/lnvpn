@@ -5,8 +5,12 @@
      
       return date
     }
-  
-    if(selectedValue == 3){
+    if(selectedValue == 7){
+      date = addMonths(date = new Date(),3)
+     
+      return date
+    }
+    if(selectedValue == 4){
       date = addMonths(date = new Date(),1)
      
       return date
