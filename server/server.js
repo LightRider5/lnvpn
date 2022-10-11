@@ -127,11 +127,11 @@ const getServer = (countrySelector) => {
 // Transforms duration into timestamp
 const getTimeStamp = (selectedValue) =>{
   // const date = new Date()
-  if(selectedValue == 7){
+  if(selectedValue == 9){
     date = addMonths(date = new Date(),3)
     return date
   }
-  if(selectedValue == 3){
+  if(selectedValue == 4){
     date = addMonths(date = new Date(),1)
     return date
   }
