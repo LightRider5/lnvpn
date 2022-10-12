@@ -2,7 +2,7 @@
 
 Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN
 
-LNVPN is a privay focuse VPN provider. We accept only Lightning payments. 
+LNVPN is a privacy focused VPN provider. We accept only Lightning payments. 
 
 <img width="542" alt="Bildschirmfoto 2022-10-08 um 22 39 33" src="https://user-images.githubusercontent.com/48626097/194727012-aa24d2cd-eb73-461b-ae83-b44a7d72bcc0.png">
 
