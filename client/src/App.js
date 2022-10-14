@@ -12,17 +12,19 @@ import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import FAQModal from './components/FAQModal';
 import logo from './media/logo2.svg';
-var socket =  io.connect('http://localhost:5001')
+import AlertModal from './components/AlertModal';
+var socket =  io.connect(process.env.REACT_APP_socket_port)
 
 var emailAddress;
+var alertText="";
 var clientPaymentHash;
 var isPaid=false; //Is only necessary in the case of socket event is fireing multible times
 
 
 function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
-  const [priceDollar, updatePrice] =  useState(0.1)
-  const [country, updateCountry] =  useState("1")
+  const [priceDollar, updatePrice] =  useState(process.env.REACT_APP_price_hour)
+  const [country, updateCountry] =  useState("0")
   const [showSpinner, setSpinner] = useState(true)
   const [payment_request, setPaymentrequest] = useState(0) 
   const [showPaymentSuccessfull, setPaymentAlert] = useState(false);
@@ -34,14 +36,11 @@ function App() {
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
    const hideConfigModal = () => showConfigModal(false);
-   //////FAQ - Modal
-   const [isFAQModal, showFAQModal] = useState(false) 
-   const renderFAQModal = () => showFAQModal(true);
-   const hideFAQModal = () => showFAQModal(false); 
+   //////Alert - Modal
+   const [alertModalparams,showAlertModal] = useState({show:false,text:"",type:""});
+   
+   const hideAlertModal = () => showAlertModal({show:false,text:"",type:""});
   
-
-
-
   ///////Successfull payment alert
    const renderAlert = (show) => {
     setPaymentAlert(show)
@@ -70,7 +69,14 @@ function App() {
 
   //Get the invoice 
   const getInvoice = (price) => {
-    socket.emit('getInvoice', price)
+    if(country === "0"){
+      showAlertModal({show:true,text:"Please select a country",type:"danger"})
+    }
+    else
+    {
+      socket.emit('getInvoice', price)
+      showInvoiceModal();
+    }
   }
   ///////////GetWireguardConfig 
   const getWireguardConfig = (publicKey,presharedKey,priceDollar,country) =>{
@@ -156,18 +162,27 @@ function App() {
           <img src={logo} alt="LN ⚡ VPN" id="header-image"></img>
          
           <HeaderInfo/>
-          <KeyInput 
-          publicKey={keyPair.publicKey} 
-          privateKey={keyPair.privateKey} 
-          presharedKey={keyPair.presharedKey}
-          newPrivateKey={(privateKey) => {keyPair.privateKey = privateKey}} 
-          newPublicKey={(publicKey) => {keyPair.publicKey = publicKey}} 
-          newPresharedKey={(presharedKey) => {keyPair.presharedKey = presharedKey}} 
-          />
-          
+          <div id="key-input">
+            <KeyInput 
+            onClick={() => displayNewPair(window.wireguard.generateKeypair)}
+            publicKey={keyPair.publicKey} 
+            privateKey={keyPair.privateKey} 
+            presharedKey={keyPair.presharedKey}
+            newPrivateKey={(privateKey) => {keyPair.privateKey = privateKey}} 
+            newPublicKey={(publicKey) => {keyPair.publicKey = publicKey}} 
+            newPresharedKey={(presharedKey) => {keyPair.presharedKey = presharedKey}} 
+            />
+          </div>
           <CountrySelector onChange={countrySelect}/>
           <RuntimeSelector onChange={runtimeSelect} />
-
+          
+          <AlertModal 
+          show={alertModalparams.show}
+          text={alertModalparams.text}
+          variant={alertModalparams.type}
+          handleClose={hideAlertModal}
+          />
+          
           <InvoiceModal  
           show={visibleInvoiceModal} 
           showSpinner={showSpinner} 
@@ -180,35 +195,30 @@ function App() {
           expiryDate = {getTimeStamp(priceDollar)}
           sendEmail = {(data) => sendEmail(data,payment_request,getTimeStamp(priceDollar))}
           showPaymentAlert = {showPaymentSuccessfull}
-          />
-
-          <FAQModal
-          show={isFAQModal}
-          handleClose={hideFAQModal}
-          />
-          
+          />       
           <Price dollar={priceDollar}/>
             <div className='main-buttons'>
-            <Row>
-              <Col>
-                <Button onClick={() => displayNewPair(window.wireguard.generateKeypair)} variant="info">Generate New Key</Button>
-              </Col>
-              <Col>
-                <Button 
-                id="faq_button"
-                variant="info">Show FAQ</Button>
-              </Col>
-            </Row>
+            
               <Button 
               onClick={() => {getInvoice(priceDollar);
                 renderAlert(false);
-                showInvoiceModal();
+                // showInvoiceModal();
                 hideConfigModal();
                 updatePaymentrequest();
                 setSpinner(true);
                 isPaid=false;
               }} 
-              variant="success">Pay with Lightning</Button>
+              variant="success">Pay with Lightning
+              </Button>
+            
+            {/* <Row>
+              <Col>
+              <Button 
+                id="faq_button"
+                variant="info">Show FAQ
+              </Button>
+              </Col>
+            </Row>   */}
             </div>
           </Col>
         </Row>

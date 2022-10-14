@@ -4,6 +4,7 @@ const CountrySelector = (props) => {
   return (
     <div>
         <Form.Select aria-label="Choose continent" size="lg" onChange={props.onChange}>
+          <option value="0">Select a country</option>
           <option value="1">🇸🇬 Singapore</option>
           <option value="2">🇺🇸 United States</option>
           <option value="3">🇫🇮 Finnland</option>

@@ -23,7 +23,6 @@ function InvoiceModal(props) {
   
    
   if(!props.show){
-      
      return (null)
    } 
 

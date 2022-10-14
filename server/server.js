@@ -127,24 +127,24 @@ const getServer = (countrySelector) => {
 // Transforms duration into timestamp
 const getTimeStamp = (selectedValue) =>{
   // const date = new Date()
-  if(selectedValue == 9){
+  if(selectedValue == process.env.PRICE_QUARTER){
     date = addMonths(date = new Date(),3)
     return date
   }
-  if(selectedValue == 4){
+  if(selectedValue == process.env.PRICE_MONTH){
     date = addMonths(date = new Date(),1)
     return date
   }
-  if(selectedValue == 1.5){
+  if(selectedValue == process.env.PRICE_WEEK){
     date = addWeeks(date = new Date(),1)
     return date
   }
-  if(selectedValue == 0.5){
+  if(selectedValue == process.env.PRICE_DAY){
     date = addHour(date = new Date(),24)
     return date
   }
 
-  if(selectedValue == 0.1){
+  if(selectedValue == process.env.PRICE_HOUR){
     date = addHour(date = new Date(),1)
     return date
   }
