@@ -111,10 +111,10 @@ const getServer = (countrySelector) => {
       server.ip = process.env.IP_KAZ
       server.location = "Kazakhstan"
     break;  
-    // case '13':
-    //   server.ip = process.env.IP_TUR
-    //   server.location = "Turkey"
-    // break;
+    case '13':
+      server.ip = process.env.IP_BRA
+      server.location = "Brazil"
+    break;
 
     default:
       console.log(`Error with country selector: ${countrySelector}`);

@@ -11,8 +11,7 @@ const HeaderInfo = () => {
                </p>
             <hr />
               <p className="mb-0">
-                We generate your private keys only within the browser!
-                <br></br>You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.  
+               You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.  
               
               </p>
         </Alert>

@@ -12,6 +12,7 @@ body{
   text-align: center;
 }
 #header-image {
+  padding-top: 10px;
   width:50%;
   margin-bottom: 2%;
 }
@@ -19,7 +20,7 @@ body{
 
 @media (max-width: 900px) {
   body{
-      background-image: url("media/background-s.jpg");
+      /* background-image: url("media/background-s.jpg"); */
       background-repeat: no-repeat;
       background-size: cover;
       background-color: black;
@@ -41,16 +42,14 @@ h1 {
   font-size: 3em;
 }
 .main-middle{
+  padding: 12px;
   max-width: 700px;
-  margin-top: 5vh;
   align-items: center;
   flex-direction: column;
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.6);
   
 }
-
-
 
 .btn_ {
   flex-direction: row;
@@ -283,6 +282,18 @@ button.close {
 #key-input{
   margin: 2% 0 2% 0;
 }
+
+.navbar-nav {
+  background-color: black;
+  font-size:x-large
+  
+}
+#logo{
+  max-width: 700px;
+  margin: auto;
+}
+
+
 
 
 

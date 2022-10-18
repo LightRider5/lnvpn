@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react';
-import {Form,InputGroup,Button,Accordion,AccordionContext,useAccordionButton,Card,Row,Col} from 'react-bootstrap'
+import {Form,InputGroup,Button,Alert,Accordion,AccordionContext,useAccordionButton,Card,Row,Col} from 'react-bootstrap'
 import { IoIosRefresh } from "react-icons/io";
 
 
@@ -20,7 +20,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
         size="lg"
         variant={isCurrentEventKey ? 'primary' : 'info'}
         onClick={decoratedOnClick}
-      >{isCurrentEventKey ? 'Hide Keys' : 'Show Keys'}
+      >{isCurrentEventKey ? '🔑 Show my Keys 🔑' : '🔑 Show my Keys 🔑'}
         {children}
       </Button>
     );
@@ -29,24 +29,20 @@ function ContextAwareToggle({ children, eventKey, callback }) {
 const KeyInput = (props) => {
     return (
     <div>
-        <Accordion>
+        <Accordion >
         <Card>
             <Card.Header>
                 <Row>   
                     <Col>
                         <ContextAwareToggle eventKey="0"/>
                     </Col>
-                    <Col>
-                        <Button 
-                        id="faq_button"
-                        size='lg'
-                        variant="info">Show FAQ
-                        </Button>
-                    </Col>
               </Row>
             </Card.Header>
         <Accordion.Collapse eventKey="0">
         <Card.Body>
+            <Row>
+            <Alert variant="info">We generate your private keys only within the browser! You can paste or generate your own keys now. But you don't have to.</Alert>
+            </Row>
             <Form>
                 <Form.Group className="mb-2">
                 <InputGroup>

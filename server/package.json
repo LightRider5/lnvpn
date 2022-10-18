@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server"
+    "server": "nodemon server",
+    "dev": "concurrently \"npm run server\" \"cd ../client && npm run start\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@sendgrid/mail": "^7.6.2",
     "axios": "^0.26.1",
     "body-parser": "^1.20.0",
+    "concurrently": "^7.4.0",
     "dayjs": "^1.11.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",

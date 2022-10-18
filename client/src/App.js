@@ -1,4 +1,4 @@
-import {Row, Col, Container} from 'react-bootstrap'
+import {Row, Col, Container, Navbar,Nav} from 'react-bootstrap'
 import {io} from "socket.io-client";
 import {Button} from 'react-bootstrap'
 import {useState} from 'react'
@@ -15,8 +15,8 @@ import logo from './media/logo2.svg';
 import AlertModal from './components/AlertModal';
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
+
 var emailAddress;
-var alertText="";
 var clientPaymentHash;
 var isPaid=false; //Is only necessary in the case of socket event is fireing multible times
 
@@ -156,12 +156,28 @@ function App() {
 
   return (
     <div>
+          <Navbar variant="dark" className="justify-content-end container">
+            <Nav variant="pills" activeKey="/">
+                <Nav.Item>
+                    <Nav.Link href="/">🏠 Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/guide">🦮 Guide</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/faq.html">📖 FAQ</Nav.Link>
+                </Nav.Item>
+            </Nav>
+          </Navbar>      
+          <Row>
+            <div id='logo'>
+              <img src={logo} alt="LN ⚡ VPN" id="header-image"></img> 
+            </div>
+          </Row>     
       <Container className="main-middle">
         <Row>
           <Col>
-          <img src={logo} alt="LN ⚡ VPN" id="header-image"></img>
-         
-          <HeaderInfo/>
+            <HeaderInfo/>
           <div id="key-input">
             <KeyInput 
             onClick={() => displayNewPair(window.wireguard.generateKeypair)}

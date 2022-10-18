@@ -2,10 +2,6 @@ import React from 'react'
 import { Modal,Button,Alert } from 'react-bootstrap';
 import { useState } from 'react';
 const AlertModal = (props) => {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     if(!props.show){
       
         return (null)
@@ -20,6 +16,11 @@ const AlertModal = (props) => {
           <Alert   variant={props.variant}>
                 {props.text}
             </Alert> 
+            <Modal.Footer>
+          <Button variant="secondary" onClick={props.handleClose}>
+            Ok
+          </Button>
+        </Modal.Footer>  
           </Modal.Body>
          
         </Modal>
