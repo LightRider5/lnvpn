@@ -10,9 +10,9 @@ import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
-import FAQModal from './components/FAQModal';
-import logo from './media/logo2.svg';
+import Header from './components/Header';
 import AlertModal from './components/AlertModal';
+import Faq from './components/Faq';
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
 
@@ -156,24 +156,6 @@ function App() {
 
   return (
     <div>
-          <Navbar variant="dark" className="justify-content-end container">
-            <Nav variant="pills" activeKey="/">
-                <Nav.Item>
-                    <Nav.Link href="/">🏠 Home </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link href="/guide">🦮 Guide </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link href="/faq.html">📖 FAQ </Nav.Link>
-                </Nav.Item>
-            </Nav>
-          </Navbar>      
-          <Row>
-            <div id='logo'>
-              <img src={logo} alt="LN ⚡ VPN" id="header-image"></img> 
-            </div>
-          </Row>     
       <Container className="main-middle">
         <Row>
           <Col>
