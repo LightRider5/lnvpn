@@ -159,13 +159,13 @@ function App() {
           <Navbar variant="dark" className="justify-content-end container">
             <Nav variant="pills" activeKey="/">
                 <Nav.Item>
-                    <Nav.Link href="/">🏠 Home</Nav.Link>
+                    <Nav.Link href="/">🏠 Home </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/guide">🦮 Guide</Nav.Link>
+                    <Nav.Link href="/guide">🦮 Guide </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/faq.html">📖 FAQ</Nav.Link>
+                    <Nav.Link href="/faq.html">📖 FAQ </Nav.Link>
                 </Nav.Item>
             </Nav>
           </Navbar>      
