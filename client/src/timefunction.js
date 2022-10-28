@@ -1,32 +1,26 @@
  var getTimeStamp = (selectedValue) =>{
     var date = new Date()
-    if(selectedValue == 7){
+    if(selectedValue == process.env.REACT_APP_price_quarter){
       date = addMonths(date = new Date(),3)
-     
       return date
     }
-    if(selectedValue == 7){
-      date = addMonths(date = new Date(),3)
-     
-      return date
-    }
-    if(selectedValue == 4){
+    if(selectedValue == process.env.REACT_APP_price_month){
       date = addMonths(date = new Date(),1)
      
       return date
     }
-    if(selectedValue == 1.5){
+    if(selectedValue == process.env.REACT_APP_price_week){
       date = addWeeks(date = new Date(),1)
       
       return date
     }
-    if(selectedValue == 0.5){
+    if(selectedValue == process.env.REACT_APP_price_day){
       date = addHour(date = new Date(),24)
       
       return date
     }
   
-    if(selectedValue == 0.1){
+    if(selectedValue == process.env.REACT_APP_price_hour){
       date = addHour(date = new Date(),1)
       
       return date
