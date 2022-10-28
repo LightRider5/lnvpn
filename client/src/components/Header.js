@@ -1,36 +1,55 @@
 import React from 'react'
-import { Navbar,Nav,Row } from 'react-bootstrap'
+import { Navbar,Nav,Row,Button,Offcanvas,Form,NavDropdown,Container } from 'react-bootstrap'
 import logo from '../media/logo2.svg';
 import { LinkContainer } from 'react-router-bootstrap'
+import Footer from './Footer';
 
 const Header = () => {
   return (
     <div>
-        <Navbar collapseOnSelect expand="lg" variant="dark" className="justify-content-end container">
+        <Navbar collapseOnSelect expand="sm" key="nav" variant="dark" className="justify-content-end container">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav variant="pills" className="me-auto my-2 my-lg-0">
+        <Navbar.Offcanvas
+              id="responsive-navbar-nav"
+              aria-labelledby="offcanvasNavbarLabel-expand-nav"
+              placement="end"
+        >
+         <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel-expand-nav">
+              {/* <Container>
+                <img src={logo} alt="LN ⚡ VPN" id="nav-menu-image"></img> 
+                </Container> */}
+                </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+               
+        <Nav variant="pills">
                 <Nav.Item>
                     <LinkContainer to="/">
-                      <Nav.Link >🏠 Home </Nav.Link>
+                      <Nav.Link >🏠&ensp;Home </Nav.Link>
                     </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+            {/* <LinkContainer to="/guide">  
+                <Nav.Link >🦮 Guide </Nav.Link>
+            </LinkContainer>    */}
                 </Nav.Item>
-                {/* <Nav.Item>
-                    <Nav.Link >🦮 Guide </Nav.Link>
-                </Nav.Item> */}
                 <Nav.Item>
                     <LinkContainer to="/faq">
-                      <Nav.Link>📖 FAQ </Nav.Link>
+                      <Nav.Link>📖&ensp;FAQ </Nav.Link>
                     </LinkContainer>  
                 </Nav.Item>
-          </Nav>
-          </Navbar.Collapse>
+            </Nav>
+              </Offcanvas.Body>  
+         </Navbar.Offcanvas>
           </Navbar>      
           <Row>
-            <div id='logo'>
+        <div id='logo'>
+            <a href="/">
               <img src={logo} alt="LN ⚡ VPN" id="header-image"></img> 
+            </a>
             </div>
-          </Row>     
+      </Row>
     </div>
   )
 }

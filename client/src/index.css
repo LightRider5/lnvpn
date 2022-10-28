@@ -258,8 +258,9 @@ button.close {
   border: 1px solid #375a7f !important;
 }
 .footer-text{
+  
   text-align: center;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 #faq_modal {
@@ -292,7 +293,19 @@ button.close {
   max-width: 700px;
   margin: auto;
 }
+.accordion-body{
+  text-align: left;
+}
+h2.accordion-header button {
+  font-size: x-large;
+}
 
+.nav-item{
+  padding: 5px;
+}
+#nav-menu-image{
+  width: 50%;
+}
 
 
 

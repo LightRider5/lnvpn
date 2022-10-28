@@ -1,12 +1,13 @@
 import React from 'react'
-import { Accordion,Container } from 'react-bootstrap'
+import { Accordion, Container, ListGroup } from 'react-bootstrap'
+import Footer from '../components/Footer'
 
 
 const Faq = () => {
   return (
     <div>
       <Container className="main-middle">
-        <h2>FAQ</h2>
+        <h2>📖&ensp;FAQ&ensp;📖 </h2>
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
@@ -45,13 +46,13 @@ const Faq = () => {
                   <Accordion.Item eventKey="5">
                 <Accordion.Header>Is there a data transfer limit?</Accordion.Header>
                     <Accordion.Body>
-                     Currently, we have four data plans:
-                    <ul id="dataplanlist">
-                        <li>1 hour = 1GB</li>
-                        <li>1 day = 5GB</li>
-                        <li>1 week = 15GB</li>
-                        <li>1 month = 40GB</li>
-                    </ul>
+                     <h6>Currently, we have four data plans:</h6>
+                          <ListGroup>
+                            <ListGroup.Item>1 hour = 1GB</ListGroup.Item>
+                            <ListGroup.Item>1 day = 5GB</ListGroup.Item>
+                            <ListGroup.Item>1 week = 15GB</ListGroup.Item>
+                            <ListGroup.Item>1 month = 40GB</ListGroup.Item>
+                            </ListGroup>
                     </Accordion.Body>
                   </Accordion.Item>
                     <Accordion.Item eventKey="6">
@@ -60,7 +61,8 @@ const Faq = () => {
                     Berlin Bitcoiners with Love ❤️.
                     </Accordion.Body>
             </Accordion.Item>
-        </Accordion>
+              </Accordion>
+              <Footer/>
     </Container>
     </div>
   )

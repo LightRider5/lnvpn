@@ -12,7 +12,8 @@ import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import Header from './components/Header';
 import AlertModal from './components/AlertModal';
-import Faq from './components/Faq';
+import Footer from './components/Footer';
+
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
 
@@ -220,6 +221,7 @@ function App() {
             </div>
           </Col>
         </Row>
+        <Footer/>
       </Container>
     </div>
     

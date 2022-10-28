@@ -8,13 +8,16 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header'; 
 import Faq from './components/Faq';
+import Guide from './components/Guide';
+import Footer from './components/Footer';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Header/>
       <Routes>
-        <Route path='/' element={<App/>} />
+        <Route path='/' element={<App />} />
+        <Route path='/guide' element={<Guide/>} />
         <Route path='/faq' element={<Faq/>} />
       </Routes>
     </Router>

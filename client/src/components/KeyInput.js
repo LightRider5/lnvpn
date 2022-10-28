@@ -41,7 +41,7 @@ const KeyInput = (props) => {
         <Accordion.Collapse eventKey="0">
         <Card.Body>
             <Row>
-            <Alert variant="info">We generate your private keys only within the browser! You can paste or generate 🔄 your own keys now. But you don't have to.</Alert>
+            <Alert variant="info">Your private keys are only generated within the browser! You can paste or generate 🔄 your own keys now, but you don't have to.</Alert>
             </Row>
             <Form>
                 <Form.Group className="mb-2">
