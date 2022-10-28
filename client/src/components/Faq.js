@@ -7,7 +7,7 @@ const Faq = () => {
   return (
     <div>
       <Container className="main-middle">
-        <h2>📖&ensp;FAQ&ensp;📖 </h2>
+        {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>

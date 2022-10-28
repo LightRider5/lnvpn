@@ -1,8 +1,7 @@
 import React from 'react'
-import { Navbar,Nav,Row,Button,Offcanvas,Form,NavDropdown,Container } from 'react-bootstrap'
+import { Navbar,Nav,Row,Offcanvas} from 'react-bootstrap'
 import logo from '../media/logo2.svg';
 import { LinkContainer } from 'react-router-bootstrap'
-import Footer from './Footer';
 
 const Header = () => {
   return (
