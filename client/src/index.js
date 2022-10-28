@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './bootstrap/css/bootstrap.min.css'
+import "./font.css"
 import './custombootstrap.css';
 import './index.css'
 import App from './App';
@@ -9,7 +10,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header'; 
 import Faq from './components/Faq';
 import Guide from './components/Guide';
-import Footer from './components/Footer';
+import "./fonts/Poppins-Regular.otf";
+import "./fonts/Poppins-Light.otf";
+
 
 ReactDOM.render(
   <React.StrictMode>

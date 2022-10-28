@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Poppins-Light";
+    src: local("Poppins-Light"),
+        url("./fonts/Poppins-Light.otf") format("opentype");
+    font-weight: light;
+}
+@font-face {
+    font-family: "Poppins-Regular";
+    src: local("Poppins-Regular"),
+        url("./fonts/Poppins-Regular.otf") format("opentype");
+    font-weight: light;
+}
