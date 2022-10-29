@@ -10,9 +10,9 @@ import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
-import Header from './components/Header';
 import AlertModal from './components/AlertModal';
 import Footer from './components/Footer';
+import LoginModal from './components/LoginModal';
 
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
@@ -22,7 +22,7 @@ var clientPaymentHash;
 var isPaid=false; //Is only necessary in the case of socket event is fireing multible times
 
 
-function App() {
+function App(props) {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
   const [priceDollar, updatePrice] =  useState(process.env.REACT_APP_price_hour)
   const [country, updateCountry] =  useState("0")
@@ -36,11 +36,14 @@ function App() {
   ///////Modal Configdata
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
-   const hideConfigModal = () => showConfigModal(false);
-   //////Alert - Modal
-   const [alertModalparams,showAlertModal] = useState({show:false,text:"",type:""});
-   
-   const hideAlertModal = () => showAlertModal({show:false,text:"",type:""});
+    const hideConfigModal = () => showConfigModal(false);
+  //////Login - Modal
+  const [isLoginModal, showLoginModal] = useState(false) 
+  const renderLoginModal = () => showLoginModal(true);
+  const hideLoginModal = () => showLoginModal(false);
+  //////Alert - Modal
+  const [alertModalparams,showAlertModal] = useState({show:false,text:"",type:""});
+  const hideAlertModal = () => showAlertModal({show:false,text:"",type:""});
   
   ///////Successfull payment alert
    const renderAlert = (show) => {
@@ -180,6 +183,11 @@ function App() {
           text={alertModalparams.text}
           variant={alertModalparams.type}
           handleClose={hideAlertModal}
+            />
+
+          <LoginModal
+          show={isLoginModal}
+          handleClose={hideLoginModal}  
           />
           
           <InvoiceModal  
@@ -209,15 +217,6 @@ function App() {
               }} 
               variant="success">Pay with Lightning
               </Button>
-            
-            {/* <Row>
-              <Col>
-              <Button 
-                id="faq_button"
-                variant="info">Show FAQ
-              </Button>
-              </Col>
-            </Row>   */}
             </div>
           </Col>
         </Row>

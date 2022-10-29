@@ -11,16 +11,9 @@ const HeaderInfo = () => {
                </p>
             <hr />
               <p className="mb-0">
-               You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.  
-              
+               You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.      
               </p>
         </Alert>
-        
-        {/* <Container>
-          <Row id="guide_row">
-            <Button variant="primary">How it works?</Button>
-          </Row>
-        </Container> */}
         </div>
       
     

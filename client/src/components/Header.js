@@ -3,7 +3,7 @@ import { Navbar,Nav,Row,Offcanvas,Button,Form} from 'react-bootstrap'
 import logo from '../media/logo2.svg';
 import { LinkContainer } from 'react-router-bootstrap'
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div>
         <Navbar collapseOnSelect expand="sm" key="nav" variant="dark" className="justify-content-end container">
@@ -34,9 +34,12 @@ const Header = () => {
                 </Nav.Item>
             </Nav >
             <Nav className="ml-auto">
-              <Nav.Item>
-                    <Button variant="outline-success" className=''>📖&ensp;Login</Button>
-                </Nav.Item>
+                <Nav.Item>
+                <Button
+                  variant="outline-success"
+                  onClick={props.LoginButtonClick}
+                >🚪&ensp;Login</Button>
+                </Nav.Item>          
             </Nav>
           </Offcanvas.Body>  
         </Navbar.Offcanvas>

@@ -17,11 +17,11 @@ import "./fonts/Poppins-Light.otf";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Header/>
+    <Header/>
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/guide' element={<Guide/>} />
-        <Route path='/faq' element={<Faq/>} />
+        <Route path='/faq' element={<Faq />} />
       </Routes>
     </Router>
   </React.StrictMode>,
