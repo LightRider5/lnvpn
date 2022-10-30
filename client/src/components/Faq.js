@@ -1,11 +1,12 @@
 import React from 'react'
 import { Accordion, Container, ListGroup } from 'react-bootstrap'
 import Footer from '../components/Footer'
-
+import Header from '../components/Header'
 
 const Faq = () => {
   return (
     <div>
+      <Header/>
       <Container className="main-middle">
         {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
         <Accordion>

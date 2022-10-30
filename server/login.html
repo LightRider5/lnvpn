@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login wiht your Lightning wallet</title>
+    <link rel="stylesheet" href="assets/custombootstrap.css">
+    <link rel="stylesheet" href="/assets/login-page.css">
+    <meta http-equiv="refresh" content="{{refreshSeconds}}">
+   
+</head>
+
+<body>
+    <div id='logo'>
+        <a href="/">
+            <img src="assets/logo2.svg" alt="LN ⚡ VPN" id="header-image"></img>
+        </a>
+    </div>
+    <div id="content container main-middle">
+        <div class="wrap">
+            <h3>Login with your Lightning Wallet</h3>
+            <p>Click on the qr code to login</p>
+            <a id="qrcode" href="{{href}}"><img src="{{dataUri}}"></a>
+            <div id="buttons">
+                {{#if cancelUrl}}
+                <a href="{{cancelUrl}}" class="button">
+                    <button>Cancel</button>
+                </a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

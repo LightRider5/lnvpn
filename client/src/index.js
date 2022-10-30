@@ -17,11 +17,14 @@ import "./fonts/Poppins-Light.otf";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <Header/>
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/guide' element={<Guide/>} />
         <Route path='/faq' element={<Faq />} />
+        {/* <Route path='/login' element={() => { 
+            window.location.href = 'http://localhost:3001/login';
+            return null;
+        }}/> */}
       </Routes>
     </Router>
   </React.StrictMode>,

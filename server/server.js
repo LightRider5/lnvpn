@@ -12,7 +12,7 @@ require('dotenv').config();
 
 const io = require("socket.io")(process.env.PORT, {
   cors: {
-    origin: process.env.URL_CLIENT
+    origin: process.env.SOCKET_URL_CLIENT
   }
 })
 
@@ -36,7 +36,7 @@ app.post(process.env.WEBHOOK, (req, res) => {
     res.status(200).end()
 })
 
-app.listen(5000);
+app.listen(process.env.WEB_SERVER_PORT);
 // Finish Server Setup
 
 // Socket Connections
@@ -185,7 +185,7 @@ async function getInvoice(amount) {
     "out": false,
     "amount": satoshis * amount,
     "memo": "LNVPN",
-    "webhook" : process.env.URL_WEBHOOK
+    "webhook" : process.env.URL_WEBHOOK +"/webhook"
   }
     }).then(function (response){
       const payment_request = response.data.payment_request;

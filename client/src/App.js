@@ -1,7 +1,7 @@
-import {Row, Col, Container, Navbar,Nav} from 'react-bootstrap'
+import {Row, Col, Container} from 'react-bootstrap'
 import {io} from "socket.io-client";
 import {Button} from 'react-bootstrap'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import KeyInput from './components/KeyInput'
 import Price from './components/Price';
 import CountrySelector from './components/CountrySelector';
@@ -13,16 +13,19 @@ import HeaderInfo from './components/HeaderInfo';
 import AlertModal from './components/AlertModal';
 import Footer from './components/Footer';
 import LoginModal from './components/LoginModal';
+import Axios from 'axios';
+import Header from './components/Header';
 
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
 
 var emailAddress;
+
 var clientPaymentHash;
 var isPaid=false; //Is only necessary in the case of socket event is fireing multible times
 
 
-function App(props) {
+function App() {
   const [keyPair, displayNewPair] = useState(window.wireguard.generateKeypair())
   const [priceDollar, updatePrice] =  useState(process.env.REACT_APP_price_hour)
   const [country, updateCountry] =  useState("0")
@@ -43,7 +46,35 @@ function App(props) {
   const hideLoginModal = () => showLoginModal(false);
   //////Alert - Modal
   const [alertModalparams,showAlertModal] = useState({show:false,text:"",type:""});
-  const hideAlertModal = () => showAlertModal({show:false,text:"",type:""});
+  const hideAlertModal = () => showAlertModal({ show: false, text: "", type: "" });
+  //////User
+  const [user, setUser] = useState(null); 
+  
+  useEffect(() => {
+    Axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:3001/user",
+    }).then((res) => {
+      res.data.id ? setUser(res.data.id) : setUser(null);
+      console.log(res);
+    })
+  })
+
+  const navigateLogin = () => {
+    window.location.replace("http://localhost:3001/login")
+  };
+  
+  const navigateLogout = () => {
+    Axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:3001/logout",
+    }).then((res) => {
+      setUser(null);
+      console.log(res);
+    })
+  }
   
   ///////Successfull payment alert
    const renderAlert = (show) => {
@@ -160,10 +191,16 @@ function App(props) {
 
   return (
     <div>
+      <Header
+        user={user}
+        navigateLogin={navigateLogin}
+        navigateLogout={navigateLogout}
+        
+      />
       <Container className="main-middle">
         <Row>
           <Col>
-            <HeaderInfo/>
+            <HeaderInfo user={user} />
           <div id="key-input">
             <KeyInput 
             onClick={() => displayNewPair(window.wireguard.generateKeypair)}

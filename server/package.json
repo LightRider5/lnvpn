@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server",
-    "dev": "concurrently \"npm run server\" \"cd ../client && npm run start\""
+    "login-server": "nodemon login-server",
+    "dev": "concurrently \"npm run server\" \"npm run login-server\" \"cd ../client && npm run start\""
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,9 @@
     "dayjs": "^1.11.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-session": "^1.17.3",
+    "passport": "^0.6.0",
+    "passport-lnurl-auth": "^1.5.1",
     "socket.io": "^4.4.1",
     "wireguard-tools": "^0.1.0"
   },
