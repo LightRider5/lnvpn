@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import LoginModal from './components/LoginModal';
 import Axios from 'axios';
 import Header from './components/Header';
+import Subscriptions from './components/Subscriptions';
 
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
@@ -195,12 +196,12 @@ function App() {
         user={user}
         navigateLogin={navigateLogin}
         navigateLogout={navigateLogout}
-        
       />
       <Container className="main-middle">
         <Row>
           <Col>
             <HeaderInfo user={user} />
+            <Subscriptions user={user} />
           <div id="key-input">
             <KeyInput 
             onClick={() => displayNewPair(window.wireguard.generateKeypair)}

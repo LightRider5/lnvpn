@@ -5,7 +5,10 @@ const HeaderInfo = (props) => {
   
   return (
     <div>
-        {props.user === null ?  (
+      {props.user === null ? (<></>
+         ) : (
+          <Alert variant="success">You are logged in</Alert>
+        )}
         <Alert variant="info">
             {/* <Alert.Heading>How it works:</Alert.Heading> */}
               <p>
@@ -16,9 +19,7 @@ const HeaderInfo = (props) => {
                You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.      
               </p>
         </Alert>
-      ) : (
-          <Alert variant="success">You are logged in as {props.user}</Alert>
-        )}
+     
         </div>
       
     

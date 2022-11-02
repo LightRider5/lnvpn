@@ -76,6 +76,7 @@ app.get('/login',
 	new LnurlAuth.Middleware({
 		callbackUrl: config.url + '/login',
 		cancelUrl: "http://localhost:3000/",
+		refreshSeconds: 3,
         loginTemplateFilePath: path.join(__dirname, 'login.html'),
 	})
 );
