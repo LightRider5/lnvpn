@@ -1,6 +1,6 @@
  var getTimeStamp = (selectedValue) =>{
     var date = new Date()
-    if(selectedValue == process.env.REACT_APP_price_quarter){
+    if(selectedValue == process.env.REACT_APP_price_quater){
       date = addMonths(date = new Date(),3)
       return date
     }

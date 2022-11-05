@@ -58,6 +58,7 @@ const Faq = () => {
                             <ListGroup.Item>1 day = 5GB</ListGroup.Item>
                             <ListGroup.Item>1 week = 15GB</ListGroup.Item>
                             <ListGroup.Item>1 month = 40GB</ListGroup.Item>
+                            <ListGroup.Item>3 months = 90GB</ListGroup.Item>
                             </ListGroup>
                     </Accordion.Body>
                   </Accordion.Item>

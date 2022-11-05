@@ -7,7 +7,7 @@ const CountrySelector = (props) => {
           <option value="0">Select a country</option>
           <option value="1">🇸🇬 Singapore</option>
           <option value="2">🇺🇸 United States</option>
-          <option value="13">🇺🇸 United States 2</option> 
+          <option value="13">🇺🇸 United States 2 (NY)</option> 
           <option value="3">🇫🇮 Finnland</option>
           <option value="4">🇬🇧 United Kingdom</option>
           <option value="5">🇨🇦 Canada</option>
