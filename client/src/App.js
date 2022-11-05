@@ -12,6 +12,7 @@ import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
 import AlertModal from './components/AlertModal';
 import Footer from './components/Footer';
+import SEO from './components/SEO';
 import LoginModal from './components/LoginModal';
 import Axios from 'axios';
 import Header from './components/Header';
@@ -192,6 +193,10 @@ function App() {
 
   return (
     <div>
+      <SEO
+        name="@ln_vpn"
+        type="summary"
+      />
       <Header
         user={user}
         navigateLogin={navigateLogin}

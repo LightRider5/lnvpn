@@ -21,8 +21,12 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(bodyParser.json())
 
 // Serving the index site
-app.get('/*', function (req, res) {
+app.get('/**', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  }, function(err) {
     if (err) {
       res.status(500).send(err)
     }
@@ -116,8 +120,12 @@ const getServer = (countrySelector) => {
       server.location = "Kazakhstan"
     break;  
     case '13':
-      server.ip = process.env.IP_BRA
-      server.location = "Brazil"
+      server.ip = process.env.IP_USA2
+      server.location = "USA 2 (New York)"
+      break;
+    case '14':
+      server.ip = process.env.IP_ROU
+      server.location = "Romania"
     break;
 
     default:
@@ -185,7 +193,7 @@ async function getInvoice(amount) {
     "out": false,
     "amount": satoshis * amount,
     "memo": "LNVPN",
-    "webhook" : process.env.URL_WEBHOOK +"/webhook"
+    "webhook" : process.env.URL_WEBHOOK + process.env.WEBHOOK
   }
     }).then(function (response){
       const payment_request = response.data.payment_request;

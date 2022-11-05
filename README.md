@@ -2,7 +2,7 @@
 
 Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN
 
-LNVPN is a privay focuse VPN provider. We accept only Lightning payments. 
+LNVPN is a privacy focused VPN provider. We accept only Lightning payments. 
 
 <img width="542" alt="Bildschirmfoto 2022-10-08 um 22 39 33" src="https://user-images.githubusercontent.com/48626097/194727012-aa24d2cd-eb73-461b-ae83-b44a7d72bcc0.png">
 
@@ -27,10 +27,11 @@ You won't be able to transfer any data over the VPN connection anymore. Your VPN
 
 Currently, we have four data plans:
 
+    1 hour = 1GB
     1 day = 5GB
-    1 week = 10GB
-    1 month = 30GB
-    3 month = 70GB
+    1 week = 15GB
+    1 month = 40GB
+
 
 # Can I use this VPN for my Lightning Node?
 

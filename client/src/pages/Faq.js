@@ -2,10 +2,19 @@ import React from 'react'
 import { Accordion, Container, ListGroup } from 'react-bootstrap'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import SEO from '../components/SEO'
+
 
 const Faq = () => {
   return (
     <div>
+      
+      <SEO 
+      title='Frequently asked Questions about LNVPN'
+      description='Everything you need to know about using our ⚡️Lightning⚡️ enabled VPN'
+      name='@ln_vpn'
+      type='summary'
+      />
       <Header/>
       <Container className="main-middle">
         {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
@@ -53,6 +62,7 @@ const Faq = () => {
                             <ListGroup.Item>1 day = 5GB</ListGroup.Item>
                             <ListGroup.Item>1 week = 15GB</ListGroup.Item>
                             <ListGroup.Item>1 month = 40GB</ListGroup.Item>
+                            <ListGroup.Item>3 months = 90GB</ListGroup.Item>
                             </ListGroup>
                     </Accordion.Body>
                   </Accordion.Item>
