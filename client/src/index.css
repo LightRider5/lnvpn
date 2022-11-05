@@ -196,7 +196,7 @@ title {
 #runtimeselector label {
   font-size: large;
   text-align: center;
-  width: 25%;
+  width: 20%;
   background-color: #21364c;
 }
 .btn-check:checked+.btn-primary {

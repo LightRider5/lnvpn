@@ -7,9 +7,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header'; 
-import Faq from './components/Faq';
+import Faq from './pages/Faq';
 import Guide from './components/Guide';
-import Footer from './components/Footer';
+
 
 ReactDOM.render(
   <React.StrictMode>

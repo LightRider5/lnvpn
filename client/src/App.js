@@ -1,4 +1,4 @@
-import {Row, Col, Container, Navbar,Nav} from 'react-bootstrap'
+import {Row, Col, Container} from 'react-bootstrap'
 import {io} from "socket.io-client";
 import {Button} from 'react-bootstrap'
 import {useState} from 'react'
@@ -10,9 +10,9 @@ import InvoiceModal from './components/InvoiceModal';
 import  './wireguard.js'
 import {getTimeStamp} from './timefunction.js'
 import HeaderInfo from './components/HeaderInfo';
-import Header from './components/Header';
 import AlertModal from './components/AlertModal';
 import Footer from './components/Footer';
+import SEO from './components/SEO';
 
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 
@@ -157,6 +157,7 @@ function App() {
 
   return (
     <div>
+      
       <Container className="main-middle">
         <Row>
           <Col>

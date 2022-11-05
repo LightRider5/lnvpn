@@ -12,7 +12,7 @@ require('dotenv').config();
 
 const io = require("socket.io")(process.env.PORT, {
   cors: {
-    origin: process.env.URL_CLIENT
+    origin: process.env.SOCKET_URL_CLIENT 
   }
 })
 
@@ -116,8 +116,12 @@ const getServer = (countrySelector) => {
       server.location = "Kazakhstan"
     break;  
     case '13':
-      server.ip = process.env.IP_BRA
-      server.location = "Brazil"
+      server.ip = process.env.IP_USA2
+      server.location = "USA 2"
+      break;
+    case '14':
+      server.ip = process.env.IP_ROU
+      server.location = "Romania"
     break;
 
     default:
@@ -185,7 +189,7 @@ async function getInvoice(amount) {
     "out": false,
     "amount": satoshis * amount,
     "memo": "LNVPN",
-    "webhook" : process.env.URL_WEBHOOK
+    "webhook" : process.env.URL_WEBHOOK + process.env.WEBHOOK
   }
     }).then(function (response){
       const payment_request = response.data.payment_request;
