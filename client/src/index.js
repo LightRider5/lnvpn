@@ -9,10 +9,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header'; 
 import Faq from './pages/Faq';
 import Guide from './components/Guide';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 ReactDOM.render(
   <React.StrictMode>
+    <HelmetProvider>
     <Router>
       <Header/>
       <Routes>
@@ -21,6 +23,7 @@ ReactDOM.render(
         <Route path='/faq' element={<Faq/>} />
       </Routes>
     </Router>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

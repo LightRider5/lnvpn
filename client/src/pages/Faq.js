@@ -1,17 +1,18 @@
 import React from 'react'
 import { Accordion, Container, ListGroup } from 'react-bootstrap'
 import Footer from '../components/Footer'
-import SEO from '../components/SEO'
+import  SEO  from '../components/SEO'
 
 
 const Faq = () => {
   return (
     <div>
       <SEO 
-      title="Frequenty asked Questions for LNVPN"
-      description="Everything you need to know about using our ⚡️Lightning⚡️ enabled VPN"
-      name="@Lightrider5"
-      type="faq" />
+      title='Frequently asked Questions about LNVPN'
+      description='Everything you need to know about using our ⚡️Lightning⚡️ enabled VPN'
+      name='@ln_vpn'
+      type='summary'
+      />
       <Container className="main-middle">
         {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
         <Accordion>

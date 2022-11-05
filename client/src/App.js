@@ -157,7 +157,10 @@ function App() {
 
   return (
     <div>
-      
+      <SEO
+        name="@ln_vpn"
+        type="summary"
+      />
       <Container className="main-middle">
         <Row>
           <Col>
@@ -210,15 +213,6 @@ function App() {
               }} 
               variant="success">Pay with Lightning
               </Button>
-            
-            {/* <Row>
-              <Col>
-              <Button 
-                id="faq_button"
-                variant="info">Show FAQ
-              </Button>
-              </Col>
-            </Row>   */}
             </div>
           </Col>
         </Row>
