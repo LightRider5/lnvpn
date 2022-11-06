@@ -13,7 +13,6 @@ import HeaderInfo from './components/HeaderInfo';
 import AlertModal from './components/AlertModal';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
-import LoginModal from './components/LoginModal';
 import Axios from 'axios';
 import Header from './components/Header';
 import Subscriptions from './components/Subscriptions';
@@ -42,10 +41,6 @@ function App() {
    const [isConfigModal, showConfigModal] = useState(false) 
    const renderConfigModal = () => showConfigModal(true);
     const hideConfigModal = () => showConfigModal(false);
-  //////Login - Modal
-  const [isLoginModal, showLoginModal] = useState(false) 
-  const renderLoginModal = () => showLoginModal(true);
-  const hideLoginModal = () => showLoginModal(false);
   //////Alert - Modal
   const [alertModalparams,showAlertModal] = useState({show:false,text:"",type:""});
   const hideAlertModal = () => showAlertModal({ show: false, text: "", type: "" });
@@ -194,6 +189,8 @@ function App() {
   return (
     <div>
       <SEO
+        title="LNVPN - VPN provider with Lightning only payment"
+        description="A simple privacy focused VPN service payable with Bitcoin Lightning"
         name="@ln_vpn"
         type="summary"
       />
@@ -227,11 +224,6 @@ function App() {
           variant={alertModalparams.type}
           handleClose={hideAlertModal}
             />
-
-          <LoginModal
-          show={isLoginModal}
-          handleClose={hideLoginModal}  
-          />
           
           <InvoiceModal  
           show={visibleInvoiceModal} 

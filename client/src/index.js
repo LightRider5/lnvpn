@@ -7,7 +7,6 @@ import './index.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from './components/Header'; 
 import Faq from './pages/Faq';
 import Guide from './components/Guide';
 import { HelmetProvider } from 'react-helmet-async';
