@@ -51,7 +51,7 @@ function App() {
     Axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:3001/user",
+      url: "http://localhost:5000/user",
     }).then((res) => {
       res.data.id ? setUser(res.data.id) : setUser(null);
       console.log(res);
@@ -59,14 +59,14 @@ function App() {
   })
 
   const navigateLogin = () => {
-    window.location.replace("http://localhost:3001/login")
+    window.location.replace("http://localhost:5000/login")
   };
   
   const navigateLogout = () => {
     Axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:3001/logout",
+      url: "http://localhost:5000/logout",
     }).then((res) => {
       setUser(null);
       console.log(res);
