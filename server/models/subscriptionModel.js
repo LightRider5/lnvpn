@@ -1,20 +1,22 @@
 const mongoose = require('mongoose')
 
-const goalSchema = mongoose.Schema(
+const subsSchema = mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
       ref: 'User',
     },
-    text: {
+    endpoint: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: [true, 'Please add an endpoint'],
+    },
+    duration: {
+      type: String,
+      required: [true, 'Please enter a duration end Date'],
     },
   },
-  {
-    timestamps: true,
-  }
+
 )
 
-module.exports = mongoose.model('Subscription', goalSchema)
+module.exports = mongoose.model('Subs', subsSchema)

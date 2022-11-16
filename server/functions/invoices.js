@@ -29,9 +29,9 @@ async function getInvoice(amount) {
         headers: { "X-Api-Key": process.env.INVOICE_KEY}
       }).then(function (response){
           if(response.data.paid)  {
-            return response.data.details.payment_hash;
+            return response.data;
           }
-      })
+      }).catch(error => error);
     }
 
 // Get Bitcoin Price in Satoshi per Dollar

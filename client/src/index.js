@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 // import './bootstrap/css/bootstrap.min.css'
 import "./font.css"
 import './custombootstrap.css';
@@ -15,24 +16,15 @@ import { HelmetProvider } from 'react-helmet-async';
 import "./fonts/Poppins-Regular.otf";
 import "./fonts/Poppins-Light.otf";
 
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 
-ReactDOM.render(
-  <React.StrictMode>
+root.render(
+  <StrictMode>
     <HelmetProvider>
-    <Router>
-      <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/guide' element={<Guide/>} />
-        <Route path='/faq' element={<Faq />} />
-        {/* <Route path='/login' element={() => { 
-            window.location.href = 'http://localhost:3001/login';
-            return null;
-        }}/> */}
-      </Routes>
-    </Router>
+      <App/>
     </HelmetProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 );
 
 reportWebVitals();

@@ -5,7 +5,7 @@ const LnurlAuth = require("passport-lnurl-auth");
 const passport = require('passport');
 const session = require('express-session');
 const cors = require("cors");
-const { btoa } = require('buffer');
+// const { btoa } = require('buffer');
 const connectDB = require('./config/db');
 const vpnServer = require('./functions/getServer');
 const timestamp = require('./functions/getTimeStamp');
@@ -14,6 +14,7 @@ const lightning = require('./functions/invoices');
 const app = express();
 require('dotenv').config();
 // connectDB();
+
 
 app.use(
     cors({
@@ -51,11 +52,11 @@ const map = {
 app.use(bodyParser.json()) 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-// app.use('/api/subs', require('./routes/subscriptionRoutes'));
-
-// Serving the index site
+// app.use(passport.authenticate('lnurl-auth'));
+// app.use('/', require('./routes/loginRoutes'));
 app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use('/subscriptions', require('./routes/subscriptionRoutes'));
+app.use('/api', require('./routes/apiRoutes'));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'), function(err) {
@@ -87,28 +88,27 @@ passport.use(new LnurlAuth.Strategy(function(linkingPublicKey, done) {
 	done(null, user);
 }));
 
-app.use(passport.authenticate('lnurl-auth'));
-
-app.get('/login',
-	function(req, res, next) {
+app.get('/login', function(req, res, next) {
     if (req.user) {
       // Already authenticated.
       console.log("Already authenticated");
-      return res.redirect('http://localhost:3000/');
+      return res.redirect('http://localhost:3000/dashboard');
     }
 		next();
 	},
 	new LnurlAuth.Middleware({
 		callbackUrl: config.url + '/login',
 		cancelUrl: "http://localhost:3000/",
-		refreshSeconds: 5,
+		refreshSeconds: 3,
         loginTemplateFilePath: path.join(__dirname, 'login.html'),
 	})
 );
 
 
 app.get("/user", (req, res) => {
-    res.send(req.user);
+	res.send(req.user);
+	console.log(req.user);
+	// res.status(200).json(req.user);
 })
 
 app.get('/logout',
@@ -120,21 +120,10 @@ app.get('/logout',
 			return res.redirect('http://localhost:3000/');
 		}
     next();
-    return
+    
 	});
 
-process.on('uncaughtException', error => {
-	console.error(error);
-});
 
-process.on('beforeExit', code => {
-	try {
-		server.close();
-	} catch (error) {
-		console.error(error);
-	}
-	process.exit(code);
-});
 
 
 const server = app.listen(process.env.WEB_SERVER_PORT, function() {

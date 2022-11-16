@@ -1,11 +1,24 @@
-import { React, useEffect,useState } from 'react'
-import { Navbar,Nav,Row,Offcanvas,Button,Form} from 'react-bootstrap'
+import { Navbar,Nav,Row,Offcanvas,Button} from 'react-bootstrap'
 import logo from '../media/logo2.svg';
 import { LinkContainer } from 'react-router-bootstrap'
-import { useNavigate,Link } from "react-router-dom";
 import Axios from 'axios';
 
 const Header = (props) => {
+      const navigateLogin = () => {
+      window.location.replace("http://localhost:5000/login")
+      };
+  
+      const navigateLogout = () => {
+        Axios({
+          method: "GET",
+          withCredentials: true,
+          url: "http://localhost:5000/logout",
+        }).then((res) => {
+          props.user = null;
+          console.log(res);
+        })
+      }
+
 
     return (
     <div>
@@ -36,23 +49,23 @@ const Header = (props) => {
                     </LinkContainer>  
                 </Nav.Item>
             </Nav >
-            <Nav className="ml-auto">
-              <Nav.Item>
-               {props.user == null ?  (
+            {/* <Nav className="ml-auto">
+                <Nav.Item>
+               {props.user === undefined ?  (
                   <Button
                     variant="outline-success"
                     size="lg"
-                    onClick={props.navigateLogin}
-                  >🚪&ensp;Login</Button>
+                    onClick={navigateLogin}
+                  >🚪&ensp;Login { props.user}</Button>
                 ) : (
                   <Button
                       variant="outline-danger"
                       size="lg"
-                    onClick={props.navigateLogout}
-                  >🏃‍♂️&ensp;Logout</Button>
+                    onClick={navigateLogout}
+                  >🏃‍♂️&ensp;Logout { props.user}</Button>
                 )}
                 </Nav.Item>          
-            </Nav>
+            </Nav> */}
           </Offcanvas.Body>  
         </Navbar.Offcanvas>
      
@@ -69,3 +82,5 @@ const Header = (props) => {
 }
 
 export default Header
+
+

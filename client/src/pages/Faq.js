@@ -1,21 +1,19 @@
 import React from 'react'
 import { Accordion, Container, ListGroup } from 'react-bootstrap'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import SEO from '../components/SEO'
+import * as Component from '../components';
 
 
 const Faq = () => {
+
   return (
     <div>
       
-      <SEO 
+      <Component.SEO 
       title='LNVPN - Frequently asked Questions about LNVPN'
       description='Everything you need to know about using our ⚡️Lightning⚡️ enabled VPN'
       name='@ln_vpn'
       type='summary'
       />
-      <Header/>
       <Container className="main-middle">
         {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
         <Accordion>
@@ -73,7 +71,7 @@ const Faq = () => {
                     </Accordion.Body>
             </Accordion.Item>
               </Accordion>
-              <Footer/>
+              <Component.Footer/>
     </Container>
     </div>
   )
