@@ -19,8 +19,8 @@ const CountrySelector = (props) => {
           <option value="11">🇮🇱 Israel</option>
           <option value="12">🇰🇿 Kazakhstan</option>
           <option value="14">🇷🇴 Romania</option>
-          <option value="15">🇬🇭 Ghana</option>
-          <option value="16">🇹🇷 Turkey</option>
+          {/* <option value="15">🇬🇭 Ghana</option>
+          <option value="16">🇹🇷 Turkey</option> */}
           {/* <option value="17">🇹🇷 Nigeria</option> */}
         </Form.Select>      
      </div>
