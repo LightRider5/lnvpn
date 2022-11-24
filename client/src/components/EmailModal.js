@@ -1,5 +1,5 @@
 import { useState,React } from 'react';
-import {Modal,Button,InputGroup,FormControl} from 'react-bootstrap'
+import {Modal,Button,InputGroup,Form} from 'react-bootstrap'
 
 const EmailModal = (props) => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -12,8 +12,6 @@ const EmailModal = (props) => {
 
   return (
     <div>
-       
-
       <Modal 
       show={props.show} 
       onHide={props.handleClose}
@@ -23,15 +21,15 @@ const EmailModal = (props) => {
           <Modal.Title >Send Config via EMail</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <InputGroup size="mb-3" className="mb-3" id="emailModal">
-                <InputGroup.Prepend>
-                    <InputGroup.Text >Email</InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl  
-                value={emailAddress}
-                onChange={(e) => setEmailAddress(e.target.value)}
-                />
-            </InputGroup>
+          <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Email address
+        </InputGroup.Text>
+        <Form.Control
+          value={emailAddress}
+          onChange={(e) => setEmailAddress(e.target.value)}
+        />
+      </InputGroup>
         </Modal.Body>
         <Modal.Footer className="emailbuttons">
           <Button variant="danger" onClick={props.handleClose}>

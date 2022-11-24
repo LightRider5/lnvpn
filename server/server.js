@@ -141,7 +141,7 @@ const getServer = (countrySelector) => {
       
   }
   return server;
-}
+} 
 
 
 // Transforms duration into timestamp
