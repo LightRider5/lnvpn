@@ -188,7 +188,192 @@ io.on('connection', (socket) => {
 
 
 });
+///Transforms country into server
+const getServer = (countrySelector) => {
+  let server = new Object();
+  switch (countrySelector) {
+    case '1':
+      server.ip = process.env.IP_SINGAPUR
+      server.location = "Singapur"
+     break;
+    case '2':
+      server.ip = process.env.IP_USA
+      server.location = "USA"
+    break;  
+    case '3':
+      server.ip = process.env.IP_FIN
+      server.location = "Finland"
+    break;
+    case '4':
+      server.ip = process.env.IP_UK
+      server.location = "United Kingdom"
+    break;
+    case '5':
+      server.ip = process.env.IP_CANADA
+      server.location = "Canada"
+    break;
+    case '6':
+      server.ip = process.env.IP_IND
+      server.location = "India"
+    break;
+    case '7':
+      server.ip = process.env.IP_NLD
+      server.location = "Netehrlands"
+    break;
+    case '8':
+      server.ip = process.env.IP_RUS
+      server.location = "Russia"
+    break;
+    case '9':
+      server.ip = process.env.IP_UKR
+      server.location = "Ukraine"
+    break;
+    case '10':
+      server.ip = process.env.IP_CHE
+      server.location = "Switzerland"
+    break;
+    case '11':
+      server.ip = process.env.IP_ISR
+      server.location = "Israel"
+    break;
+    case '12':
+      server.ip = process.env.IP_KAZ
+      server.location = "Kazakhstan"
+    break;  
+    case '13':
+      server.ip = process.env.IP_USA2
+      server.location = "USA 2 (New York)"
+      break;
+    case '14':
+      server.ip = process.env.IP_ROU
+      server.location = "Romania"
+      break;
+    case '15':
+      server.ip = process.env.IP_GHA
+      server.location = "Ghana"
+      break; 
+    case '16':
+      server.ip = process.env.IP_TUR
+      server.location = "Turkey"
+      break;
+    case '17':
+      server.ip = process.env.IP_NGA
+      server.location = "Nigeria"
+    break;
 
+    default:
+      console.log(`Error with country selector: ${countrySelector}`);
+      
+  }
+  return server;
+} 
+
+
+// Transforms duration into timestamp
+const getTimeStamp = (selectedValue) =>{
+  // const date = new Date()
+  if(selectedValue == process.env.PRICE_QUARTER){
+    date = addMonths(date = new Date(),3)
+    return date
+  }
+  if(selectedValue == process.env.PRICE_MONTH){
+    date = addMonths(date = new Date(),1)
+    return date
+  }
+  if(selectedValue == process.env.PRICE_WEEK){
+    date = addWeeks(date = new Date(),1)
+    return date
+  }
+  if(selectedValue == process.env.PRICE_DAY){
+    date = addHour(date = new Date(),24)
+    return date
+  }
+
+  if(selectedValue == process.env.PRICE_HOUR){
+    date = addHour(date = new Date(),1)
+    return date
+  }
+
+  function addHour (date = new Date(), hour) {
+    date.setHours(date.getHours() + hour)
+    return date
+  }
+  function addWeeks (date = new Date(), weeks) {
+    date.setDate(date.getDate() + weeks * 7)
+    return date
+  }
+
+  function addMonths(date = new Date(), months) {
+    const d = date.getDate();
+    date.setMonth(date.getMonth() + +months);
+    if (date.getDate() != d) {
+      date.setDate(0);
+    }
+    return date;
+  }
+
+}
+
+
+// Get Invoice Function
+async function getInvoice(amount) {
+  const satoshis = await getPrice().then((result) => {return result});
+  return axios({
+  method: "post",
+  url: process.env.URL_INVOICE_API,
+  headers: { "X-Api-Key": process.env.INVOICE_KEY},
+  data: {
+    "out": false,
+    "amount": satoshis * amount,
+    "memo": "LNVPN",
+    "webhook" : process.env.URL_WEBHOOK + process.env.WEBHOOK
+  }
+    }).then(function (response){
+      const payment_request = response.data.payment_request;
+      const payment_hash = response.data.payment_hash;
+      return { payment_hash, payment_request };
+    }).catch(error => error);
+}
+
+// Get Bitcoin Price in Satoshi per Dollar
+async function getPrice() {
+  return axios({
+    method: "get",
+    url: process.env.URL_PRICE_API
+  }).then(function (response){
+     return 100_000_000 / response.data.USD.buy;
+  })
+};
+
+
+// Get Wireguard Config
+async function getWireguardConfig(publicKey, presharedKey, timestamp, server, priceDollar) {
+
+  return axios({
+    method: "post",
+    url: server,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization' : process.env.AUTH
+      },
+    data: {
+      "publicKey": publicKey,
+      "presharedKey": presharedKey,
+      "bwLimit": 10000*priceDollar,
+      "subExpiry": parseDate(timestamp),
+      "ipIndex": 0
+    }
+  }).then(function (response){
+    return response.data;
+  }).catch(error => {
+    console.error(error)
+    return error;
+  });
+}
+// Parse Date object to string format: YYYY-MMM-DD hh:mm:ss A
+const parseDate = (date) => {
+  return dayjs(date).format("YYYY-MMM-DD hh:mm:ss A");
+}
 
 
 
