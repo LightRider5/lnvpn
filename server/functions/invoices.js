@@ -25,9 +25,9 @@ async function getInvoice(amount) {
     async function checkInvoice(hash) {
       return axios({
         method: "get",
-        url: `https://legend.lnbits.com/api/v1/payments/${hash}`,
+        url: `${process.env.URL_INVOICE_API}${hash}`,
         headers: { "X-Api-Key": process.env.INVOICE_KEY}
-      }).then(function (response){
+      }).then(function (response) {
           if(response.data.paid)  {
             return response.data;
           }

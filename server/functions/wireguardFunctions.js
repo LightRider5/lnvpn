@@ -61,4 +61,23 @@ async function sendEmail(emailAddress,configData, date) {
       });
 }
 
-module.exports = {getWireguardConfig, sendEmail}
+  /////////Construct the Config File
+  async function buildConfigFile (keyPair, serverResponse,timestamp,location){
+    const configArray = [
+    '[Interface]',
+    'PrivateKey = ' + keyPair.privateKey,
+    'Address = '+serverResponse.ipv4Address,
+    'DNS = '+serverResponse.dns,
+    ' ',
+    '# Valid until: '+ timestamp +'UTC',
+    '# Location: '+ location,
+    ' ',
+    '[Peer]',
+    'PublicKey = '+serverResponse.publicKey,
+    'PresharedKey = '+keyPair.presharedKey,
+    'Endpoint = '+serverResponse.ipAddress+':'+serverResponse.listenPort,
+    'AllowedIPs = '+serverResponse.allowedIPs];
+    return configArray
+  }
+
+module.exports = {getWireguardConfig, sendEmail,buildConfigFile}

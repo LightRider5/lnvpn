@@ -1,9 +1,7 @@
-/*! SPDX-License-Identifier: GPL-2.0
- *
- * Copyright (C) 2015-2020 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
- */
+const crypto = require('crypto').webcrypto;
 
 
+(function() {
 	function gf(init) {
 		var r = new Float64Array(16);
 		if (init) {
@@ -171,8 +169,8 @@
 		return String.fromCharCode.apply(null, base64);
 	}
 
-	
-		function	generateKeypair() {
+	wireguard = {
+		generateKeypair: function() {
 			var presharedKey = generatePresharedKey();
 			var privateKey = generatePrivateKey();
 			var publicKey = generatePublicKey(privateKey);
@@ -182,8 +180,21 @@
 				presharedKey: keyToBase64(presharedKey)
 			};
 		}
-	
+	};
+	module.exports = wireguard.generateKeypair;
+})();
 
 
 
-module.exports = {generateKeypair, generatePrivateKey, generatePublicKey, generatePresharedKey}; 
+
+
+
+
+
+
+
+
+
+
+
+
