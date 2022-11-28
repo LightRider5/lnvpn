@@ -1,6 +1,5 @@
 
 const Payment = require("../models/payments");
-const jwt = require("jsonwebtoken");
 const lightning = require('../functions/invoices')
 const asyncHandler = require('express-async-handler')
 const wg = require('../functions/wireguardFunctions')
@@ -23,20 +22,17 @@ const getInvoice = asyncHandler(async (req, res, next) => {
     }
 
     if (!(duration === process.env.PRICE_HOUR || duration === process.env.PRICE_DAY
-        || duration === process.env.PRICE_WEEK || duration === process.env.PRICE_QUARTER)) {
-        res.status(400)
+        || duration === process.env.PRICE_WEEK || duration === process.env.PRICE_MONTH || duration === process.env.PRICE_QUARTER)) {
         const err = new Error('Duration not allowed. Please choose between 1 hour, 1 day, 1 week or 1 quarter.')   
         err.status = 400;
         next(err);
     } 
     
-        const invoice = await lightning.getInvoice(duration);
+        const invoice = await lightning.getInvoice(duration,duration);
         res.status(200).send(invoice)
 
 });
   
-
-
  const getTunnelConfig = asyncHandler(async  (req, res, next) => {
     const { paymentHash, location, duration } = req.body;
     if (!paymentHash || !location || !duration) {
@@ -44,23 +40,34 @@ const getInvoice = asyncHandler(async (req, res, next) => {
         err.status = 400;
         next(err);
     } else {
-        const result = await Payment.findOne({ paymentHash: paymentHash });
-            if (!result) {
-                throw new Error("paymentHash used before");
+        const data = await lightning.checkInvoice(paymentHash);
+        paid_duration = data.details.memo;
+        console.log(paid_duration)
+        //Only if you have paid 99% of the Satoshis you will get a tunnel
+        //In case of heavy price fluctuations, you can still get a tunnel
+        if (paid_duration !== duration) { 
+            const err = new Error("Invoice amount fits not duration");
+            err.status = 400;
+            next(err);
+        }
+        else {
+            const result = await Payment.findOne({ paymentHash: paymentHash });
+            if (result) {
+                const err = new Error("paymentHash used before");
+                err.status = 400;
+                next(err);
             }
         
-        const data = await lightning.checkInvoice(paymentHash);
-        
-            if (!data.detail && data.paid === true) {
-                // try {
-                //     const payment = new Payment();
-                //     payment.paymentHash = paymentHash;
-                //     payment.used = true;
-                //     payment.save();
-                // } catch (err) {
-                //     err.status = 500;
-                //     throw err;
-                // }
+            if (!result && (!data.detail && data.paid === true)) {
+                try {
+                    const payment = new Payment();
+                    payment.paymentHash = paymentHash;
+                    payment.used = true;
+                    payment.save();
+                } catch (err) {
+                    err.status = 500;
+                    throw err;
+                }
                 const configTimeStamp = await timestamp.getTimeStamp(duration);
                 const server = await vpnServer.getServer(location);
                 const keyPair = await generateKeyPair()
@@ -86,7 +93,7 @@ const getInvoice = asyncHandler(async (req, res, next) => {
                 err.status = 400;
                 next(err);
             }
-         
+        } 
     }
 });
 

@@ -2,7 +2,7 @@ const axios = require('axios');
 const sgMail = require('@sendgrid/mail');
 
 // Get Invoice Function
-async function getInvoice(amount) {
+async function getInvoice(amount,memo) {
   const satoshis = await getPrice().then((result) => {return result});
   return axios({
   method: "post",
@@ -11,7 +11,7 @@ async function getInvoice(amount) {
   data: {
     "out": false,
     "amount": satoshis * amount,
-    "memo": "LNVPN",
+    "memo": memo,
     "webhook" : process.env.URL_WEBHOOK + process.env.WEBHOOK
   }
     }).then(function (response){

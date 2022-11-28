@@ -105,7 +105,7 @@ io.on('connection', (socket) => {
 
   // Getting the Invoice from lnbits and forwarding it to the frontend
   socket.on('getInvoice',(amount) =>{
-    lightning.getInvoice(amount).then(result => socket.emit("lnbitsInvoice",result))
+    lightning.getInvoice(amount,"LNVPN").then(result => socket.emit("lnbitsInvoice",result))
   })
   socket.on('sendEmail',(emailAddress,configData,date) => {
   wg.sendEmail(emailAddress,configData,date).then(result => console.log(result))
