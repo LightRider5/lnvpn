@@ -39,9 +39,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/test", (req, res, next) => {
-    res.send("hello world!");
-});
+// app.get("/test", (req, res, next) => {
+//     res.send("hello world!");
+// });
 
 app.use((error, req, res, next) => {
     console.log(error.message)
@@ -49,6 +49,7 @@ app.use((error, req, res, next) => {
     res.status(error.status)
     res.json({status: error.status,error: error.message})
 });
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'), function(err) {

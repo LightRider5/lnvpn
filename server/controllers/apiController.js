@@ -13,7 +13,7 @@ require('dotenv').config();
 
 
 const getInvoice = asyncHandler(async (req, res, next) => {
-    // expects a POST request with json-data: {"duration":<0.1,0.5,1.5,4,9>}
+   
     const duration = req.body.duration;
     if (!duration) {
         const err = new Error("Duration missing");
@@ -21,9 +21,18 @@ const getInvoice = asyncHandler(async (req, res, next) => {
         next(err);
     }
 
-    if (!(duration === process.env.PRICE_HOUR || duration === process.env.PRICE_DAY
-        || duration === process.env.PRICE_WEEK || duration === process.env.PRICE_MONTH || duration === process.env.PRICE_QUARTER)) {
-        const err = new Error('Duration not allowed. Please choose between 1 hour, 1 day, 1 week or 1 quarter.')   
+    if (!(duration === process.env.PRICE_HOUR ||
+        duration === process.env.PRICE_DAY ||
+        duration === process.env.PRICE_WEEK ||
+        duration === process.env.PRICE_MONTH ||
+        duration === process.env.PRICE_QUARTER))
+    {
+        const err = new Error('Duration not allowed. Use: ' +
+            process.env.PRICE_HOUR + ' ' +
+            process.env.PRICE_DAY + ' ' +
+            process.env.PRICE_WEEK + ' ' +
+            process.env.PRICE_MONTH + ' ' +
+            process.env.PRICE_QUARTER);  
         err.status = 400;
         next(err);
     } 

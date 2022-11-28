@@ -63,8 +63,15 @@ const Faq = () => {
                             <ListGroup.Item>3 months = 90GB</ListGroup.Item>
                             </ListGroup>
                     </Accordion.Body>
-                  </Accordion.Item>
-                    <Accordion.Item eventKey="6">
+          </Accordion.Item>
+          <Accordion.Item eventKey="6">
+                <Accordion.Header>Do you offer an API?</Accordion.Header>
+                    <Accordion.Body>
+              Yes we do! If you want to use LNVPN for your application to provide VPN tunnels please
+              visit: <a href="https://lnvpn.net/api/documentation>" target="_blank" rel="noreferrer">https://lnvpn.net/api/api-documentation.</a>
+                    </Accordion.Body>
+            </Accordion.Item>
+                    <Accordion.Item eventKey="7">
                 <Accordion.Header>Who build this? </Accordion.Header>
                     <Accordion.Body>
                     Berlin Bitcoiners with Love ❤️.

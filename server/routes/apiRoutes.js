@@ -13,28 +13,52 @@ const {
 
  /**
    * @swagger
-   * /v1/getInvoice:
+   * /api/v1/getInvoice:
    *   post:
-   *     description: Login to the application
-   *     tags: [Users, Login]
+   *     description: Returns a Lightning invoice for the requested duration
    *     produces:
    *       - application/json
    *     parameters:
-   *       - $ref: '#/parameters/username'
-   *       - name: password
-   *         description: User's password.
-   *         in: formData
+   *       - name: duration
+   *         description: How long the tunnel should be open
+   *         in: x-www-form-urlencoded
    *         required: true
-   *         type: string
+
    *     responses:
    *       200:
-   *         description: login
+   *         description: Lightning Invoice and Payment Hash
    *         schema:
-   *           type: object
-   *           $ref: '#/definitions/Login'
+   *           type: json
    */
 router.post("/v1/getinvoice", getInvoice);
+/**
+   * @swagger
+   * /api/v1/getTunnelConfig:
+   *   post:
+   *     description: Returns the wireguard configuration for the requested tunnel
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: paymentHash
+   *         description: Payment Hash of the invoice you paid
+   *         in: x-www-form-urlencoded
+   *         required: true
+   *       - name: duration
+   *         description: How long the tunnel should be open
+   *         in: x-www-form-urlencoded
+   *         required: true
 
+   *       - name: location
+   *         description: Location of the endpoint
+   *         in: x-www-form-urlencoded
+   *         required: true
+
+   *     responses:
+   *       200:
+   *         description: wireguard config data
+   *         schema:
+   *           type: object
+   */
 router.post("/v1/getTunnelConfig", getTunnelConfig);
 
 const options = {
@@ -61,8 +85,8 @@ const options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(swaggerSpec));
+router.use('/documentation', swaggerUi.serve);
+router.get('/documentation', swaggerUi.setup(swaggerSpec));
 
 module.exports = router
 
