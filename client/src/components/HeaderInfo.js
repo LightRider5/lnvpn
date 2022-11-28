@@ -8,11 +8,11 @@ const HeaderInfo = (props) => {
         <Alert variant="info">
           {/* <Alert.Heading>How it works:</Alert.Heading> */}
           <p>
-            Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN ✅
+          {props.headline}
           </p>
           <hr />
           <p className="mb-0">
-            You need the < a href='https://www.wireguard.com/' target="_blank">Wireguard</a> VPN client.
+          {props.paragraph}
           </p>
         </Alert>
       

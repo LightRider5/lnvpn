@@ -4,7 +4,7 @@ import { useState} from 'react'
 import * as Component from '../components';
 import '../wireguard.js'
 import {getTimeStamp} from '../timefunction.js'
-
+import { vpnendpoints } from '../data/vpnendpoints';
 
 
 var socket =  io.connect(process.env.REACT_APP_socket_port)
@@ -158,7 +158,10 @@ function Home() {
         <Container className="main-middle">
           <Row>
             <Col>
-              <Component.HeaderInfo/>
+            <Component.HeaderInfo
+              headline="Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN ✅"
+              paragraph={<>You need the <a href='https://www.wireguard.com/' target='_blank' rel="noreferrer">Wireguard</a> VPN client.</>}
+            />
               <div id="key-input">
                 <Component.KeyInput
                   onClick={() => displayNewPair(window.wireguard.generateKeypair)}
@@ -170,7 +173,10 @@ function Home() {
                   newPresharedKey={(presharedKey) => { keyPair.presharedKey = presharedKey }}
                 />
               </div>
-              <Component.CountrySelector onChange={countrySelect} />
+            <Component.CountrySelector
+              onChange={countrySelect}
+              countries={vpnendpoints}
+            />
               <Component.RuntimeSelector onChange={runtimeSelect} />
           
               <Component.AlertModal
