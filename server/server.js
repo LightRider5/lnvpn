@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const { btoa } = require('buffer');
 const connectDB = require('./config/db');
 const vpnServer = require('./functions/getServer');
 const timestamp = require('./functions/getTimeStamp');
