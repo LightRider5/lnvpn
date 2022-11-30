@@ -124,8 +124,8 @@ const getServer = (countrySelector) => {
       server.location = "Romania"
       break;
     case '15':
-      server.ip = process.env.IP_GHA
-      server.location = "Ghana"
+      server.ip = process.env.IP_KEN
+      server.location = "Kenya"
       break; 
     case '16':
       server.ip = process.env.IP_PRT
