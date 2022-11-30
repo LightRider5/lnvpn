@@ -46,7 +46,7 @@ h1 {
 }
 .main-middle{
   padding: 12px;
-  max-width: 750px;
+  max-width: 800px;
   align-items: center;
   flex-direction: column;
   border-radius: 12px;
@@ -228,6 +228,29 @@ title {
   word-wrap: break-word;      /* IE */
 }
 
+.s4s-orderID {
+  text-align: left;
+    margin-top: 10px;
+    display: inline-block;
+    border: 1px;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+    /* CSS3 */
+    white-space: -moz-pre-wrap;
+    /* Firefox */
+    white-space: -pre-wrap;
+    /* Opera <7 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* IE */
+
+}
+
 #main_modal {
   min-width: 50%;
 }
@@ -311,6 +334,11 @@ h2.accordion-header button {
 }
 #nav-menu-image{
   width: 50%;
+}
+#s4s-error-message {
+  color: red;
+  text-align: center;
+  font-size: x-large;
 }
 
 

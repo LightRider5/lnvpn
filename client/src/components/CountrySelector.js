@@ -7,7 +7,7 @@ const CountrySelector = (props) => {
         <Form.Select aria-label="Choose country" size="lg" onChange={props.onChange}>
                 {
           props.countries.map(country => (
-                          <option value={country.key}>{country.ticker}</option>
+            <option value={country.cc}>{country.country}</option>
                         ))
                     }
         </Form.Select>      

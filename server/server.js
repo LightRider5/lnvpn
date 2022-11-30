@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
   socket.on('checkInvoice',(clientPaymentHash) => {
     lightning.checkInvoice(clientPaymentHash).then(result => io.sockets.emit('invoicePaid',result))
   })
-
+ 
   // Getting the Invoice from lnbits and forwarding it to the frontend
   socket.on('getInvoice',(amount) =>{
     lightning.getInvoice(amount,"LNVPN").then(result => socket.emit("lnbitsInvoice",result))

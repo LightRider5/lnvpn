@@ -1,75 +1,75 @@
 export const vpnendpoints = [
   {
-    key: "0",
-    ticker: "Select a country", 
+    "cc": "0",
+    "country": "Select a country", 
     },
     {
-    key: "1",
-    ticker: "🇸🇬 Singapore", 
+    "cc": "1",
+    "country": "🇸🇬 Singapore", 
     },
     {
-    key: "2",
-    ticker: "🇺🇸 United States", 
+    "cc": "2",
+    "country": "🇺🇸 United States", 
     },
     {
-    key: "13",
-    ticker: "🇺🇸 United States 2 (NY)", 
+    "cc": "13",
+    "country": "🇺🇸 United States 2 (NY)", 
     },
     {
-    key: "3",
-    ticker: "🇸🇬 Singapore", 
+    "cc": "3",
+    "country": "🇸🇬 Singapore", 
     },
     {
-    key: "4",
-    ticker: "🇬🇧 United Kingdom", 
+    "cc": "4",
+    "country": "🇬🇧 United Kingdom", 
     },
     {
-    key: "5",
-    ticker: "🇨🇦 Canada", 
+    "cc": "5",
+    "country": "🇨🇦 Canada", 
     },
     {
-    key: "6",
-    ticker: "🇮🇳 India", 
+    "cc": "6",
+    "country": "🇮🇳 India", 
     },
     {
-    key: "7",
-    ticker: "🇳🇱 Netherlands", 
+    "cc": "7",
+    "country": "🇳🇱 Netherlands", 
     },
     {
-    key: "8",
-    ticker: "🇷🇺 Russia", 
+    "cc": "8",
+    "country": "🇷🇺 Russia", 
     },
     {
-    key: "9",
-    ticker: "🇺🇦 Ukraine", 
+    "cc": "9",
+    "country": "🇺🇦 Ukraine", 
     },
     {
-    key: "10",
-    ticker: "🇨🇭 Switzerland", 
+    "cc": "10",
+    "country": "🇨🇭 Switzerland", 
     },
     {
-    key: "11",
-    ticker: "🇮🇱 Israel", 
+    "cc": "11",
+    "country": "🇮🇱 Israel", 
     },
     {
-    key: "12",
-    ticker: "🇰🇿 Kazakhstan", 
+    "cc": "12",
+    "country": "🇰🇿 Kazakhstan", 
     },
     {
-    key: "14",
-    ticker: "🇷🇴 Romania", 
+    "cc": "14",
+    "country": "🇷🇴 Romania", 
     },
     {
-    key: "15",
-    ticker: "🇬🇭 Ghana", 
+    "cc": "15",
+    "country": "🇬🇭 Ghana", 
     },
     // {
-    // key: "16",
-    // ticker: "🇵🇹 Portugal", 
+    // "cc": "16",
+    // "country": "🇵🇹 Portugal", 
     // },
     // {
-    // key: "17",
-    // ticker: "🇪🇸 Spain", 
+    // "cc": "17",
+    // "country": "🇪🇸 Spain", 
     // },
 ];
 

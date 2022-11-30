@@ -11,6 +11,7 @@ import SubscriptionDisplay from './SubscriptionDisplay';
 import SEO from './SEO';
 import Subscription from './Subscription';
 import EmailModal from './EmailModal';
+import ServiceSelector from './ServiceSelector';
 
 export {
     AlertModal,
@@ -25,5 +26,6 @@ export {
     SubscriptionDisplay,
     SEO,
     Subscription,
-    EmailModal
+    EmailModal,
+    ServiceSelector
 }
