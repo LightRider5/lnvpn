@@ -7,18 +7,16 @@ const Header = (props) => {
       return (
     <div>
         <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="justify-content-center container">
-          
-          <Navbar.Brand href="/">
-            <img
-              src={logo}
-              width="100"
-              height="100"
-              className="d-inline-block align-top align-start"
-              alt="LNVPN Brand Logo"
-                />
-         
-          </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+           <Navbar.Brand href='/'>
+                <img
+                  src={logo}
+                  width="100"
+                  height="100"
+                  className="d-inline-block align-top align-start"
+                  alt="LNVPN Brand Logo"
+                    />
+            </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Offcanvas
               id="responsive-navbar-nav"
               aria-labelledby="offcanvasNavbarLabel-expand-nav"

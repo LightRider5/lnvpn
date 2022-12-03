@@ -40,10 +40,7 @@ const OrderStatus = (props) => {
                             <a href={"lightning:" + props.order.payreq}>
                             <QRCodeCanvas value={props.order.payreq} size={256} />
                             </a>
-                             <Component.Price
-              value={3000}
-              symbol={"sats"}
-            />   
+            
                 </div >
                 }
              <Alert variant="light">Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!</Alert>
