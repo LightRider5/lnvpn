@@ -6,13 +6,13 @@ import { LinkContainer } from 'react-router-bootstrap'
 const Header = (props) => {
       return (
     <div>
-        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="justify-content-end container">
+        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="justify-content-center container">
           
           <Navbar.Brand href="/">
             <img
               src={logo}
-              width="70"
-              height="70"
+              width="100"
+              height="100"
               className="d-inline-block align-top align-start"
               alt="LNVPN Brand Logo"
                 />

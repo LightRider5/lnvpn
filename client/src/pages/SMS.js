@@ -84,13 +84,13 @@ const SMS = () => {
             />
                 <Container className="main-middle">
                     <Row>
-                        <Col>
+                        
                             <HeaderInfo
                                 headline="Select a country ➡️ Select a service ➡️ Pay with Lightning ➡️ Receive Activation Code ✅"
                                 paragraph="You can choose between many services and countries"
             />
             <Form>
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2 s4s-selector">
                 <InputGroup>
                     <InputGroup.Text>Country</InputGroup.Text>
                         <Component.CountrySelector
@@ -107,13 +107,17 @@ const SMS = () => {
                   </InputGroup> 
                   </Form.Group>
             </Form> 
-                        
+            </Row >            
             
             <OrderStatus
               order={order}
               paidOrder={paidOrder}
-            />
-            
+        />
+        <Component.Price
+              value={3000}
+              symbol={"sats"}
+            />   
+            <div className='main-buttons'>
             {order ?
               <Button size='lg' variant="danger" onClick={() => {
                 cancelorder()
@@ -122,7 +126,6 @@ const SMS = () => {
                 Cancel
               </Button> :
               <Button
-                id='s4s-order-button'
                 size='lg'
                 onClick={
                   () => {
@@ -133,8 +136,9 @@ const SMS = () => {
                 variant="success">Generate Phone Number
               </Button> 
               }
-                       </Col>
-                 </Row >
+              </div>
+          
+                 
         <Component.Footer />
         </Container>
     </div>

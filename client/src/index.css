@@ -80,7 +80,6 @@ h1 {
   margin: 5px 0px 5px 0px;
   padding: 15px;
   width: 100%;
-  
 }
 
 .main-buttons{
@@ -192,7 +191,7 @@ title {
 }
 .btn-check:checked+.btn-primary {
   border-color: black;
-  border-width: 5px;
+  border-width: 3px;
 }
 
 #invoicestring { 
@@ -326,17 +325,20 @@ h2.accordion-header button {
   font-size: x-large;
 }
 
-#s4s-order-button{
-  margin: 2%;
-}
 .faq-headline{
   margin: 2%;
 }
 
-.s4s-selector select{
-  margin-top: 2%;
+.s4s-selector span.input-group-text{
+  min-width: 100px;
 }
 
+
+.s4s-selector .input-group {
+  margin-top: 2%;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
 
 
 

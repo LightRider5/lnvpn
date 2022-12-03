@@ -212,9 +212,12 @@ function Home() {
                     setSpinner(true);
                     isPaid = false;
                   }}
-                  variant="success">Pay with Lightning
+              variant="success"
+                  size="lg"
+            >
+              Pay with Lightning
                 </Button>
-              </div>
+            </div>  
             </Col>
           </Row>
           <Component.Footer />
