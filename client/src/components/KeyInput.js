@@ -18,9 +18,9 @@ function ContextAwareToggle({ children, eventKey, callback }) {
       <Button
         type="button"
         size="lg"
-        variant={isCurrentEventKey ? 'primary' : 'info'}
+        variant={isCurrentEventKey ? 'primary' : 'primary'}
         onClick={decoratedOnClick}
-      >{isCurrentEventKey ? '🔑 Show my Keys 🔑' : '🔑 Show my Keys 🔑'}
+      >{isCurrentEventKey ? ' Show my Keys ' : ' Show my Keys '}
         {children}
       </Button>
     );
@@ -41,7 +41,7 @@ const KeyInput = (props) => {
         <Accordion.Collapse eventKey="0">
         <Card.Body>
             <Row>
-            <Alert variant="info">Your private keys are only generated within the browser! You can paste or generate 🔄 your own keys now, but you don't have to.</Alert>
+            <Alert variant="light">Your private keys are only generated within the browser! You can paste or generate 🔄 your own keys now, but you don't have to.</Alert>
             </Row>
             <Form>
                 <Form.Group className="mb-2">
@@ -57,7 +57,7 @@ const KeyInput = (props) => {
                     onClick={
                     props.onClick
                     }
-                    variant="info"
+                    variant="success"
                 >
                     <IoIosRefresh
                     color="white"

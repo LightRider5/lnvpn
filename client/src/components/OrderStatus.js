@@ -51,7 +51,7 @@ const OrderStatus = (props) => {
                 </div >
                 }
             
-             <Alert variant="info">Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!</Alert>
+             <Alert variant="light">Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!</Alert>
                                 
                
             </div>

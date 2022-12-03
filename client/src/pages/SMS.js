@@ -1,7 +1,7 @@
 import {React,useState, useEffect } from 'react'
 import { HeaderInfo } from '../components'
 import * as Component from '../components';
-import { Container, Row, Col,Button } from 'react-bootstrap';
+import { Container, Row, Col,Button,Form,InputGroup } from 'react-bootstrap';
 import { smscountrymap } from '../data/smscountrymap';
 import axios from 'axios';
 import OrderStatus from '../components/OrderStatus';
@@ -88,15 +88,27 @@ const SMS = () => {
                             <HeaderInfo
                                 headline="Select a country ➡️ Select a service ➡️ Pay with Lightning ➡️ Receive Activation Code ✅"
                                 paragraph="You can choose between many services and countries"
-                      />
-                      <Component.CountrySelector
+            />
+            <Form>
+            <Form.Group className="mb-2">
+                <InputGroup>
+                    <InputGroup.Text>Country</InputGroup.Text>
+                        <Component.CountrySelector
                         countries={smscountrymap}
                         onChange={countrySelect}
-                      />
-                      <Component.ServiceSelector
+                />
+                </InputGroup> 
+                <InputGroup>
+                  <InputGroup.Text>Service</InputGroup.Text>
+                  <Component.ServiceSelector 
                         selectedCountry={country}
                         onChange={serviceSelect}  
-            />
+                  />
+                  </InputGroup> 
+                  </Form.Group>
+            </Form> 
+                        
+            
             <OrderStatus
               order={order}
               paidOrder={paidOrder}

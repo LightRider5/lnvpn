@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, Container, ListGroup } from 'react-bootstrap'
+import { Accordion, Container, ListGroup,Col } from 'react-bootstrap'
 import * as Component from '../components';
 
 
@@ -15,7 +15,8 @@ const Faq = () => {
       type='summary'
       />
       <Container className="main-middle">
-        <h2 className='faq-headline'>🎭&ensp;VPN&ensp;🎭 </h2>
+        <Col>
+        <h2 className='faq-headline'>VPN</h2>
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
@@ -77,8 +78,10 @@ const Faq = () => {
                     Berlin Bitcoiners with Love ❤️.
                     </Accordion.Body>
             </Accordion.Item>
-        </Accordion>
-        <h2 className='faq-headline'>📱&ensp;Phone Numbers&ensp;📱 </h2>
+          </Accordion>
+        </Col>
+        <Col>
+        <h2 className='faq-headline'>Phone Numbers</h2>
         <Accordion>
             <Accordion.Item eventKey="8">
                 <Accordion.Header>What is this?</Accordion.Header>
@@ -105,7 +108,8 @@ const Faq = () => {
             </Accordion.Body>
             </Accordion.Item>
         </Accordion>  
-              <Component.Footer/>
+          <Component.Footer />
+      </Col>    
     </Container>
     </div>
   )

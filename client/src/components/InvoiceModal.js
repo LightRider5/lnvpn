@@ -111,7 +111,7 @@ function InvoiceModal(props) {
         </Modal.Body>
         <Modal.Footer>
           {props.isConfigModal ? 
-          <Button variant='info' onClick={()=> {showEmailModal(true)}}>Send via Email</Button>
+          <Button variant='success' onClick={()=> {showEmailModal(true)}}>Send via Email</Button>
           :
           <Button variant="secondary" onClick={props.showNewInvoice}>
             Get new Invoice
@@ -120,14 +120,14 @@ function InvoiceModal(props) {
           {/*Render Show Config or Show PR button  */}
           {props.isConfigModal ? 
           <Button 
-            variant="info"
+            variant="success"
             onClick={() => setOpen(!openCollapse)}
             aria-controls="example-collapse-text"
             aria-expanded={!openCollapse}
           >{!openCollapse ? 'Show Config' : 'Hide Config'}
           </Button> :
           <Button
-            variant="info"
+            variant="success"
             onClick={() => setOpen(!openCollapse)}
             aria-controls="example-collapse-text"
             aria-expanded={!openCollapse}
@@ -136,13 +136,13 @@ function InvoiceModal(props) {
 
           {/*Render Copy Invoice or Download button  */}
           {props.isConfigModal ? 
-          <Button variant="info" onClick={props.download}>Download as File</Button> :
-          <Button variant="info" ref={target} onClick={() =>  {navigator.clipboard.writeText(props.value);renderTooltip(!showTooltip)}}>
+          <Button variant="success" onClick={props.download}>Download as File</Button> :
+          <Button variant="success" ref={target} onClick={() =>  {navigator.clipboard.writeText(props.value);renderTooltip(!showTooltip)}}>
             Copy Invoice
           </Button>}
           {props.isConfigModal ? "" :
           <a href={"lightning:" + props.value} >
-            <Button className="walletbutton" variant="info">
+            <Button className="walletbutton" variant="success">
               Open in Wallet
             </Button>
           </a>

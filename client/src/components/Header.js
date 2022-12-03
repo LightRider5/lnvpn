@@ -1,13 +1,24 @@
-import { Navbar,Nav,Row,Offcanvas} from 'react-bootstrap'
-import logo from '../media/logo2.svg';
+import { Navbar,Nav,Row,Offcanvas,Container} from 'react-bootstrap'
+import logo from '../media/logoPNGLNVPN.png';
 import { LinkContainer } from 'react-router-bootstrap'
 
 
 const Header = (props) => {
       return (
     <div>
-        <Navbar collapseOnSelect expand="sm" key="nav" variant="dark" className="justify-content-end container">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="justify-content-end container">
+          
+          <Navbar.Brand href="/">
+            <img
+              src={logo}
+              width="70"
+              height="70"
+              className="d-inline-block align-top align-start"
+              alt="LNVPN Brand Logo"
+                />
+         
+          </Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Offcanvas
               id="responsive-navbar-nav"
               aria-labelledby="offcanvasNavbarLabel-expand-nav"
@@ -16,7 +27,7 @@ const Header = (props) => {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel-expand-nav">
               {/* <Container>
-                <img src={logo} alt="LN ⚡ VPN" id="nav-menu-image"></img> 
+                <img src={brand} alt="LN ⚡ VPN" id="nav-menu-image"></img> 
                 </Container> */}
                 </Offcanvas.Title>
           </Offcanvas.Header>
@@ -24,17 +35,17 @@ const Header = (props) => {
         <Nav variant="pills" className='me-auto my-2 my-lg-0'>
                 <Nav.Item>
                     <LinkContainer to="/">
-                      <Nav.Link >🏠&ensp;Home </Nav.Link>
+                      <Nav.Link >VPN </Nav.Link>
                     </LinkContainer>
                 </Nav.Item>
                  <Nav.Item>
                 <LinkContainer to="/phone-numbers">
-                      <Nav.Link>📱&ensp;Phone Numbers </Nav.Link>
+                      <Nav.Link>Phone Numbers </Nav.Link>
                     </LinkContainer>  
                 </Nav.Item>
                 <Nav.Item>
                 <LinkContainer to="/faq">
-                      <Nav.Link>📖&ensp;FAQ </Nav.Link>
+                      <Nav.Link>FAQ </Nav.Link>
                     </LinkContainer>  
                 </Nav.Item>
             </Nav >
@@ -42,13 +53,13 @@ const Header = (props) => {
         </Navbar.Offcanvas>
      
         </Navbar>      
-          <Row>
+          {/* <Row>
         <div id='logo'>
             <a href="/">
               <img src={logo} alt="LN ⚡ VPN" id="header-image"></img> 
             </a>
             </div>
-      </Row>
+      </Row> */}
     </div>
   )
 }

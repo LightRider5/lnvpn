@@ -5,7 +5,7 @@ const HeaderInfo = (props) => {
   return (
     <div>
       
-        <Alert variant="info">
+        <Alert variant="light">
           {/* <Alert.Heading>How it works:</Alert.Heading> */}
           <p>
           {props.headline}
