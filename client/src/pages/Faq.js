@@ -15,7 +15,7 @@ const Faq = () => {
       type='summary'
       />
       <Container className="main-middle">
-        {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
+        <h2 className='faq-headline'>🎭&ensp;VPN&ensp;🎭 </h2>
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
@@ -77,7 +77,34 @@ const Faq = () => {
                     Berlin Bitcoiners with Love ❤️.
                     </Accordion.Body>
             </Accordion.Item>
-              </Accordion>
+        </Accordion>
+        <h2 className='faq-headline'>📱&ensp;Phone Numbers&ensp;📱 </h2>
+        <Accordion>
+            <Accordion.Item eventKey="8">
+                <Accordion.Header>What is this?</Accordion.Header>
+                    <Accordion.Body>
+              Receive service activations in a few clicks, anonymously 🎉
+              <ListGroup as="ol" numbered>
+                <ListGroup.Item as="li">Pick a Country & Service</ListGroup.Item>
+                <ListGroup.Item as="li">Pay the Lightning Network invoice</ListGroup.Item>
+                <ListGroup.Item as="li">Receive the SMS you requested.</ListGroup.Item>
+              </ListGroup>
+                      ✅ Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!
+              </Accordion.Body>
+          </Accordion.Item>
+         
+                    <Accordion.Item eventKey="9">
+                <Accordion.Header>Who does the refund work? </Accordion.Header>
+            <Accordion.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>When invoice is paid by the user, it's not finalized but HELD by the Lightning Node.</ListGroup.Item>
+                <ListGroup.Item>For receive orders, Only when an activation code is successfully received the invoice is SETTLED.</ListGroup.Item>
+                <ListGroup.Item>For send orders, Only when SMS status is "sent or delivered" the invoice is SETTLED.</ListGroup.Item>
+                <ListGroup.Item>If no code is received within 20 minutes, invoice will be CANCELED and funds will automatically return to user's wallet.</ListGroup.Item>
+              </ListGroup>
+            </Accordion.Body>
+            </Accordion.Item>
+        </Accordion>  
               <Component.Footer/>
     </Container>
     </div>

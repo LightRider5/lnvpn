@@ -61,7 +61,7 @@ export const vpnendpoints = [
     },
     {
     "cc": "15",
-    "country": "🇬🇭 Ghana", 
+    "country": "🇰🇪 Kenya", 
     },
     // {
     // "cc": "16",

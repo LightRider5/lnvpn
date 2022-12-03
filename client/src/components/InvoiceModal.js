@@ -100,7 +100,7 @@ function InvoiceModal(props) {
           </div>
           :
         <p>
-        This is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/" target="_blank">Phoenix</a>, <a href="https://muun.com/" target="_blank">Muun</a>, <a href="https://breez.technology/" target="_blank">Breez</a> or <a href="https://bluewallet.io/" target="_blank">BlueWallet</a>.  
+        This QR-Code is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/" target="_blank">Phoenix</a>, <a href="https://muun.com/" target="_blank">Muun</a>, <a href="https://breez.technology/" target="_blank">Breez</a> or <a href="https://bluewallet.io/" target="_blank">BlueWallet</a>.  
         </p>
           }
         <Collapse in={openCollapse}>

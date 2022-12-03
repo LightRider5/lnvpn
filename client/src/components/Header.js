@@ -28,8 +28,8 @@ const Header = (props) => {
                     </LinkContainer>
                 </Nav.Item>
                  <Nav.Item>
-                <LinkContainer to="/sms">
-                      <Nav.Link>📱&ensp;Telephone Numbers </Nav.Link>
+                <LinkContainer to="/phone-numbers">
+                      <Nav.Link>📱&ensp;Phone Numbers </Nav.Link>
                     </LinkContainer>  
                 </Nav.Item>
                 <Nav.Item>

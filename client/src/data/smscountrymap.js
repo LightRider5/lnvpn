@@ -4,6 +4,10 @@ export const smscountrymap = [
    "country": "Russia"
  },
  {
+   "cc": 0,
+   "country": "Russia"
+ },
+ {
    "cc": 1,
    "country": "Ukraine"
  },
@@ -748,3 +752,10 @@ export const smscountrymap = [
    "country": "Singapore"
  }
 ];
+
+export const smscountrymapJSON = Object.assign({}, smscountrymap); 
+
+
+   
+
+// console.log(smscountrymapJSON)

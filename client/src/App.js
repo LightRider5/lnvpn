@@ -16,7 +16,7 @@ function App() {
           <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/faq' element={<Faq />} />
-          <Route path='/sms' element={<SMS />} />
+          <Route path='/phone-numbers' element={<SMS />} />
         </Routes>
     </Router>
     </>

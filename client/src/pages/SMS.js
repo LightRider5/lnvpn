@@ -8,15 +8,20 @@ import OrderStatus from '../components/OrderStatus';
 
 
 const SMS = () => {
-
+  
   const [country, updateCountry] = useState(0)
   const [service, updateService] = useState("vk")
   const [order, updateOrder] = useState(0)
-  const [paidOrder, updatePaidOrder] = useState([]);
-
+  const [paidOrder, updatePaidOrder] = useState(0);
+  const [orderStatus, updateOrderStatus] = useState(false);
+  const createorder = () => updateOrderStatus(true);
+  const cancelorder = () => {
+    updateOrder(0)
+    updateOrderStatus(0)
+  };
   
   const countrySelect = (e) => {
-    if(!isNaN(e.target.value)) {
+    if (!isNaN(e.target.value)) {
     updateCountry(e.target.value)
     }
   }
@@ -26,13 +31,17 @@ const SMS = () => {
   }
 
   const createReceiveOrder = async (country, service) => { 
-    console.log(toString(country), service)
+    smscountrymap.forEach(array => {
+      if (array.cc == country) {
+        country = array.country
+      }
+    })
     return axios({
         method: "post",
         url: "https://api2.sms4sats.com/createorder",
         // headers: { "X-Api-Key": process.env.INVOICE_KEY},
         data: {
-          "country": "Germany",
+          "country": country,
           "service": service,
           "isRental": false,
           "realphone": false,
@@ -40,7 +49,6 @@ const SMS = () => {
         }
           }).then(function (response){
             const order = response.data;
-            console.log(order)
             updateOrder(order)
           }).catch(error => error);
 
@@ -49,18 +57,22 @@ const SMS = () => {
   useEffect(() => {
 	let interval = setInterval(() => {
     const fetchData = async () => {
-        console.log(order.orderId)  
+      
         const response = await fetch(`https://api2.sms4sats.com/orderstatus?orderId=${order.orderId}`);
             const newData = await response.json();
             updatePaidOrder(newData);
-        console.log(paidOrder)
-        };
+        
+    };
+      if(orderStatus === true){
         fetchData();
+      }
+    
+    
 	}, 4000);
 	return () => {
 		clearInterval(interval);
 	};
-    }, [order, paidOrder]);
+    }, [order, paidOrder, orderStatus]);
   
   return (
       <div>
@@ -89,23 +101,26 @@ const SMS = () => {
               order={order}
               paidOrder={paidOrder}
             />
-            <Component.Price
-              value={3000}
-              symbol={"sats"}
-            />
             
-            
-            <Button
-              size='lg'
-              onClick={
-                () => {
-                  createReceiveOrder(country, service);
+            {order ?
+              <Button size='lg' variant="danger" onClick={() => {
+                cancelorder()
                
+              }}>
+                Cancel
+              </Button> :
+              <Button
+                id='s4s-order-button'
+                size='lg'
+                onClick={
+                  () => {
+                    createReceiveOrder(country, service);
+                    createorder();
+                  }
                 }
+                variant="success">Generate Phone Number
+              </Button> 
               }
-                  
-              variant="success">Next
-                </Button>
                        </Col>
                  </Row >
         <Component.Footer />

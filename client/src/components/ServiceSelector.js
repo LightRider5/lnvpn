@@ -7,8 +7,8 @@ const ServiceSelector = (props) => {
 
   useEffect(() => {
       const fetchData = async () => {
-      const response = await fetch(`https://api2.sms4sats.com/getnumbersstatus?country=${props.selectedCountry}/`);
-      const newData = await response.json();
+      const response = await fetch(`https://api2.sms4sats.com/getnumbersstatus?country=${props.selectedCountry}`);
+        const newData = await response.json();
         setServices(newData);
     };
     fetchData();
