@@ -20,8 +20,8 @@ const ServiceSelector = (props) => {
     <div>
        <Form.Select aria-label="Choose service" size="lg" onChange={props.onChange}>
         {
-                  services.map(service => (
-                          <option value={service.value}>{service.text}</option>
+                  services.map((service,index) => (
+                    <option key={ index} value={service.value}>{service.text}</option>
                 ))
         }
         </Form.Select>    

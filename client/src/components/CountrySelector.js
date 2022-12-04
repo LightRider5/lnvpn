@@ -6,9 +6,11 @@ const CountrySelector = (props) => {
     <div>
         <Form.Select aria-label="Choose country" size="lg" onChange={props.onChange}>
                 {
-          props.countries.map(country => (
-            <option value={country.cc}>{country.country}</option>
-                        ))
+          props.countries.map((country,index) => (
+            
+        <option key={ index} value={country.cc}>{country.country}</option>
+          ))
+          
                     }
         </Form.Select>      
      </div>

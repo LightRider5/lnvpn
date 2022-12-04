@@ -14,21 +14,13 @@ body{
   /* font-family: Poppins-Light; */
 }
 
-#header-image {
+/* #header-image {
   padding-top: 10px;
   width:50%;
   margin-bottom: 2%;
-}
+} */
 
 
-
-
-
-h1 {
-  color: #f9ba00;
-  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-  font-size: 3em;
-}
 .main-middle{
   padding: 12px;
   max-width: 800px;
@@ -59,7 +51,7 @@ h1 {
 
 }
 
-.btn_:hover{
+/* .btn_:hover{
   background: #FB923C;
 }
 
@@ -73,9 +65,10 @@ h1 {
   display: none;
   
 }
+
 #invoice-button{
   background-color: #22C55E;
-}
+} */
 .main-buttons button{
   margin: 5px 0px 5px 0px;
   padding: 15px;
@@ -88,10 +81,12 @@ h1 {
   text-align: center;
   padding-bottom: 10px;
 }
+
 .main-buttons button.btn-success{
    font-size: large; 
   
 }
+
 .modal-footer button{
   font-size: large;
   padding: 10px;
@@ -125,9 +120,7 @@ h1 {
   color: black;
   text-align: center;
 }
-title {
-  text-align: center;
-}
+
 
 #countryselector {
   display: flex;
@@ -170,16 +163,12 @@ title {
   
 }
 
- #continentselector {
-  font-size: x-large;
-  display: flex;
-} 
-
 
 #runtimeselector {
   width : 100%;
   margin: 2% 0 2% 0; 
 }
+
 #runtimeselector label {
   font-size: large;
   text-align: center;
@@ -286,9 +275,11 @@ button.close {
  max-width: 80%;
   }
 }
+
 #expirydate{
   color: red;
 }
+
 #dataplanlist {
   list-style: none;
 }
@@ -338,6 +329,7 @@ h2.accordion-header button {
   margin-top: 2%;
   flex-wrap: nowrap;
   flex-direction: row;
+  width: 100%;
 }
 
 

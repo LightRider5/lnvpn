@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, Container, ListGroup,Col } from 'react-bootstrap'
+import { Accordion, Container, ListGroup,Col,Row } from 'react-bootstrap'
 import * as Component from '../components';
 
 
@@ -14,7 +14,8 @@ const Faq = () => {
       name='@ln_vpn'
       type='summary'
       />
-      <Container className="main-middle">
+      <Container>
+        <Row>
         <Col>
         <h2 className='faq-headline'>VPN</h2>
         <Accordion>
@@ -108,8 +109,10 @@ const Faq = () => {
             </Accordion.Body>
             </Accordion.Item>
         </Accordion>  
-          <Component.Footer />
-      </Col>    
+          
+          </Col>    
+        </Row>
+        <Component.Footer />
     </Container>
     </div>
   )

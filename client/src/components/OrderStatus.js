@@ -22,7 +22,7 @@ const OrderStatus = (props) => {
                                 <div>
                                     <p id="s4s-telephone-number">Your phone number: +{props.paidOrder.number}</p>
                                     {props.paidOrder.code ?
-                                        <p id="s4s-activation code">Received activation code: {props.paidOrder.code}</p> :
+                                        <Alert variant="success">Received activation code: {props.paidOrder.code}</Alert> :
                                         <div>
                                             <p>No code received yet</p>
                                             <Spinner animation="border" />

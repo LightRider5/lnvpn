@@ -85,28 +85,39 @@ const SMS = () => {
                 <Container className="main-middle">
                     <Row>
                         
-                            <HeaderInfo
+                    <HeaderInfo
                                 headline="Select a country ➡️ Select a service ➡️ Pay with Lightning ➡️ Receive Activation Code ✅"
                                 paragraph="You can choose between many services and countries"
-            />
+          />
+          {order ? null :
             <Form>
-            <Form.Group className="mb-2 s4s-selector">
+              
+                
+              <Form.Group className="mb-2 s4s-selector">
+                <Row xs={1} sm={2} md={2}>
+                  <Col>
                 <InputGroup>
-                    <InputGroup.Text>Country</InputGroup.Text>
-                        <Component.CountrySelector
-                        countries={smscountrymap}
-                        onChange={countrySelect}
-                />
-                </InputGroup> 
+                  <InputGroup.Text>Country</InputGroup.Text>
+                  <Component.CountrySelector
+                    countries={smscountrymap}
+                    onChange={countrySelect}
+                  />
+                    </InputGroup>
+                </Col>
+                  <Col>
                 <InputGroup>
                   <InputGroup.Text>Service</InputGroup.Text>
-                  <Component.ServiceSelector 
-                        selectedCountry={country}
-                        onChange={serviceSelect}  
-                  />
-                  </InputGroup> 
-                  </Form.Group>
-            </Form> 
+                  <Component.ServiceSelector
+                    selectedCountry={country}
+                    onChange={serviceSelect}
+                      />
+                 
+                    </InputGroup>
+                  </Col>
+                  </Row>
+                </Form.Group>
+                
+            </Form>}
             </Row >            
             
             <OrderStatus
@@ -120,10 +131,11 @@ const SMS = () => {
             <div className='main-buttons'>
             {order ?
               <Button size='lg' variant="danger" onClick={() => {
-                cancelorder()
+              cancelorder()
+              // window.location.reload(false)
                
               }}>
-                Cancel
+                Cancel Order 
               </Button> :
               <Button
                 size='lg'

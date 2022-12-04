@@ -10,7 +10,7 @@ const lightning = require('./functions/invoices');
 const app = express();
 require('dotenv').config(); 
 connectDB();
-
+ 
 
 app.use(
     cors({

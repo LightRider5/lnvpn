@@ -7,6 +7,7 @@ const router = express.Router()
 const {
     getInvoice,
     getTunnelConfig,
+    getCountryList,
 } = require('../controllers/apiController')
 
 
@@ -23,6 +24,7 @@ const {
    *         description: How long the tunnel should be open
    *         in: x-www-form-urlencoded
    *         required: true
+   *         posible: {0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 3 = 1 month, 9 = 3 months}
 
    *     responses:
    *       200:
@@ -47,11 +49,11 @@ router.post("/v1/getinvoice", getInvoice);
    *         description: How long the tunnel should be open
    *         in: x-www-form-urlencoded
    *         required: true
-
    *       - name: location
-   *         description: Location of the endpoint
+   *         description: Location of the endpoint as Number. Look at lnvpn.net/api/v1/countrylist
    *         in: x-www-form-urlencoded
    *         required: true
+   *         
 
    *     responses:
    *       200:
@@ -60,6 +62,20 @@ router.post("/v1/getinvoice", getInvoice);
    *           type: object
    */
 router.post("/v1/getTunnelConfig", getTunnelConfig);
+/**
+   * @swagger
+   * /api/v1/countryList:
+   *   get:
+   *     description: Returns a country list. Each number is for one location. You can use this number in the location parameter of the getTunnelConfig endpoint.
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200: 
+   *         description: Array with country list
+   * 
+   * */
+
+router.get("/v1/countrylist", getCountryList);
 
 const options = {
     

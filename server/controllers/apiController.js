@@ -6,7 +6,7 @@ const wg = require('../functions/wireguardFunctions')
 const timestamp = require('../functions/getTimeStamp');
 const vpnServer = require('../functions/getServer');
 const generateKeyPair = require('../functions/wireguard');
-
+const vpnendpoints = require('../config/vpnendpoints');
 
 
 require('dotenv').config();
@@ -104,11 +104,15 @@ const getInvoice = asyncHandler(async (req, res, next) => {
             }
         } 
     }
-});
+ });
+
+const getCountryList = asyncHandler(async (req, res, next) => { 
+    res.status(200).send(vpnendpoints)
+})
 
 
 
-module.exports = { getInvoice, getTunnelConfig}
+module.exports = { getInvoice, getTunnelConfig,getCountryList}
 
 
 
