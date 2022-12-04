@@ -1,7 +1,7 @@
 import {React,useState, useEffect } from 'react'
 import { HeaderInfo } from '../components'
 import * as Component from '../components';
-import { Container, Row, Col,Button,Form,InputGroup } from 'react-bootstrap';
+import { Container,Spinner, Row, Col,Button,Form,InputGroup } from 'react-bootstrap';
 import { smscountrymap } from '../data/smscountrymap';
 import axios from 'axios';
 import OrderStatus from '../components/OrderStatus';
@@ -14,6 +14,9 @@ const SMS = () => {
   const [order, updateOrder] = useState(0)
   const [paidOrder, updatePaidOrder] = useState(0);
   const [orderStatus, updateOrderStatus] = useState(false);
+  const [spinner, renderSpinner] = useState(false);
+  const showSpinner = () => renderSpinner(true);
+  const hideSpinner = () => renderSpinner(false);
   const createorder = () => updateOrderStatus(true);
   const cancelorder = () => {
     updateOrder(0)
@@ -50,6 +53,7 @@ const SMS = () => {
           }).then(function (response){
             const order = response.data;
             updateOrder(order)
+            hideSpinner()
           }).catch(error => error);
 
   }
@@ -93,8 +97,6 @@ const SMS = () => {
           />
           {order ? null :
             <Form>
-              
-                
               <Form.Group className="mb-2 s4s-selector">
                 <Row xs={1} sm={2} md={2}>
                   <Col>
@@ -120,12 +122,19 @@ const SMS = () => {
                 </Form.Group>
                 
             </Form>}
-            </Row >            
-            
-            <OrderStatus
-              order={order}
-              paidOrder={paidOrder}
-        />
+        </Row >
+        {spinner ?
+          <Spinner
+            animation="border"
+            size="md"
+          />
+          :
+         <OrderStatus
+            order={order}
+            paidOrder={paidOrder}
+          /> 
+          
+          }
         <Component.Price
               value={3000}
               symbol={"sats"}
@@ -144,6 +153,7 @@ const SMS = () => {
                 onClick={
                   () => {
                     createReceiveOrder(country, service);
+                    showSpinner();
                     createorder();
                   }
                 }
@@ -161,5 +171,3 @@ const SMS = () => {
 
 export default SMS
 
-// q: How to get the order status from the API?
-// a: https://api2.sms4sats.com/orderstatus?orderId=123456789

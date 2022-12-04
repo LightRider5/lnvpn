@@ -154,7 +154,7 @@ const OrderStatus = (props) => {
                             </Button>
                 </div >
                 }
-             <Alert variant="light">Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!</Alert>
+             <Alert variant="light">Note that if you have not received a SMS code successfully after 20min, your payment will be canceled automatically and funds will return to your wallet. No refund needed!</Alert>
                 
                 <Overlay target={targetInvoice.current} transition={true} show={showTooltipInvoice} placement="right">
                 {(propsTooltip) => (
