@@ -24,7 +24,7 @@ const {
    *         description: How long the tunnel should be open
    *         in: x-www-form-urlencoded
    *         required: true
-   *         posible: {0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 3 = 1 month, 9 = 3 months}
+   *         posible: {0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 4 = 1 month, 9 = 3 months}
 
    *     responses:
    *       200:

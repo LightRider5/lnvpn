@@ -1,4 +1,4 @@
-import { Navbar,Nav,Row,Offcanvas,Container} from 'react-bootstrap'
+import { Navbar,Nav,Offcanvas,Container} from 'react-bootstrap'
 import logo from '../media/logoPNGLNVPN.png';
 import { LinkContainer } from 'react-router-bootstrap'
 
@@ -7,7 +7,7 @@ const Header = (props) => {
       return (
         <div>
           <Container>
-        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="container">
+        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light">
            <Navbar.Brand href='/'>
                 <img
                   src={logo}
@@ -32,7 +32,7 @@ const Header = (props) => {
                 </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>      
-        <Nav variant="pills" className='me-auto my-2 my-lg-0'>
+        <Nav variant="pills" className="container">
                 <Nav.Item>
                     <LinkContainer to="/">
                       <Nav.Link >VPN </Nav.Link>
@@ -48,7 +48,7 @@ const Header = (props) => {
                       <Nav.Link>FAQ </Nav.Link>
                     </LinkContainer>  
                 </Nav.Item>
-            </Nav >
+            </Nav>
           </Offcanvas.Body>  
         </Navbar.Offcanvas>
      

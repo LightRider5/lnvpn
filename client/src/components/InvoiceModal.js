@@ -87,8 +87,8 @@ function InvoiceModal(props) {
          <div>
            
            <p>
-           WireGuard VPN config, scan via the <a href="https://www.wireguard.com/install/" target="_blank">WireGuard App on 
-          your smartphone</a>, download the config file for <a href="https://www.wireguard.com/install/" target="_blank">WireGuard 
+           WireGuard VPN config, scan via the <a href="https://www.wireguard.com/install/" target="_blank" rel="noreferrer">WireGuard App on 
+          your smartphone</a>, download the config file for <a href="https://www.wireguard.com/install/" target="_blank" rel="noreferrer">WireGuard 
           for Windows and MacOS</a> or send it to yourself via Email to use it later on another device.
           </p>
          
@@ -100,7 +100,7 @@ function InvoiceModal(props) {
           </div>
           :
         <p>
-        This QR-Code is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/" target="_blank">Phoenix</a>, <a href="https://muun.com/" target="_blank">Muun</a>, <a href="https://breez.technology/" target="_blank">Breez</a> or <a href="https://bluewallet.io/" target="_blank">BlueWallet</a>.  
+        This QR-Code is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/" target="_blank" rel="noreferrer">Phoenix</a>, <a href="https://muun.com/" target="_blank" rel="noreferrer">Muun</a>, <a href="https://breez.technology/" target="_blank" rel="noreferrer">Breez</a> or <a href="https://bluewallet.io/" target="_blank" rel="noreferrer">BlueWallet</a>.  
         </p>
           }
         <Collapse in={openCollapse}>
