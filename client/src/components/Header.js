@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 const Header = (props) => {
       return (
     <div>
-        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="justify-content-center container">
+        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light" className="container">
            <Navbar.Brand href='/'>
                 <img
                   src={logo}
@@ -24,9 +24,10 @@ const Header = (props) => {
             >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel-expand-nav">
-              {/* <Container>
-                <img src={brand} alt="LN ⚡ VPN" id="nav-menu-image"></img> 
-                </Container> */}
+                  <Container className="justify-content-center">
+                    <h1>Menu</h1>
+                {/* <img src={logo} alt="LN ⚡ VPN" id="nav-menu-image"></img>  */}
+                </Container>
                 </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>      
@@ -58,6 +59,7 @@ const Header = (props) => {
             </a>
             </div>
       </Row> */}
+         
     </div>
   )
 }

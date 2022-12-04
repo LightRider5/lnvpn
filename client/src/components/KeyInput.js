@@ -58,7 +58,7 @@ const KeyInput = (props) => {
                     variant="success"
                 >
                     <IoIosRefresh
-                    color="white"
+                    color="black"
                     size={20}
                     title="renew keys"
                     />

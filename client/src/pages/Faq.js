@@ -14,6 +14,8 @@ const Faq = () => {
       name='@ln_vpn'
       type='summary'
       />
+      <title>FAQ - Frequently asked Questions</title>
+      <h1>FAQ</h1>
       <Container>
         <Row>
         <Col>

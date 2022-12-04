@@ -77,11 +77,13 @@ const SMS = () => {
   return (
       <div>
            <Component.SEO
-            title="LNVPN - Get one time SMS code"
+            title="LNSMS - Get one time SMS code"
             description="Get a throw away SMS receive number for verification codes"
             name="@ln_vpn"
             type="summary"
-            />
+      />
+      <title>LN SMS - Get one time SMS code</title>
+      <h1>LN SMS</h1>
                 <Container className="main-middle">
                     <Row>
                         

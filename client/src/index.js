@@ -10,8 +10,8 @@ import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 
 
-import "./fonts/Poppins-Regular.otf";
-import "./fonts/Poppins-Light.otf";
+import "./fonts/Jost-Regular.ttf";
+
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

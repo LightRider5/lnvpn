@@ -155,6 +155,8 @@ function Home() {
         name="@ln_vpn"
         type="summary"
       />
+      <title>LNVPN - Get a pay as you use VPN tunnel</title>
+      <h1>LN VPN</h1>
         <Container className="main-middle">
           <Row>
             <Col>
