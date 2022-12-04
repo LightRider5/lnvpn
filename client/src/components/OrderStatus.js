@@ -1,6 +1,6 @@
 import {React,useState,useRef } from 'react'
 import { QRCodeCanvas } from 'qrcode.react'
-import { Spinner, Alert,Button,Overlay,Tooltip } from 'react-bootstrap'
+import { Spinner, Alert,Button,Overlay,Tooltip,Form,InputGroup } from 'react-bootstrap'
 import {IoIosCopy} from 'react-icons/io'
 
 
@@ -48,38 +48,58 @@ const OrderStatus = (props) => {
             <div>
                 {
                     props.paidOrder.paid ?
-                <div className="order-status-canvas">
-                            <p className="s4s-orderID">Your order ID: <b>{props.order.orderId}</b>
-                                <Button
-                                    className="copy-button"
-                                    variant="primary"
-                                    size={30}
-                                    ref={targetID}
-                                    onClick={() => {
+                        <div className="order-status-canvas">
+                            <Form className="order-ID">
+                                <Form.Group className="mb-2">
+                                    <InputGroup>
+                                        <InputGroup.Text>Order ID</InputGroup.Text>
+                                        <Form.Control 
+                                        value={props.order.orderId}
+                                        />
+                                    <Button
+                                        size={30}
+                                        ref={targetID}
+                                        onClick={() => {
                                         navigator.clipboard.writeText(props.order.orderId);
                                         renderTooltipID(!showTooltipID)
-                                    }}
-                                >
-                                 <IoIosCopy color="black"/>
-                                </Button>
-                            </p>
+                                        }}
+                                        variant="primary"
+                                        >
+                                            <IoIosCopy color="black"/>
+                                        {/* <IoIosRefresh
+                                        color="black"
+                                        size={20}
+                                        title="renew keys"
+                                            /> */}
+                                            
+                                    </Button>
+                                    </InputGroup>        
+                                </Form.Group>
+                                </Form>
                             {props.paidOrder.error ?
                                 <Alert variant="danger">{props.paidOrder.error}</Alert> :
                                 <div>
-                                    <p id="s4s-telephone-number">Your phone number: {props.paidOrder.number}
-                                    <Button
-                                        className="copy-button"
-                                        variant="primary"
-                                        size={30}
-                                        ref={targetNumber}
-                                        onClick={() => {
+                                    <Form className="order-ID">
+                                    <Form.Group className="mb-2">
+                                        <InputGroup>
+                                            <InputGroup.Text>Your phone number:</InputGroup.Text>
+                                            <Form.Control 
+                                            value={props.paidOrder.number}
+                                            />
+                                        <Button
+                                            size={30}
+                                            ref={targetNumber}
+                                            onClick={() => {
                                             navigator.clipboard.writeText(props.paidOrder.number);
                                             renderTooltipNumber(!showTooltipNumber)
-                                    }}
-                                        >
-                                            <IoIosCopy color="black"/>
-                                </Button>
-                                    </p>
+                                            }}
+                                            variant="primary"
+                                            >
+                                                <IoIosCopy color="black"/>        
+                                        </Button>
+                                        </InputGroup>        
+                                    </Form.Group>
+                                </Form>
                                     {props.paidOrder.code ?
                                         <Alert variant="success">Received activation code: {props.paidOrder.code}</Alert> :
                                         <div>
@@ -91,21 +111,29 @@ const OrderStatus = (props) => {
                             
                 </div>        
                         :
-                <div  className="order-status-canvas">
-                            <p className="s4s-orderID">Your order ID: {props.order.orderId}
-                                <Button
-                                    className="copy-button"
-                                    variant="primary"
-                                    size={30}
-                                    ref={targetID2}
-                                    onClick={() => {
+                        <div className="order-status-canvas">
+                            <Form className="order-ID">
+                                <Form.Group className="mb-2">
+                                    <InputGroup>
+                                        <InputGroup.Text>Order ID</InputGroup.Text>
+                                        <Form.Control 
+                                        value={props.order.orderId}
+                                        />
+                                    <Button
+                                        size={30}
+                                        ref={targetID2}
+                                        onClick={() => {
                                         navigator.clipboard.writeText(props.order.orderId);
                                         renderTooltipID2(!showTooltipID2)
-                                    }}
-                                >
-                                 <IoIosCopy color="black"/>
-                                </Button>
-                            </p>
+                                        }}
+                                        variant="primary"
+                                        >
+                                            <IoIosCopy color="black"/>        
+                                    </Button>
+                                    </InputGroup>        
+                                </Form.Group>
+                            </Form>
+                         
                             <p>
                                 This QR-Code is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/" target="_blank">Phoenix</a>, <a href="https://muun.com/" target="_blank">Muun</a>, <a href="https://breez.technology/" target="_blank">Breez</a> or <a href="https://bluewallet.io/" target="_blank">BlueWallet</a>.  
                             </p>

@@ -17,9 +17,9 @@ const Faq = () => {
       <title>FAQ - Frequently asked Questions</title>
       <h1>FAQ</h1>
       <Container>
-        <Row>
+        <Row xs={1} sm={1} md={1} lg={2 }>
         <Col>
-        <h2 className='faq-headline'>VPN</h2>
+        <h3 className='faq-headline'>VPN</h3>
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
@@ -95,7 +95,7 @@ const Faq = () => {
                 <ListGroup.Item as="li">Pay the Lightning Network invoice</ListGroup.Item>
                 <ListGroup.Item as="li">Receive the SMS you requested.</ListGroup.Item>
               </ListGroup>
-                      ✅ Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!
+                      Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!
               </Accordion.Body>
           </Accordion.Item>
          

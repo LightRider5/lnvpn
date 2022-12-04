@@ -317,7 +317,7 @@ h2.accordion-header button {
 }
 
 .faq-headline{
-  margin: 2%;
+  margin: 4%;
 }
 
 .s4s-selector span.input-group-text{
@@ -338,12 +338,16 @@ h2.accordion-header button {
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 2%;
+  margin-bottom: 2%;
 }
 
 .copy-button{
   max-width: 50px;
   margin: 3px;
+}
+
+.order-ID{
+  width: 100%;
 }
 
 
