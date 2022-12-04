@@ -15,11 +15,11 @@ const Faq = () => {
       type='summary'
       />
       <title>FAQ - Frequently asked Questions</title>
-      <h1>FAQ</h1>
+      <h3>FAQ</h3>
       <Container>
         <Row xs={1} sm={1} md={1} lg={2 }>
         <Col>
-        <h3 className='faq-headline'>VPN</h3>
+        <h2 className='faq-headline'>VPN</h2>
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
