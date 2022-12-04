@@ -161,7 +161,7 @@ function Home() {
           <Row>
             <Col>
             <Component.HeaderInfo
-              headline="Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN ✅"
+              headline="Select a country ➞ Select duration ➞ Pay with Lightning ➞ Use your VPN ✔"
               paragraph={<>You need the <a href='https://www.wireguard.com/' target='_blank' rel="noreferrer">Wireguard</a> VPN client.</>}
             />
               <div id="key-input">

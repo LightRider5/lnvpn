@@ -51,7 +51,6 @@ const getInvoice = asyncHandler(async (req, res, next) => {
     } else {
         const data = await lightning.checkInvoice(paymentHash);
         paid_duration = data.details.memo;
-        console.log(paid_duration)
         //Only if you have paid 99% of the Satoshis you will get a tunnel
         //In case of heavy price fluctuations, you can still get a tunnel
         if (paid_duration !== duration) { 

@@ -24,7 +24,9 @@ const {
    *         description: How long the tunnel should be open
    *         in: x-www-form-urlencoded
    *         required: true
-   *         posible: {0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 4 = 1 month, 9 = 3 months}
+   *         example: 0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 4 = 1 month, 9 = 3 months
+   *         schema:
+   *            type: integer
 
    *     responses:
    *       200:
@@ -53,6 +55,7 @@ router.post("/v1/getinvoice", getInvoice);
    *         description: Location of the endpoint as Number. Look at lnvpn.net/api/v1/countrylist
    *         in: x-www-form-urlencoded
    *         required: true
+   *     url: lnvpn.net/api/v1/countrylist
    *         
 
    *     responses:
