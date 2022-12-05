@@ -150,7 +150,7 @@ function Home() {
   return (
     <div>
       <Component.SEO
-        title="LNVPN - VPN provider with Lightning only payment"
+        title="LN VPN - VPN provider with Lightning only payment"
         description="A simple privacy focused VPN service payable with Bitcoin Lightning"
         name="@ln_vpn"
         type="summary"

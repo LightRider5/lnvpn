@@ -15,7 +15,7 @@ const Faq = () => {
       type='summary'
       />
       <title>FAQ - Frequently asked Questions</title>
-      <h3>FAQ</h3>
+      <h1>FAQ</h1>
       <Container>
         <Row xs={1} sm={1} md={1} lg={2 }>
         <Col>
