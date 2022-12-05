@@ -65,7 +65,7 @@ const getInvoice = asyncHandler(async (req, res, next) => {
                     const payment = new Payment();
                     payment.paymentHash = paymentHash;
                     payment.used = true;
-                    payment.save();
+                    payment.save(); 
                 } catch (err) {
                     err.status = 500;
                     throw err;

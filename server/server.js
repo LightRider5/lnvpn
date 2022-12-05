@@ -7,6 +7,7 @@ const vpnServer = require('./functions/getServer');
 const timestamp = require('./functions/getTimeStamp');
 const wg = require('./functions/wireguardFunctions');
 const lightning = require('./functions/invoices');
+const { send } = require('process');
 const app = express();
 require('dotenv').config(); 
 connectDB();
@@ -46,7 +47,10 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
     console.log(error.message)
     console.log(error.status)
+    res.json({ status: error.status, error: error.message });
 });
+
+
 
 
 app.get('/', function (req, res) {
