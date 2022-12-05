@@ -201,7 +201,10 @@ function Home() {
                 sendEmail={(data) => sendEmail(data, payment_request, getTimeStamp(priceDollar))}
                 showPaymentAlert={showPaymentSuccessfull}
               />
-              <Component.Price value={priceDollar} symbol="$" />
+            <Component.Price
+              usd={true}
+              value={priceDollar}
+            />
               <div className='main-buttons'>
             
                 <Button

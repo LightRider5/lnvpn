@@ -43,22 +43,16 @@ const getInvoice = asyncHandler(async (req, res, next) => {
 });
   
  const getTunnelConfig = asyncHandler(async  (req, res, next) => {
-    const { paymentHash, location, duration } = req.body;
-    if (!paymentHash || !location || !duration) {
+    const { paymentHash, location } = req.body;
+    if (!paymentHash || !location) {
         const err = new Error("missing Parameter");
         err.status = 400;
         next(err);
     } else {
         const data = await lightning.checkInvoice(paymentHash);
-        paid_duration = data.details.memo;
-        //Only if you have paid 99% of the Satoshis you will get a tunnel
-        //In case of heavy price fluctuations, you can still get a tunnel
-        if (paid_duration !== duration) { 
-            const err = new Error("Invoice amount fits not duration");
-            err.status = 400;
-            next(err);
-        }
-        else {
+        const duration = data.details.memo;
+        
+       
             const result = await Payment.findOne({ paymentHash: paymentHash });
             if (result) {
                 const err = new Error("paymentHash used before");
@@ -101,7 +95,7 @@ const getInvoice = asyncHandler(async (req, res, next) => {
                 err.status = 400;
                 next(err);
             }
-        } 
+        
     }
  });
 

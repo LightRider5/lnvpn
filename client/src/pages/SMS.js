@@ -136,8 +136,8 @@ const SMS = () => {
           
           }
         <Component.Price
+              use={ false}       
               value={3000}
-              symbol={"sats"}
             />   
             <div className='main-buttons'>
             {order ?

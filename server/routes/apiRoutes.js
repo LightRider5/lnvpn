@@ -47,10 +47,6 @@ router.post("/v1/getinvoice", getInvoice);
    *         description: Payment Hash of the invoice you paid
    *         in: x-www-form-urlencoded
    *         required: true
-   *       - name: duration
-   *         description: How long the tunnel should be open
-   *         in: x-www-form-urlencoded
-   *         required: true
    *       - name: location
    *         description: Location of the endpoint as Number. Look at lnvpn.net/api/v1/countrylist
    *         in: x-www-form-urlencoded
