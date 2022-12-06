@@ -1,7 +1,0 @@
-node_modules/
-Serverinfo.txt
-.env
-server/default
-faq.txt
-.gitignore
-bootstrap/*
