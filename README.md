@@ -4,7 +4,8 @@ Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use you
 
 LNVPN is a privacy focused VPN provider. We accept only Lightning payments. 
 
-<img width="542" alt="Bildschirmfoto 2022-10-08 um 22 39 33" src="https://user-images.githubusercontent.com/48626097/194727012-aa24d2cd-eb73-461b-ae83-b44a7d72bcc0.png">
+
+<img width="1289" alt="Screenshot 2022-12-06 at 14 54 09" src="https://user-images.githubusercontent.com/48626097/205930692-0fd1612c-ec69-474c-9945-321d5af7ee44.png">
 
 
 # How does it work?
@@ -39,5 +40,10 @@ Currently, we have four data plans:
 If you need a VPN for your Lightning Node visit tunnelsats.com.
 
 # Who build this?
+
+# We offer also one time usage telephone numbers now. 
+
+![Screenshot 2022-12-04 at 21 22 28](https://user-images.githubusercontent.com/48626097/205931026-cec60aa7-c6e7-4e23-abe3-2f8b45d966b3.png)
+
 
 Berlin Bitcoiners
