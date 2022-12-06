@@ -41,9 +41,17 @@ If you need a VPN for your Lightning Node visit tunnelsats.com.
 
 # Who build this?
 
+Berlin Bitcoiners
+
 # We offer also one time usage telephone numbers now. 
 
 ![Screenshot 2022-12-04 at 21 22 28](https://user-images.githubusercontent.com/48626097/205931026-cec60aa7-c6e7-4e23-abe3-2f8b45d966b3.png)
 
+Receive service activations in a few clicks, anonymously 🎉
+1. Pick a Country & Service
+2. Pay the Lightning Network invoice
+3. Receive the SMS you requested.
 
-Berlin Bitcoiners
+Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!
+
+
