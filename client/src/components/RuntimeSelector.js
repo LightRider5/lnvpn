@@ -1,5 +1,5 @@
 import React from 'react'
-import {ToggleButtonGroup,ToggleButton,ButtonGroup} from 'react-bootstrap'
+import {ToggleButtonGroup,ToggleButton} from 'react-bootstrap'
 import { isMobile } from "react-device-detect";
 
 
@@ -19,7 +19,7 @@ const RuntimeSelector = (props) => {
         1 <br></br>  week <br></br> 
       </ToggleButton>
       <ToggleButton id="tbg-radio-4" value={process.env.REACT_APP_price_month} onChange={props.onChange} title="1 month">
-        1  <br></br> month <br></br> 
+        1  <br></br>month <br></br> 
       </ToggleButton>
       <ToggleButton id="tbg-radio-5" value={process.env.REACT_APP_price_quater} onChange={props.onChange} title="3 month">
         1  <br></br> {isMobile ? "qtr" : "quarter"}

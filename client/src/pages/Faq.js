@@ -1,20 +1,25 @@
 import React from 'react'
-import { Accordion, Container, ListGroup } from 'react-bootstrap'
-import Footer from '../components/Footer'
-import  SEO  from '../components/SEO'
+import { Accordion, Container, ListGroup,Col,Row } from 'react-bootstrap'
+import * as Component from '../components';
 
 
 const Faq = () => {
+
   return (
     <div>
-      <SEO 
-      title='Frequently asked Questions about LNVPN'
+      
+      <Component.SEO 
+      title='LNVPN - Frequently asked Questions about LNVPN'
       description='Everything you need to know about using our ⚡️Lightning⚡️ enabled VPN'
       name='@ln_vpn'
       type='summary'
       />
-      <Container className="main-middle">
-        {/* <h2>📖&ensp;FAQ&ensp;📖 </h2> */}
+      <title>FAQ - Frequently asked Questions</title>
+      <h1>FAQ</h1>
+      <Container>
+        <Row xs={1} sm={1} md={1} lg={2 }>
+        <Col>
+        <h2 className='faq-headline'>VPN</h2>
         <Accordion>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
@@ -25,14 +30,14 @@ const Faq = () => {
             <Accordion.Item eventKey="1">
                 <Accordion.Header>How does it work?</Accordion.Header>
                     <Accordion.Body>
-                    Very simple: On this website you automatically generate WireGuard VPN keys via JavaScript inside of your browser. After selecting a country where your VPN endpoint should be located and a desired validity of your connection you click "Get Invoice" to get a QR code which you can scan with a Bitcoin Lightning capable wallet like <a href="https://phoenix.acinq.co/" target="_blank">Phoenix</a>, <a href="https://muun.com/" target="_blank">Muun</a>, <a href="https://breez.technology/" target="_blank">Breez</a> or <a href="https://bluewallet.io/" target="_blank">BlueWallet</a>. After a successful payment, the website reloads and presents you a new QR code and the message PAID. You can now scan the QR code with the WireGuard App on <a href="https://play.google.com/store/apps/details?id=com.wireguard.android&hl=de&gl=US">Android Google Play</a> or on the <a href="https://apps.apple.com/us/app/wireguard/id1441195209" target="_blank">Apple App Store</a>. If you want to use the VPN connection on your PC or Mac you can download the WireGuard configuration file to import it into <a href="https://www.wireguard.com/install/" target="_blank">WireGuard for Windows and MacOS</a>. Of course you can also use it in <a href="https://serverspace.io/support/help/how-to-install-wireguard-vpn-client-on-ubuntu-linux/" target="_blank" >CLI/Linux</a>. You can as well send the configuration to yourself via Email to use it later on another divice.
+                    Very simple: On this website you automatically generate WireGuard VPN keys via JavaScript inside of your browser. After selecting a country where your VPN endpoint should be located and a desired validity of your connection you click "Get Invoice" to get a QR code which you can scan with a Bitcoin Lightning capable wallet like <a href="https://phoenix.acinq.co/" target="_blank" rel="noreferrer">Phoenix</a>, <a href="https://muun.com/" target="_blank" rel="noreferrer">Muun</a>, <a href="https://breez.technology/" target="_blank" rel="noreferrer">Breez</a> or <a href="https://bluewallet.io/" target="_blank" rel="noreferrer">BlueWallet</a>. After a successful payment, the website reloads and presents you a new QR code and the message PAID. You can now scan the QR code with the WireGuard App on <a href="https://play.google.com/store/apps/details?id=com.wireguard.android&hl=de&gl=US">Android Google Play</a> or on the <a href="https://apps.apple.com/us/app/wireguard/id1441195209" target="_blank" rel="noreferrer">Apple App Store</a>. If you want to use the VPN connection on your PC or Mac you can download the WireGuard configuration file to import it into <a href="https://www.wireguard.com/install/" target="_blank" rel="noreferrer">WireGuard for Windows and MacOS</a>. Of course you can also use it in <a href="https://serverspace.io/support/help/how-to-install-wireguard-vpn-client-on-ubuntu-linux/" target="_blank" rel="noreferrer" >CLI/Linux</a>. You can as well send the configuration to yourself via Email to use it later on another divice.
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="2">
                 <Accordion.Header>What services did you use to build this, which VPN service do you use? </Accordion.Header>
                     <Accordion.Body>
-                   For this website, we use the service <a href="https://legend.lnbits.com/" target="_blank">LNBits</a> for lightning payments, Sendgrid for (optionally) sending WireGuard config file via email, React and socket.IO for WebSockets.
-                        On the VPN endpoints we don't use a commercial VPN services but have rented virtual servers with <a href="https://github.com/Mawthuq-Software/wireguard-manager-and-api" target="_blank">Wireguard Manager And API</a> managing the WireGuard setup and keys.         
+                   For this website, we use the service <a href="https://legend.lnbits.com/" target="_blank" rel="noreferrer">LNBits</a> for lightning payments, Sendgrid for (optionally) sending WireGuard config file via email, React and socket.IO for WebSockets.
+                        On the VPN endpoints we don't use a commercial VPN services but have rented virtual servers with <a href="https://github.com/Mawthuq-Software/wireguard-manager-and-api" target="_blank" rel="noreferrer">Wireguard Manager And API</a> managing the WireGuard setup and keys.         
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="3">
@@ -41,7 +46,7 @@ const Faq = () => {
                    On the lnvpn.net website, we don't use cookies and we only store the first half of your ip address in our webserver logs. For example the IP 1.12.123.234 would be stored as 1.12.0.0.
                         On the VPN endpoints we store your WireGuard public key, the PSK and the total amount of bandwidth you used. While you maintain an active connection to a LNVPN VPN endpoint, we have to keep your IP address in memory, but after 5 minutes of inactivity we remove your IP address from memory. We never store it on disk.
                         As payments are only possible via Bitcoin Lightning, we don't know where the money comes from, we can only verify whether an invoice was paid or not 🤷.
-                        If you use the "Send via email" feature for your WireGuard configuration, the email is send via <a href="https://sendgrid.com/" target="_blank">Sendgrid</a>.        
+                        If you use the "Send via email" feature for your WireGuard configuration, the email is send via <a href="https://sendgrid.com/" target="_blank" rel="noreferrer">Sendgrid</a>.        
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="4">
@@ -62,15 +67,54 @@ const Faq = () => {
                             <ListGroup.Item>3 months = 90GB</ListGroup.Item>
                             </ListGroup>
                     </Accordion.Body>
-                  </Accordion.Item>
-                    <Accordion.Item eventKey="6">
+          </Accordion.Item>
+          <Accordion.Item eventKey="6">
+                <Accordion.Header>Do you offer an API?</Accordion.Header>
+                    <Accordion.Body>
+              Yes we do! If you want to use LNVPN for your application to provide VPN tunnels please
+              visit: <a href="https://lnvpn.net/api/documentation>" target="_blank" rel="noreferrer">https://lnvpn.net/api/api-documentation.</a>
+                    </Accordion.Body>
+            </Accordion.Item>
+                    <Accordion.Item eventKey="7">
                 <Accordion.Header>Who build this? </Accordion.Header>
                     <Accordion.Body>
                     Berlin Bitcoiners with Love ❤️.
                     </Accordion.Body>
             </Accordion.Item>
-              </Accordion>
-              <Footer/>
+          </Accordion>
+        </Col>
+        <Col>
+        <h2 className='faq-headline'>Phone Numbers</h2>
+        <Accordion>
+            <Accordion.Item eventKey="8">
+                <Accordion.Header>What is this?</Accordion.Header>
+                    <Accordion.Body>
+              Receive service activations in a few clicks, anonymously 🎉
+              <ListGroup as="ol" numbered>
+                <ListGroup.Item as="li">Pick a Country & Service</ListGroup.Item>
+                <ListGroup.Item as="li">Pay the Lightning Network invoice</ListGroup.Item>
+                <ListGroup.Item as="li">Receive the SMS you requested.</ListGroup.Item>
+              </ListGroup>
+                      Note that if you have not received an SMS code successfully, your payment will be canceled automatically and funds will return to your wallet. No refund needed!
+              </Accordion.Body>
+          </Accordion.Item>
+         
+                    <Accordion.Item eventKey="9">
+                <Accordion.Header>Who does the refund work? </Accordion.Header>
+            <Accordion.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>When invoice is paid by the user, it's not finalized but HELD by the Lightning Node.</ListGroup.Item>
+                <ListGroup.Item>For receive orders, Only when an activation code is successfully received the invoice is SETTLED.</ListGroup.Item>
+                <ListGroup.Item>For send orders, Only when SMS status is "sent or delivered" the invoice is SETTLED.</ListGroup.Item>
+                <ListGroup.Item>If no code is received within 20 minutes, invoice will be CANCELED and funds will automatically return to user's wallet.</ListGroup.Item>
+              </ListGroup>
+            </Accordion.Body>
+            </Accordion.Item>
+        </Accordion>  
+          
+          </Col>    
+        </Row>
+        <Component.Footer />
     </Container>
     </div>
   )

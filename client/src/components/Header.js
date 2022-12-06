@@ -1,56 +1,70 @@
-import React from 'react'
-import { Navbar,Nav,Row,Offcanvas} from 'react-bootstrap'
-import logo from '../media/logo2.svg';
+import { Navbar,Nav,Offcanvas,Container} from 'react-bootstrap'
+import logo from '../media/logoPNGLNVPN.png';
 import { LinkContainer } from 'react-router-bootstrap'
 
-const Header = () => {
-  return (
-    <div>
-        <Navbar collapseOnSelect expand="sm" key="nav" variant="dark" className="justify-content-end container">
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Offcanvas
+
+const Header = (props) => {
+      return (
+        <div>
+          <Container>
+        <Navbar collapseOnSelect bg="light" expand="sm" key="nav" variant="light">
+           <Navbar.Brand href='/'>
+                <img
+                  src={logo}
+                  width="100"
+                  height="100"
+                  className="d-inline-block align-top align-start"
+                  alt="LNVPN Brand Logo"
+                    />
+            </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Offcanvas
               id="responsive-navbar-nav"
               aria-labelledby="offcanvasNavbarLabel-expand-nav"
               placement="end"
-        >
-         <Offcanvas.Header closeButton>
+            >
+          <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel-expand-nav">
-              {/* <Container>
-                <img src={logo} alt="LN ⚡ VPN" id="nav-menu-image"></img> 
-                </Container> */}
+                  <Container className="justify-content-center">
+                    
+                {/* <img src={logo} alt="LN ⚡ VPN" id="nav-menu-image"></img>  */}
+                </Container>
                 </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
-               
-        <Nav variant="pills">
+          <Offcanvas.Body>      
+        <Nav variant="pills" className="container">
                 <Nav.Item>
                     <LinkContainer to="/">
-                      <Nav.Link >🏠&ensp;Home </Nav.Link>
+                      <Nav.Link >VPN </Nav.Link>
                     </LinkContainer>
-            </Nav.Item>
-            <Nav.Item>
-            {/* <LinkContainer to="/guide">  
-                <Nav.Link >🦮 Guide </Nav.Link>
-            </LinkContainer>    */}
+                </Nav.Item>
+                 <Nav.Item>
+                <LinkContainer to="/phone-numbers">
+                      <Nav.Link>Phone Numbers </Nav.Link>
+                    </LinkContainer>  
                 </Nav.Item>
                 <Nav.Item>
-                    <LinkContainer to="/faq">
-                      <Nav.Link>📖&ensp;FAQ </Nav.Link>
+                <LinkContainer to="/faq">
+                      <Nav.Link>FAQ </Nav.Link>
                     </LinkContainer>  
                 </Nav.Item>
             </Nav>
-              </Offcanvas.Body>  
-         </Navbar.Offcanvas>
-          </Navbar>      
-          <Row>
+          </Offcanvas.Body>  
+        </Navbar.Offcanvas>
+     
+        </Navbar>      
+          {/* <Row>
         <div id='logo'>
             <a href="/">
               <img src={logo} alt="LN ⚡ VPN" id="header-image"></img> 
             </a>
             </div>
-      </Row>
+      </Row> */}
+       </Container>  
     </div>
   )
 }
 
 export default Header
+
+

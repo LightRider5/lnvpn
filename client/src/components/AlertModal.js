@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal,Button,Alert } from 'react-bootstrap';
-import { useState } from 'react';
+
 const AlertModal = (props) => {
     if(!props.show){
       

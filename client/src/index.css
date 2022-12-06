@@ -1,53 +1,33 @@
 
 html{
-  background-color: black;
+  background-color: #F8F9FB;
   height: 100vh;
+  color: black;
 }  
 body{
   font-size: large;
-  background-color: black;
+  background-color: #F8F9FB;
   height: 100vh;
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-family: Jost-Regular;
 }
-#header-image {
+
+/* #header-image {
   padding-top: 10px;
   width:50%;
   margin-bottom: 2%;
-}
+} */
 
 
-@media (max-width: 900px) {
-  body{
-      /* background-image: url("media/background-s.jpg"); */
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: black;
-  }
-}
-
-@media (min-width: 901px) {
-  body{
-      background-image: url("media/background-l.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-color: black;
-}
-}
-
-h1 {
-  color: #f9ba00;
-  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-  font-size: 3em;
-}
 .main-middle{
   padding: 12px;
-  max-width: 700px;
+  max-width: 800px;
   align-items: center;
   flex-direction: column;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.6);
+  
   
 }
 
@@ -71,7 +51,7 @@ h1 {
 
 }
 
-.btn_:hover{
+/* .btn_:hover{
   background: #FB923C;
 }
 
@@ -85,14 +65,14 @@ h1 {
   display: none;
   
 }
+
 #invoice-button{
   background-color: #22C55E;
-}
+} */
 .main-buttons button{
   margin: 5px 0px 5px 0px;
   padding: 15px;
   width: 100%;
-  
 }
 
 .main-buttons{
@@ -101,10 +81,12 @@ h1 {
   text-align: center;
   padding-bottom: 10px;
 }
+
 .main-buttons button.btn-success{
    font-size: large; 
   
 }
+
 .modal-footer button{
   font-size: large;
   padding: 10px;
@@ -135,12 +117,10 @@ h1 {
 }
 
 .price{
-  color: white;
+  color: black;
   text-align: center;
 }
-title {
-  text-align: center;
-}
+
 
 #countryselector {
   display: flex;
@@ -183,25 +163,24 @@ title {
   
 }
 
- #continentselector {
-  font-size: x-large;
-  display: flex;
-} 
-
 
 #runtimeselector {
   width : 100%;
   margin: 2% 0 2% 0; 
 }
+
 #runtimeselector label {
   font-size: large;
   text-align: center;
   width: 20%;
-  background-color: #21364c;
+  background-color: primary;
+}
+#runtimeselector .btn {
+  padding: 0.375rem;
 }
 .btn-check:checked+.btn-primary {
-  border-color: #3498db;
-  border-width: 5px;
+  border-color: black;
+  border-width: 3px;
 }
 
 #invoicestring { 
@@ -220,6 +199,29 @@ title {
   white-space: -pre-wrap;     /* Opera <7 */   
   white-space: -o-pre-wrap;   /* Opera 7 */    
   word-wrap: break-word;      /* IE */
+}
+
+.s4s-orderID {
+  text-align: left;
+    margin-top: 10px;
+    display: inline-block;
+    /* border: 1px;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 12px; */
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+    /* CSS3 */
+    white-space: -moz-pre-wrap;
+    /* Firefox */
+    white-space: -pre-wrap;
+    /* Opera <7 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* IE */
+
 }
 
 #main_modal {
@@ -273,9 +275,11 @@ button.close {
  max-width: 80%;
   }
 }
+
 #expirydate{
   color: red;
 }
+
 #dataplanlist {
   list-style: none;
 }
@@ -285,12 +289,12 @@ button.close {
 }
 
 .navbar-nav {
-  background-color: black;
+  
   font-size:x-large
   
 }
 #logo{
-  max-width: 700px;
+  max-width: 500px;
   margin: auto;
 }
 .accordion-body{
@@ -306,7 +310,45 @@ h2.accordion-header button {
 #nav-menu-image{
   width: 50%;
 }
+#s4s-error-message {
+  color: red;
+  text-align: center;
+  font-size: x-large;
+}
 
+.faq-headline{
+  margin: 4%;
+}
+
+.s4s-selector span.input-group-text{
+  min-width: 100px;
+}
+
+
+.s4s-selector .input-group {
+  margin-top: 2%;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+}
+
+.order-status-canvas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 2%;
+}
+
+.copy-button{
+  max-width: 50px;
+  margin: 3px;
+}
+
+.order-ID{
+  width: 100%;
+}
 
 
 
