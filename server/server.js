@@ -82,6 +82,12 @@ process.on('beforeExit', code => {
 
 //Finish Webserver setup
 
+const io = require("socket.io")(process.env.PORT, {
+  cors: {
+    origin: process.env.SOCKET_URL_CLIENT
+  }
+})
+
 // Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
 
@@ -91,11 +97,7 @@ app.post(process.env.WEBHOOK, (req, res) => {
 
 // Socket Connections and functions
 
-const io = require("socket.io")(process.env.PORT, {
-  cors: {
-    origin: process.env.SOCKET_URL_CLIENT
-  }
-})
+
 
 io.on('connection', (socket) => {
   // console.log("New connection")
