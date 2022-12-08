@@ -65,11 +65,15 @@ export const vpnendpoints = [
     },
     // {
     // "cc": "16",
-    // "country": "🇵🇹 Portugal", 
+    // "country": "🇵🇹 Portugal",
     // },
     // {
     // "cc": "17",
-    // "country": "🇪🇸 Spain", 
+    // "country": "🇪🇸 Spain",
     // },
+      {
+    "cc": "18",
+    "country": "🇮🇸 Iceland", 
+    },
 ];
 

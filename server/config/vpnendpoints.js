@@ -59,7 +59,11 @@ const vpnendpoints = [
     "cc": "15",
     "country": "🇰🇪 Kenya", 
     },
-];
+     {
+    "cc": "18",
+    "country": "🇮🇸 Iceland", 
+    },
+]; 
 
 module.exports = vpnendpoints;
 
