@@ -22,14 +22,14 @@ async function getInvoice(amount,memo) {
 }
 
 // Check for Invoice
-    async function checkInvoice(hash) {
+async function checkInvoice(hash) {
       return axios({
         method: "get",
         url: `${process.env.URL_INVOICE_API}${hash}`,
         headers: { "X-Api-Key": process.env.INVOICE_KEY}
       }).then(function (response) {
           if(response.data.paid)  {
-            return response.data;
+            return response.data.details.payment_hash;
           }
       }).catch(error => error);
     }

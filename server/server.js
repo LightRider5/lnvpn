@@ -13,12 +13,12 @@ require('dotenv').config();
 connectDB();
  
 
-app.use(
-    cors({
-        origin: process.env.LOGIN_URL_CLIENT,
-        credentials: true,
-    })
-);
+// app.use(
+//     cors({
+//         origin: process.env.LOGIN_URL_CLIENT,
+//         credentials: true,
+//     })
+// );
 
 // Set up the Webserver
 app.use(bodyParser.json()) 
@@ -90,7 +90,7 @@ const io = require("socket.io")(process.env.PORT, {
 
 // Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
-
+ 
     io.sockets.emit('invoicePaid',req.body.payment_hash)
     res.status(200).end()
 })
@@ -100,10 +100,10 @@ app.post(process.env.WEBHOOK, (req, res) => {
 
 
 io.on('connection', (socket) => {
-  // console.log("New connection")
+  //  console.log("New connection")
 
   // Checks for a paid Invoice after reconnect
-  socket.on('checkInvoice',(clientPaymentHash) => {
+  socket.on('checkInvoice', (clientPaymentHash) => {
     lightning.checkInvoice(clientPaymentHash).then(result => io.sockets.emit('invoicePaid',result))
   })
  
