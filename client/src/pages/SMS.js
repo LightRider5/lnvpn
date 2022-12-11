@@ -157,7 +157,7 @@ const SMS = () => {
                     createorder();
                   }
                 }
-                variant="success">Generate Phone Number
+                variant="success">Pay with Lightning
               </Button> 
               }
               </div>

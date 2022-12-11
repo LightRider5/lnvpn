@@ -136,6 +136,7 @@ const OrderStatus = (props) => {
                          
                             <p>
                                 This QR-Code is a Lightning invoice. Pay with a Wallet like <a href="https://phoenix.acinq.co/" target="_blank" rel="noreferrer">Phoenix</a>, <a href="https://muun.com/" target="_blank" rel="noreferrer">Muun</a>, <a href="https://breez.technology/" target="_blank" rel="noreferrer">Breez</a> or <a href="https://bluewallet.io/" target="_blank" rel="noreferrer">BlueWallet</a>.  
+                                    
                             </p>
                             <a href={"lightning:" + props.order.payreq}>
                             <QRCodeCanvas value={props.order.payreq} size={256} />
