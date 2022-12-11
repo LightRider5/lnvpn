@@ -72,7 +72,7 @@ const Faq = () => {
                 <Accordion.Header>Do you offer an API?</Accordion.Header>
                     <Accordion.Body>
               Yes we do! If you want to use LNVPN for your application to provide VPN tunnels please
-              visit: <a href="https://lnvpn.net/api/documentation>" target="_blank" rel="noreferrer">https://lnvpn.net/api/api-documentation.</a>
+              visit: <a href="https://lnvpn.net/api/documentation" target="_blank" rel="noreferrer">https://lnvpn.net/api/api-documentation.</a>
                     </Accordion.Body>
             </Accordion.Item>
                     <Accordion.Item eventKey="7">
