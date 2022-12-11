@@ -22,9 +22,13 @@ const Price = (props) => {
   return (
     <div>
       {props.usd ?
-        <h3 className='price'>{props.value}$ ({Math.round(priceUSDinSats * props.value)} Sats)   </h3>
+        <h3 className='price'>Total: {props.value}$
+          {/* ({Math.round(priceUSDinSats * props.value)} Sats) */}
+        </h3>
         :
-        <h3 className='price'>{(props.value/priceUSDinSats).toFixed(2)}$ ({props.value} Sats)  </h3>
+        <h3 className='price'>Total: {(props.value / priceUSDinSats).toFixed(2)}$
+          {/* ({props.value} Sats) */}
+        </h3>
       }
     </div>
   )
