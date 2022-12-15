@@ -17,7 +17,7 @@ export const vpnendpoints = [
     },
     {
     "cc": "3",
-    "country": "🇸🇬 Singapore", 
+    "country": "🇫🇮 Finland", 
     },
     {
     "cc": "4",
