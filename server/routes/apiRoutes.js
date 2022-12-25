@@ -16,6 +16,9 @@ const {
    * @swagger
    * /api/v1/getInvoice:
    *   post:
+   *     requestBody:
+   *        content:
+   *            - application/json:
    *     description: Returns a Lightning invoice for the requested duration
    *     produces:
    *       - application/json
@@ -26,7 +29,7 @@ const {
    *         required: true
    *         example: 0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 4 = 1 month, 9 = 3 months
    *         schema:
-   *            type: integer
+   *            type: number
 
    *     responses:
    *       200:

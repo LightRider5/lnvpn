@@ -132,7 +132,7 @@ function Home() {
     const textArray = [text]
     const element = document.createElement("a");
     const file = new Blob(textArray, {
-      // type: 'text/plain',
+      type: 'application/octet-stream',
       endings:'native'
     });
     element.href = URL.createObjectURL(file);
