@@ -28,7 +28,7 @@ const getServer = (countrySelector) => {
     break;
     case '7':
       server.ip = process.env.IP_NLD
-      server.location = "Netehrlands"
+      server.location = "Netherlands"
     break;
     case '8':
       server.ip = process.env.IP_RUS

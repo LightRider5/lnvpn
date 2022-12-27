@@ -5,7 +5,7 @@ import * as Component from '../components';
 import '../wireguard.js'
 import {getTimeStamp} from '../timefunction.js'
 import { vpnendpoints } from '../data/vpnendpoints';
-
+import * as dayjs from 'dayjs';
 
 var socket =  io.connect(process.env.REACT_APP_socket_port)
 var emailAddress;
@@ -102,7 +102,7 @@ function Home() {
     'Address = '+serverResponse.ipv4Address,
     'DNS = '+serverResponse.dns,
     ' ',
-    '# Valid until: '+ timestamp +'UTC',
+    '# Valid until: '+ parseDate(timestamp) +' UTC',
     '# Location: '+ location,
     ' ',
     '[Peer]',
@@ -142,9 +142,12 @@ function Home() {
   };
 
   const sendEmail = (email,config,date) => {
-    socket.emit('sendEmail',email,config,date)
+    socket.emit('sendEmail',email,config,parseDate(date))
   }
   
+  const parseDate = (date) => {
+  return dayjs(date).format("YYYY-MMM-DD_hh-mm-ss");
+  }
  
 
   return (
@@ -193,7 +196,7 @@ function Home() {
                 showSpinner={showSpinner}
                 isConfigModal={isConfigModal}
                 value={payment_request}
-                download={() => { download("Wireguard.conf", payment_request) }}
+                download={() => { download(`lnvpn-${parseDate(getTimeStamp(priceDollar))}.conf`, payment_request) }}
                 showNewInvoice={() => { getInvoice(priceDollar); setSpinner(true) }}
                 handleClose={closeInvoiceModal}
                 emailAddress={emailAddress}

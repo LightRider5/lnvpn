@@ -42,7 +42,7 @@ async function sendEmail(emailAddress,configData, date) {
       attachments: [
         {
           content: btoa(configData),
-          filename: 'wireguard.conf',
+          filename: `wireguard-${+date.toString()}.conf`,
           type : "text/plain",
           endings:'native',
           disposition: 'attachment'
