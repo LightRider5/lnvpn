@@ -1,25 +1,23 @@
-import React from 'react';
+import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import './bootstrap.css'
-import "./font.css"
+import "./bootstrap.css";
+import "./font.css";
 // import './custombootstrap.css';
-import './index.css'
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { HelmetProvider } from 'react-helmet-async';
-
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { HelmetProvider } from "react-helmet-async";
 
 import "./fonts/Jost-Regular.ttf";
 
-
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
     <HelmetProvider>
-      <App/>
+      <App />
     </HelmetProvider>
   </StrictMode>
 );

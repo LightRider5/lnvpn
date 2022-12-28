@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Subscription = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Subscription
+export default Subscription;
