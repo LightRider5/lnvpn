@@ -173,7 +173,7 @@ function Home() {
   };
 
   const parseDate = (date) => {
-    return dayjs(date).format("YYYY-MMM-DD_hh-mm-ss");
+    return dayjs(date).format("YYYY-MMM-DD");
   };
 
   return (
