@@ -18,6 +18,39 @@ const Faq = () => {
           <Col>
             <h2 className="faq-headline">VPN</h2>
             <Accordion>
+              <Accordion.Item eventKey="011">
+                <Accordion.Header>Why should I use a VPN?</Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup variant="flush" numbered>
+                    <ListGroup.Item>
+                      Security: A VPN encrypts your internet connection, making
+                      it more difficult for hackers to intercept your data. This
+                      can be especially useful when using public Wi-Fi networks.
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Privacy: A VPN can help protect your online privacy by
+                      hiding your IP address and online activity from your
+                      internet service provider (ISP) and other third parties.
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Access to restricted content: Depending on your location,
+                      certain websites and online services may be blocked. A VPN
+                      can help you access these services by routing your traffic
+                      through a server in a different location.
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Bypassing censorship: In some countries, the government
+                      censors certain websites and online services. A VPN can
+                      help you bypass these restrictions and access the internet
+                      freely.
+                    </ListGroup.Item>
+                  </ListGroup>
+                  It's important to note that VPNs are not a silver bullet for
+                  online privacy and security. It's still important to use
+                  strong passwords, enable two-factor authentication, and be
+                  cautious when clicking on links or downloading files.
+                </Accordion.Body>
+              </Accordion.Item>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>What is this?</Accordion.Header>
                 <Accordion.Body>
@@ -29,6 +62,7 @@ const Faq = () => {
                   only 10 cents in US$ -- paid via ⚡!
                 </Accordion.Body>
               </Accordion.Item>
+
               <Accordion.Item eventKey="1">
                 <Accordion.Header>How does it work?</Accordion.Header>
                 <Accordion.Body>
@@ -118,15 +152,8 @@ const Faq = () => {
                   for lightning payments, Sendgrid for (optionally) sending
                   WireGuard config file via email, React and socket.IO for
                   WebSockets. On the VPN endpoints we don't use a commercial VPN
-                  services but have rented virtual servers with{" "}
-                  <a
-                    href="https://github.com/Mawthuq-Software/wireguard-manager-and-api"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Wireguard Manager And API
-                  </a>{" "}
-                  managing the WireGuard setup and keys.
+                  service. We have our own servers in each country for each
+                  endpoint.
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="3">
@@ -206,6 +233,45 @@ const Faq = () => {
           <Col>
             <h2 className="faq-headline">Phone Numbers</h2>
             <Accordion>
+              <Accordion.Item eventKey="91">
+                <Accordion.Header>
+                  Why should I use a burner phone number?
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup variant="flush" numbered>
+                    <ListGroup.Item as="li">
+                      Privacy: By using a disposable phone number, you can
+                      protect your personal phone number and keep it private.
+                      This can be useful when giving out your phone number to
+                      strangers or when signing up for online accounts where you
+                      don't want to share your real phone number.
+                    </ListGroup.Item>
+                    <ListGroup.Item as="li">
+                      Security: Disposable phone numbers can be used to protect
+                      against spam calls, phishing attacks, and other types of
+                      phone scams. If you receive a suspicious call or text on a
+                      disposable phone number, you can simply discard the number
+                      and get a new one.
+                    </ListGroup.Item>
+                    <ListGroup.Item as="li">
+                      Temporary use: One-time usage phone numbers are ideal for
+                      temporary or short-term use, such as when you need a phone
+                      number for a specific purpose or for a limited time.
+                    </ListGroup.Item>
+                    <ListGroup.Item as="li">
+                      Convenience: It can be convenient to use a disposable
+                      phone number when you don't want to give out your personal
+                      phone number, or when you need a phone number for a
+                      specific purpose but don't want to go through the hassle
+                      of getting a new SIM card or phone line.
+                    </ListGroup.Item>
+                  </ListGroup>
+                  Overall, one-time usage phone numbers can be a useful tool for
+                  protecting your privacy and security, particularly when
+                  engaging in online activities where you want to keep your
+                  personal information private.
+                </Accordion.Body>
+              </Accordion.Item>
               <Accordion.Item eventKey="8">
                 <Accordion.Header>What is this?</Accordion.Header>
                 <Accordion.Body>
