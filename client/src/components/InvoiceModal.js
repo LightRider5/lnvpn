@@ -137,11 +137,19 @@ function InvoiceModal(props) {
                 rel="noreferrer"
               >
                 Breez
-              </a>{" "}
-              or{" "}
+              </a>
+              ,{" "}
               <a href="https://bluewallet.io/" target="_blank" rel="noreferrer">
                 BlueWallet
-              </a>
+              </a>{" "}
+              or with{" "}
+              <a href="https://strike.me/" target="_blank" rel="noreferrer">
+                Strike
+              </a>{" "}
+              and{" "}
+              <a href="https://cash.app/" target="_blank" rel="noreferrer">
+                Cash App
+              </a>{" "}
               . You can also pay with a browser extension like{" "}
               <a href="https://getalby.com/" target="_blank" rel="noreferrer">
                 Alby
