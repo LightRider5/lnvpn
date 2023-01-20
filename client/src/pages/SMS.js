@@ -97,7 +97,7 @@ const SMS = () => {
         <Row>
           <HeaderInfo
             headline="Select a country ➞ Select a service ➞ Pay with Lightning ➞ Receive Activation Code ✔"
-            paragraph="You can choose between many services and countries"
+            paragraph="You can choose between many services and countries to get a valid phone number"
           />
           {order ? null : (
             <Form>
