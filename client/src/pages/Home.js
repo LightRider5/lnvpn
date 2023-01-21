@@ -201,7 +201,15 @@ function Home() {
                   >
                     Wireguard
                   </a>{" "}
-                  VPN client.
+                  VPN client app. You can download it{" "}
+                  <a
+                    href="https://www.wireguard.com/install/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    here
+                  </a>
+                  .
                 </>
               }
             />
