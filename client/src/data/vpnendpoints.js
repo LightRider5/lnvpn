@@ -75,4 +75,8 @@ export const vpnendpoints = [
     cc: "18",
     country: "🇮🇸 Iceland",
   },
+  {
+    cc: "19",
+    country: "🇦🇺 Australia",
+  },
 ];
