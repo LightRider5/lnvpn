@@ -127,9 +127,7 @@ function Home() {
       "Address = " + serverResponse.ipv4Address,
       "DNS = " + serverResponse.dns,
       " ",
-      "# Valid until: " +
-        parseDate(timestamp, "YYYY-MMM-DD hh:mm:ss A") +
-        " UTC",
+      "# Valid until: " + parseDate(timestamp, "YYYY-MMM-DD hh:mm:ss A"),
       "# Location: " + location,
       " ",
       "[Peer]",

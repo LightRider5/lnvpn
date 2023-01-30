@@ -34,7 +34,7 @@ async function checkInvoice(hash) {
   })
     .then(function (response) {
       if (response.data.paid) {
-        return response.data.details.payment_hash;
+        return response.data; ////Edit to return details
       }
     })
     .catch((error) => error);

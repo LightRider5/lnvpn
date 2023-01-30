@@ -98,7 +98,9 @@ io.on("connection", (socket) => {
   socket.on("checkInvoice", (clientPaymentHash) => {
     lightning
       .checkInvoice(clientPaymentHash)
-      .then((result) => io.sockets.emit("invoicePaid", result));
+      .then((result) =>
+        io.sockets.emit("invoicePaid", result.details.payment_hash)
+      );
   });
 
   // Getting the Invoice from lnbits and forwarding it to the frontend

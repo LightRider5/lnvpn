@@ -76,7 +76,7 @@ async function buildConfigFile(keyPair, serverResponse, timestamp, location) {
     "Address = " + serverResponse.ipv4Address,
     "DNS = " + serverResponse.dns,
     " ",
-    "# Valid until: " + timestamp + "UTC",
+    "# Valid until: " + timestamp,
     "# Location: " + location,
     " ",
     "[Peer]",

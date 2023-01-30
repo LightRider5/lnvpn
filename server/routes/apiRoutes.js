@@ -13,28 +13,60 @@ const {
  * @swagger
  * /api/v1/getInvoice:
  *   post:
- *     requestBody:
- *        content:
- *            - application/json:
  *     description: Returns a Lightning invoice for the requested duration
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: duration
- *         description: How long the tunnel should be open
- *         in: x-www-form-urlencoded
- *         required: true
- *         example: 0.1 = 1 hour, 0.5 = 1 day, 1.5 = 1 week , 4 = 1 month, 9 = 3 months
- *         schema:
- *            type: number
- *
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               duration:
+ *                 type: number
+ *                 description: How long the tunnel should be open (0.1, 0.5, 1, 4, 9)
+ *                 example: 0.1
  *     responses:
  *       200:
- *         description: Lightning Invoice and Payment Hash
- *         schema:
- *           type: json
+ *         description: Lightning invoice and payment hash
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 invoice:
+ *                   type: string
+ *                 payment_hash:
+ *                   type: string
  */
+
 router.post("/v1/getinvoice", getInvoice);
+// /**
+//  * @swagger
+//  * /api/v1/getTunnelConfig:
+//  *   post:
+//  *     description: Returns the wireguard configuration for the requested tunnel
+//  *     produces:
+//  *       - application/json
+//  *     parameters:
+//  *       - name: paymentHash
+//  *         description: Payment Hash of the invoice you paid
+//  *         in: x-www-form-urlencoded
+//  *         required: true
+//  *       - name: location
+//  *         description: Location of the endpoint as Number. Look at lnvpn.net/api/v1/countrylist
+//  *         in: x-www-form-urlencoded
+//  *         required: true
+//  *     url: lnvpn.net/api/v1/countrylist
+//  *
+//  *
+//  *     responses:
+//  *       200:
+//  *         description: wireguard config data
+//  *         schema:
+//  *           type: object
+//  */
 /**
  * @swagger
  * /api/v1/getTunnelConfig:
@@ -42,37 +74,70 @@ router.post("/v1/getinvoice", getInvoice);
  *     description: Returns the wireguard configuration for the requested tunnel
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: paymentHash
- *         description: Payment Hash of the invoice you paid
- *         in: x-www-form-urlencoded
- *         required: true
- *       - name: location
- *         description: Location of the endpoint as Number. Look at lnvpn.net/api/v1/countrylist
- *         in: x-www-form-urlencoded
- *         required: true
- *     url: lnvpn.net/api/v1/countrylist
- *
- *
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               paymentHash:
+ *                 type: string
+ *                 description: Payment hash of the invoice you paid
+ *                 example: "lnbc4330n1p3a00kjsp54vx6jrtt2vm3jrr....."
+ *               location:
+ *                 type: string
+ *                 description: Location of the endpoint as a number. Look at lnvpn.net/api/v1/countrylist
+ *                 example: 1
  *     responses:
  *       200:
- *         description: wireguard config data
- *         schema:
- *           type: object
+ *         description: Wireguard config data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 config:
+ *                   type: string
  */
+
 router.post("/v1/getTunnelConfig", getTunnelConfig);
+// /**
+//  * @swagger
+//  * /api/v1/countryList:
+//  *   get:
+//  *     description: Returns a country list. Each number is for one location. You can use this number in the location parameter of the getTunnelConfig endpoint.
+//  *     produces:
+//  *       - application/json
+//  *     responses:
+//  *       200:
+//  *         description: Array with country list
+//  *
+//  * */
 /**
  * @swagger
  * /api/v1/countryList:
  *   get:
- *     description: Returns a country list. Each number is for one location. You can use this number in the location parameter of the getTunnelConfig endpoint.
+ *     description: Returns a list of countries, with a number assigned to each location. The number can be used in the location parameter of the getTunnelConfig endpoint.
  *     produces:
  *       - application/json
  *     responses:
  *       200:
- *         description: Array with country list
- *
- * */
+ *         description: Array of countries
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   cc:
+ *                     type: string
+ *                     description: The number assigned to the location
+ *                   country:
+ *                     type: string
+ *                     description: The name of the country
+ */
 
 router.get("/v1/countrylist", getCountryList);
 
