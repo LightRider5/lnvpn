@@ -127,7 +127,9 @@ function Home() {
       "Address = " + serverResponse.ipv4Address,
       "DNS = " + serverResponse.dns,
       " ",
-      "# Valid until: " + parseDate(timestamp) + " UTC",
+      "# Valid until: " +
+        parseDate(timestamp, "YYYY-MMM-DD hh:mm:ss A") +
+        " UTC",
       "# Location: " + location,
       " ",
       "[Peer]",
@@ -169,11 +171,11 @@ function Home() {
   };
 
   const sendEmail = (email, config, date) => {
-    socket.emit("sendEmail", email, config, parseDate(date));
+    socket.emit("sendEmail", email, config, parseDate(date, "MM-DD"));
   };
 
-  const parseDate = (date) => {
-    return dayjs(date).format("MM-DD");
+  const parseDate = (date, format) => {
+    return dayjs(date).format(format);
   };
 
   return (
@@ -250,7 +252,7 @@ function Home() {
               value={payment_request}
               download={() => {
                 download(
-                  `lnvpn-${parseDate(getTimeStamp(priceDollar))}.conf`,
+                  `lnvpn-${parseDate(getTimeStamp(priceDollar), "MM-DD")}.conf`,
                   payment_request
                 );
               }}
