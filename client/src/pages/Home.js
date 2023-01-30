@@ -171,7 +171,12 @@ function Home() {
   };
 
   const sendEmail = (email, config, date) => {
-    socket.emit("sendEmail", email, config, parseDate(date, "MM-DD"));
+    socket.emit(
+      "sendEmail",
+      email,
+      config,
+      parseDate(date, "YYYY-MMM-DD hh:mm:ss A")
+    );
   };
 
   const parseDate = (date, format) => {
