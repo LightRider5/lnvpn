@@ -142,6 +142,9 @@ router.post("/v1/getTunnelConfig", getTunnelConfig);
 router.get("/v1/countrylist", getCountryList);
 
 const options = {
+  customSiteTitle: "LNVPN API Documentation",
+  customFavIcon: "./public/favicon.ico",
+  customCss: ".swagger-ui .topbar { display: none }",
   definition: {
     openapi: "3.0.0",
     info: {
