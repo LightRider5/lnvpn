@@ -99,7 +99,7 @@ io.on("connection", (socket) => {
     lightning
       .checkInvoice(clientPaymentHash)
       .then((result) =>
-        io.sockets.emit("invoicePaid", result.details.payment_hash)
+        io.sockets.emit("invoicePaid", result?.details?.payment_hash)
       );
   });
 

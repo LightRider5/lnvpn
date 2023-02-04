@@ -7,7 +7,7 @@ const AlertModal = (props) => {
   }
   return (
     <>
-      <Modal show={props.show} onHide={props.handleClose}>
+      <Modal show={props.show} onHide={props.handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Alert</Modal.Title>
         </Modal.Header>

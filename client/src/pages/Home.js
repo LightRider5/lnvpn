@@ -134,9 +134,9 @@ function Home() {
       "PublicKey = " + serverResponse.publicKey,
       "PresharedKey = " + keyPair.presharedKey,
       "Endpoint = " +
-        serverResponse.ipAddress +
-        ":" +
-        serverResponse.listenPort,
+      serverResponse.ipAddress +
+      ":" +
+      serverResponse.listenPort,
       "AllowedIPs = " + serverResponse.allowedIPs,
     ];
     return configArray;
