@@ -28,15 +28,15 @@ const getInvoice = asyncHandler(async (req, res, next) => {
   ) {
     const err = new Error(
       "Duration not allowed. Use: " +
-        process.env.PRICE_HOUR +
-        " " +
-        process.env.PRICE_DAY +
-        " " +
-        process.env.PRICE_WEEK +
-        " " +
-        process.env.PRICE_MONTH +
-        " " +
-        process.env.PRICE_QUARTER
+      process.env.PRICE_HOUR +
+      " " +
+      process.env.PRICE_DAY +
+      " " +
+      process.env.PRICE_WEEK +
+      " " +
+      process.env.PRICE_MONTH +
+      " " +
+      process.env.PRICE_QUARTER
     );
     err.status = 400;
     next(err);

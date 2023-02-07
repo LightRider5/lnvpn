@@ -1,13 +1,11 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const connectDB = require("./config/db");
 const vpnServer = require("./functions/getServer");
 const timestamp = require("./functions/getTimeStamp");
 const wg = require("./functions/wireguardFunctions");
 const lightning = require("./functions/invoices");
-const { send } = require("process");
 const app = express();
 require("dotenv").config();
 connectDB();
@@ -53,11 +51,6 @@ app.get("/*", function (req, res) {
       if (err) {
         res.status(500).send(err);
       }
-    },
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
     }
   );
 });
@@ -98,9 +91,15 @@ io.on("connection", (socket) => {
   socket.on("checkInvoice", (clientPaymentHash) => {
     lightning
       .checkInvoice(clientPaymentHash)
-      .then((result) =>
-        io.sockets.emit("invoicePaid", result?.details?.payment_hash)
-      );
+      .then((result) => {
+        if (result === false) {
+
+          console.log("Invoice not paid")
+        }
+        else {
+          io.sockets.emit("invoicePaid", result.details.payment_hash)
+        }
+      });
   });
 
   // Getting the Invoice from lnbits and forwarding it to the frontend
