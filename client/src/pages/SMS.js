@@ -96,8 +96,10 @@ const SMS = () => {
       <Container className="main-middle">
         <Row>
           <HeaderInfo
-            headline="Select a country ➞ Select a service ➞ Pay with Lightning ➞ Receive Activation Code ✔"
-            paragraph="You can choose between many services and countries to get a valid phone number"
+            // headline="Select a country ➞ Select a service ➞ Pay with Lightning ➞ Receive Activation Code ✔"
+            // paragraph="You can choose between many services and countries to get a valid phone number"
+            headline="Sorry - we are having a provider related downtime."
+            paragraph="Will be back after maintenance."
           />
           {order ? null : (
             <Form>
