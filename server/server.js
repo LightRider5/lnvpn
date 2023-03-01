@@ -34,9 +34,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get("/test", (req, res, next) => {
-//     res.send("hello world!");
-// });
+app.get("/test", (req, res, next) => {
+  res.send("hello world!");
+});
 
 app.use((error, req, res, next) => {
   console.log(error.message);
@@ -78,6 +78,8 @@ const io = require("socket.io")(process.env.PORT, {
 
 // Invoice Webhook
 app.post(process.env.WEBHOOK, (req, res) => {
+  console.log("Invoice paid hook called");
+  console.log(req.body);
   io.sockets.emit("invoicePaid", req.body.payment_hash);
   res.status(200).end();
 });

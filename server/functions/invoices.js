@@ -27,22 +27,23 @@ async function getInvoice(amount, memo) {
 
 // Check for Invoice
 async function checkInvoice(hash) {
-  return axios({
-    method: "get",
-    url: `${process.env.URL_INVOICE_API}${hash}`,
-    headers: { "X-Api-Key": process.env.INVOICE_KEY },
-  })
-    .then(function (response) {
-      if (response.data.paid) {
-        return response.data; ////Edit to return details
-      }
-      else {
-        return false;
-      }
+  try {
+    const invoiceData = await axios({
+      method: "get",
+      url: `${process.env.URL_INVOICE_API}${hash}`,
+      headers: { "X-Api-Key": process.env.INVOICE_KEY },
     })
-    .catch((error) => error);
+    if (invoiceData.data.paid === true) {
+      return invoiceData.data; ////Edit to return details
+    }
+    else {
+      return false;
+    }
+  }
+  catch (error) {
+    console.error(`Could not get products: ${error}`);
+  }
 }
-
 // Get Bitcoin Price in Satoshi per Dollar
 async function getPrice() {
   return axios({
