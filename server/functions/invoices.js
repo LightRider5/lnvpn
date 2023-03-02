@@ -30,7 +30,7 @@ async function checkInvoice(hash) {
   try {
     const invoiceData = await axios({
       method: "get",
-      url: `${process.env.URL_INVOICE_API}${hash}`,
+      url: `${process.env.URL_INVOICE_API}/${hash}`,
       headers: { "X-Api-Key": process.env.INVOICE_KEY },
     })
     if (invoiceData.data.paid === true) {
