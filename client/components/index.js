@@ -8,7 +8,6 @@ import KeyInput from "./KeyInput";
 import Price from "./Price";
 import RuntimeSelector from "./RuntimeSelector";
 import SubscriptionDisplay from "./SubscriptionDisplay";
-import SEO from "./SEO";
 import Subscription from "./Subscription";
 import EmailModal from "./EmailModal";
 import ServiceSelector from "./ServiceSelector";
@@ -24,7 +23,6 @@ export {
   Price,
   RuntimeSelector,
   SubscriptionDisplay,
-  SEO,
   Subscription,
   EmailModal,
   ServiceSelector,

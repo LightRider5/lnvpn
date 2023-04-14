@@ -3,7 +3,7 @@ html {
   height: 100vh;
   color: black;
 }
-body {
+html body {
   font-size: large;
   background-color: #f8f9fb;
   height: 100vh;
@@ -19,7 +19,7 @@ body {
   margin-bottom: 2%;
 } */
 
-.main-middle {
+body .main-middle {
   padding: 12px;
   max-width: 800px;
   align-items: center;
@@ -70,7 +70,7 @@ body {
   width: 100%;
 }
 
-.main-buttons {
+body.main-buttons {
   display: grid;
   align-items: center;
   text-align: center;
@@ -81,7 +81,7 @@ body {
   font-size: large;
 }
 
-.modal-footer button {
+html .modal-footer button {
   font-size: large;
   padding: 10px;
 }
@@ -166,7 +166,7 @@ body {
 #runtimeselector .btn {
   padding: 0.375rem;
 }
-.btn-check:checked + .btn-primary {
+html .btn-check:checked + .btn-primary {
   border-color: black;
   border-width: 3px;
 }
@@ -213,7 +213,7 @@ body {
 #main_modal {
   min-width: 50%;
 }
-.modal-footer {
+html .modal-footer {
   display: contents;
 }
 
@@ -271,7 +271,7 @@ button.close {
   margin: 2% 0 2% 0;
 }
 
-.navbar-nav {
+html .navbar-nav {
   font-size: x-large;
 }
 #logo {
@@ -285,10 +285,10 @@ h2.accordion-header button {
   font-size: x-large;
 }
 
-.nav-item {
+html .nav-item {
   padding: 5px;
 }
-#nav-menu-image {
+html #nav-menu-image {
   width: 50%;
 }
 #s4s-error-message {

@@ -5,12 +5,6 @@ import * as Component from "../components";
 const Faq = () => {
   return (
     <div>
-      <Component.SEO
-        title="LNVPN - Frequently asked Questions about LNVPN"
-        description="Everything you need to know about using our ⚡️Lightning⚡️ enabled VPN"
-        name="@ln_vpn"
-        type="summary"
-      />
       <title>FAQ - Frequently asked Questions</title>
       <h1>FAQ</h1>
       <Container>

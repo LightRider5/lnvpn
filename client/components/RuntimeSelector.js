@@ -9,11 +9,11 @@ const RuntimeSelector = (props) => {
         type="radio"
         name="options"
         id="runtimeselector"
-        defaultValue={process.env.REACT_APP_price_hour}
+        defaultValue={process.env.NEXT_PUBLIC_price_hour}
       >
         <ToggleButton
           id="tbg-radio-1"
-          value={process.env.REACT_APP_price_hour}
+          value={process.env.NEXT_PUBLIC_price_hour}
           onChange={props.onChange}
           title="1 hour"
         >
@@ -21,7 +21,7 @@ const RuntimeSelector = (props) => {
         </ToggleButton>
         <ToggleButton
           id="tbg-radio-2"
-          value={process.env.REACT_APP_price_day}
+          value={process.env.NEXT_PUBLIC_price_day}
           onChange={props.onChange}
           title="1 day"
         >
@@ -29,7 +29,7 @@ const RuntimeSelector = (props) => {
         </ToggleButton>
         <ToggleButton
           id="tbg-radio-3"
-          value={process.env.REACT_APP_price_week}
+          value={process.env.NEXT_PUBLIC_price_week}
           onChange={props.onChange}
           title="1 week"
         >
@@ -37,7 +37,7 @@ const RuntimeSelector = (props) => {
         </ToggleButton>
         <ToggleButton
           id="tbg-radio-4"
-          value={process.env.REACT_APP_price_month}
+          value={process.env.NEXT_PUBLIC_price_month}
           onChange={props.onChange}
           title="1 month"
         >
@@ -45,7 +45,7 @@ const RuntimeSelector = (props) => {
         </ToggleButton>
         <ToggleButton
           id="tbg-radio-5"
-          value={process.env.REACT_APP_price_quater}
+          value={process.env.NEXT_PUBLIC_price_quater}
           onChange={props.onChange}
           title="3 month"
         >

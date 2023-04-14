@@ -21,7 +21,7 @@ connectDB();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 app.use("/api", require("./routes/apiRoutes"));
 
 app.use((req, res, next) => {
@@ -44,16 +44,16 @@ app.use((error, req, res, next) => {
   res.json({ status: error.status, error: error.message });
 });
 
-app.get("/*", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "../client/build", "index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
+// app.get("/*", function (req, res) {
+//   res.sendFile(
+//     path.join(__dirname, "../client/build", "index.html"),
+//     function (err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       }
+//     }
+//   );
+// });
 
 const server = app.listen(process.env.WEB_SERVER_PORT, function () {
   console.log("Server listening at Port:" + process.env.WEB_SERVER_PORT);

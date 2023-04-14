@@ -1,0 +1,17 @@
+.navbar {
+  background-color: #f8f9fa;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0.25rem;
+  margin: 0 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-pills .nav-link.active {
+  background-color: yellow !important;
+}
