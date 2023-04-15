@@ -90,18 +90,24 @@ io.on("connection", (socket) => {
   //  console.log("New connection")
 
   // Checks for a paid Invoice after reconnect
-  socket.on("checkInvoice", (clientPaymentHash) => {
-    lightning
-      .checkInvoice(clientPaymentHash)
-      .then((result) => {
-        if (result === false) {
+  // Checks for a paid Invoice after reconnect
+  socket.on("checkInvoice", async (clientPaymentHash) => {
+    try {
+      console.log("Checking Invoice in backend")
+      console.log(clientPaymentHash)
+      const result = await lightning.checkInvoice(clientPaymentHash)
+      if (result === false) {
+        console.log(result)
+        console.log("Invoice not paid")
+      }
+      else {
+        console.log(result + "when true")
+        io.sockets.emit("invoicePaid", result.details.payment_hash)
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
-          console.log("Invoice not paid")
-        }
-        else {
-          io.sockets.emit("invoicePaid", result.details.payment_hash)
-        }
-      });
   });
 
   // Getting the Invoice from lnbits and forwarding it to the frontend

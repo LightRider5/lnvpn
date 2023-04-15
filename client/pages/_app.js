@@ -2,11 +2,11 @@ import '../public/index.css'
 import '../public/font.css'
 import '../public/bootstrap.css'
 import { SSRProvider } from 'react-bootstrap';
-// import Header from '../components/Header.js';
+import Header from '../components/Header.js';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
-const Header = dynamic(() => import('../components/Header.js'), { ssr: false });
+// const Header = dynamic(() => import('../components/Header.js'), { ssr: false });
 
 export default function MyApp({ Component, pageProps }) {
     return (

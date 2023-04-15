@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { Navbar, Nav, Offcanvas, Container } from "react-bootstrap";
 import Link from "next/link";
-import styles from './Header.module.css';
 
 const Header = (props) => {
   const router = useRouter();

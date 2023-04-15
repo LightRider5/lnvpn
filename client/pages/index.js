@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import * as Component from "../components";
 import { wireguard } from "../wireguard";
 import dynamic from 'next/dynamic';
-// import "../wireguard.js";
 
 import { getTimeStamp } from "../timefunction.js";
 import { vpnendpoints } from "../data/vpnendpoints";
