@@ -110,10 +110,15 @@ function InvoiceModal(props) {
               </p>
 
               <p id="expirydate">
-                Valid until: {props.expiryDate.toString()}
-                <br></br>
-                Make sure to save your config before closing. Otherwise it is
-                lost.
+                {props.expiryDate ? (
+                  <>
+                    Valid until: {props.expiryDate.toString()}
+                    <br></br>
+                    Make sure to save your config before closing. Otherwise, it is lost.
+                  </>
+                ) : (
+                  "Expiry date not available."
+                )}
               </p>
             </div>
           ) : (

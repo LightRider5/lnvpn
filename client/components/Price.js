@@ -9,7 +9,7 @@ const Price = (props) => {
     async function getPrice() {
       return axios({
         method: "get",
-        url: process.env.REACT_APP_PRICE_API,
+        url: process.env.NEXT_PUBLIC_PRICE_API,
       }).then(function (response) {
         return 100_000_000 / response.data.USD.buy;
       });

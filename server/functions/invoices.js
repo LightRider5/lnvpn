@@ -26,6 +26,7 @@ async function getInvoice(amount, memo) {
 }
 
 // Check for Invoice
+//Check for Invoice
 async function checkInvoice(hash) {
   try {
     const invoiceData = await axios({
@@ -41,7 +42,7 @@ async function checkInvoice(hash) {
     }
   }
   catch (error) {
-    console.error(`Could not get products: ${error}`);
+    console.error(`Could not checkInvoice: ${error}`);
   }
 }
 // Get Bitcoin Price in Satoshi per Dollar

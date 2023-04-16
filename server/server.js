@@ -21,7 +21,7 @@ connectDB();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 app.use("/api", require("./routes/apiRoutes"));
 
 app.use((req, res, next) => {
@@ -44,16 +44,16 @@ app.use((error, req, res, next) => {
   res.json({ status: error.status, error: error.message });
 });
 
-app.get("/*", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "../client/build", "index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
+// app.get("/*", function (req, res) {
+//   res.sendFile(
+//     path.join(__dirname, "../client/build", "index.html"),
+//     function (err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       }
+//     }
+//   );
+// });
 
 const server = app.listen(process.env.WEB_SERVER_PORT, function () {
   console.log("Server listening at Port:" + process.env.WEB_SERVER_PORT);
@@ -90,18 +90,24 @@ io.on("connection", (socket) => {
   //  console.log("New connection")
 
   // Checks for a paid Invoice after reconnect
-  socket.on("checkInvoice", (clientPaymentHash) => {
-    lightning
-      .checkInvoice(clientPaymentHash)
-      .then((result) => {
-        if (result === false) {
+  // Checks for a paid Invoice after reconnect
+  socket.on("checkInvoice", async (clientPaymentHash) => {
+    try {
+      console.log("Checking Invoice in backend")
+      console.log(clientPaymentHash)
+      const result = await lightning.checkInvoice(clientPaymentHash)
+      if (result === false) {
+        console.log(result)
+        console.log("Invoice not paid")
+      }
+      else {
+        console.log(result + "when true")
+        io.sockets.emit("invoicePaid", result.details.payment_hash)
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
-          console.log("Invoice not paid")
-        }
-        else {
-          io.sockets.emit("invoicePaid", result.details.payment_hash)
-        }
-      });
   });
 
   // Getting the Invoice from lnbits and forwarding it to the frontend

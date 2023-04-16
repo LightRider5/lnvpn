@@ -3,6 +3,8 @@
  * Copyright (C) 2015-2020 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
  */
 
+
+
 (function () {
   function gf(init) {
     var r = new Float64Array(16);
@@ -175,7 +177,7 @@
     return String.fromCharCode.apply(null, base64);
   }
 
-  window.wireguard = {
+  const wireguard = {
     generateKeypair: function () {
       var presharedKey = generatePresharedKey();
       var privateKey = generatePrivateKey();
@@ -187,4 +189,10 @@
       };
     },
   };
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { wireguard };
+  } else {
+    window.wireguard = wireguard;
+  }
 })();
+
