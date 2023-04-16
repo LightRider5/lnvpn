@@ -20,7 +20,7 @@ var getTimeStamp = (selectedValue) => {
     return date;
   }
 
-  if (selectedValue === process.env.NEXT_PUBLIC_rice_hour) {
+  if (selectedValue === process.env.NEXT_PUBLIC_price_hour) {
     date = addHour((date = new Date()), 1);
 
     return date;

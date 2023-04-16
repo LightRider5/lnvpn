@@ -13,9 +13,9 @@ import * as dayjs from "dayjs";
 const KeyInput = dynamic(() => import('../components/KeyInput'), { ssr: false });
 
 var socket = io.connect(process.env.NEXT_PUBLIC_socket_port);
-var emailAddress;
-var clientPaymentHash;
-var isPaid = false; //Is only necessary in the case of socket event is fireing multible times
+let emailAddress;
+let clientPaymentHash;
+let isPaid = false; //Is only necessary in the case of socket event is fireing multible times
 
 function Home() {
 
