@@ -4,7 +4,7 @@ html {
   color: black;
 }
 html body {
-  font-size: large;
+  font-size: 1.25rem;
   background-color: #f8f9fb;
   height: 100vh;
   align-items: center;
@@ -78,7 +78,7 @@ body.main-buttons {
 }
 
 .main-buttons button.btn-success {
-  font-size: large;
+  font-size: 1.25rem;
 }
 
 html .modal-footer button {
