@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Navbar, Nav, Offcanvas, Container } from "react-bootstrap";
 import Link from "next/link";
-
+import Image from 'next/image';
 const Header = (props) => {
   const router = useRouter();
 
@@ -23,10 +23,10 @@ const Header = (props) => {
         >
           <Link href="/" passHref>
             <Navbar.Brand>
-              <img
+              <Image
                 src="/media/logoPNGLNVPN.png"
-                width="100"
-                height="100"
+                width={100}
+                height={100}
                 className="d-inline-block align-top align-start"
                 alt="LNVPN Brand Logo"
               />
