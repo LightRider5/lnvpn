@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Jost-Regular";
-    src: local("Jost-Regular"),
-        url("./fonts/Jost-Regular.ttf") format("truetype");
-    font-weight: light;
+  font-family: "Jost-Regular";
+  src: local("Jost-Regular"), url("./fonts/Jost-Regular.ttf") format("truetype");
+  font-weight: light;
+  font-display: swap;
 }
