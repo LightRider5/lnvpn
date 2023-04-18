@@ -6,13 +6,12 @@ export default function MyDocument() {
         <Html>
             <Head>
                 <meta charSet="utf-8" />
-                <link rel="icon" href="favicon.ico" />
-
+                <link rel="shortcut icon" href="/favicon.ico" />
                 <meta name="theme-color" content="#000000" />
-                <link rel="apple-touch-icon" href="favicon.ico" />
-                <link rel="manifest" href="manifest.json" />
-                <Script src='jquery-3.6.0.min.js'></Script>
-                <Script src='bootstrap.bundle.min.js'></Script>
+                <link rel="apple-touch-icon" href="/favicon.ico" />
+                <link rel="manifest" href="/manifest.json" />
+                <Script src='/jquery-3.6.0.min.js'></Script>
+                <Script src='/bootstrap.bundle.min.js'></Script>
             </Head>
 
             <body>
