@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { HeaderInfo } from "../components";
 import * as Component from "../components";
+import Head from 'next/head';
 import {
   Container,
   Spinner,
@@ -85,7 +86,12 @@ const SMS = () => {
 
   return (
     <div>
-      <title>LN SMS - Get one time SMS code</title>
+      <Head>
+        <meta name="description" content="Get disposable phone numbers with our one-time phone number generator, payable exclusively with Bitcoin Lightning. Maintain your privacy, avoid spam, and make secure transactions." />
+        <title>LNSMS - Bitcoin Lightning-powered Disposable Phone Numbers</title>
+        <meta name="keywords" content="Bitcoin, Lightning, one-time phone number, disposable phone number, privacy" />
+
+      </Head>
       <h1>LN SMS</h1>
       <Container className="main-middle">
         <Row>

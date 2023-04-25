@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import * as Component from "../components";
 import { wireguard } from "../wireguard";
 import dynamic from 'next/dynamic';
-
+import Head from 'next/head';
 import { getTimeStamp } from "../timefunction.js";
 import { vpnendpoints } from "../data/vpnendpoints";
 import * as dayjs from "dayjs";
@@ -203,8 +203,13 @@ function Home() {
 
     return (
         <div>
+            <Head>
+                <meta name="description" content="Experience true online privacy with our ultra-secure VPN service, payable exclusively with Bitcoin Lightning. Fast, anonymous, and easy to use - pay as you go with no subscriptions required." />
+                <title>LNVPN - Privacy by Design</title>
+                <meta name="keywords" content="Bitcoin, Lightning, VPN" />
+            </Head>
 
-            <title>LNVPN - Get a pay as you use VPN tunnel</title>
+
             <h1>LN VPN</h1>
             <Container className="main-middle">
                 <Row>

@@ -1,11 +1,16 @@
 import React from "react";
 import { Accordion, Container, ListGroup, Col, Row } from "react-bootstrap";
 import * as Component from "../components";
-
+import Head from 'next/head';
 const Faq = () => {
   return (
     <div>
-      <title>FAQ - Frequently asked Questions</title>
+      <Head>
+        <meta name="description" content="Find answers to frequently asked questions about LNVPN's Bitcoin Lightning-powered disposable phone number and VPN services. Learn about privacy, usage, payments, and more to maximize your experience with LNVPN." />
+        <title>LNVPN FAQ - Your Questions Answered About Our Disposable Phone Numbers & VPN Services</title>
+        <meta name="keywords" content="Bitcoin, Lightning, one-time phone number, disposable phone number, VPN, privacy, crypto, FAQ, questions, answers" />
+      </Head>
+
       <h1>FAQ</h1>
       <Container>
         <Row xs={1} sm={1} md={1} lg={2}>

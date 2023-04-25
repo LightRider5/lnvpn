@@ -14,9 +14,6 @@ export default function MyApp({ Component, pageProps }) {
             <Head>
                 <meta name="lightning" content="lnurlp:lnvpn@getalby.com" />
                 <meta property="og:image" content="https://lnvpn.net/static/media/logo2.c7fae732fe38f33e6111b0d4e754790a.svg" />
-                <meta name="description" content="A simple privacy focused VPN service payable with Bitcoin Lightning" />
-                <title>LNVPN - Privacy by Design</title>
-                <meta name="keywords" content="Bitcoin, Lightning, VPN" />
             </Head>
 
             <Header />

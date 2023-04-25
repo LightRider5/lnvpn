@@ -21,7 +21,7 @@ const Header = (props) => {
           key="nav"
           variant="light"
         >
-          <Link href="/" passHref>
+          <Link href="/">
             <Navbar.Brand>
               <Image
                 src="/media/logoPNGLNVPN.png"
