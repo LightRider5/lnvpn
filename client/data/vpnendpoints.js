@@ -60,16 +60,8 @@ export const vpnendpoints = [
     country: "🇷🇴 Romania",
   },
   {
-    cc: "15",
-    country: "🇰🇪 Kenya",
-  },
-  {
     cc: "16",
     country: "🇵🇹 Portugal",
-  },
-  {
-    cc: "17",
-    country: "🇪🇸 Spain",
   },
   {
     cc: "18",

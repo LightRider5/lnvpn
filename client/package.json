@@ -5,9 +5,6 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.0",
     "dayjs": "^1.11.7",
     "framer-motion": "^3.10.6",
