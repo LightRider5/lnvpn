@@ -24,9 +24,7 @@ function Home() {
         return keypair;
     };
 
-    const [keyPair, displayNewPair] = useState(
-        generateKeypair()
-    );
+    const [keyPair, displayNewPair] = useState(1);
 
     useEffect(() => {
         const setInitialKeypair = async () => {
@@ -35,6 +33,8 @@ function Home() {
         };
         setInitialKeypair();
     }, []);
+
+
 
     const [priceDollar, updatePrice] = useState(process.env.NEXT_PUBLIC_price_hour);
     const [country, updateCountry] = useState("0");

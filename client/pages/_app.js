@@ -4,9 +4,6 @@ import '../public/bootstrap.css'
 import { SSRProvider } from 'react-bootstrap';
 import Header from '../components/Header.js';
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
-
-// const Header = dynamic(() => import('../components/Header.js'), { ssr: false });
 
 export default function MyApp({ Component, pageProps }) {
     return (
