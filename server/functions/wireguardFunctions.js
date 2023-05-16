@@ -1,7 +1,7 @@
 const axios = require("axios");
 const sgMail = require("@sendgrid/mail");
 const dayjs = require("dayjs");
-import utc from 'dayjs-plugin-utc';
+const utc = require("dayjs/plugin/utc");
 
 dayjs.extend(utc);
 

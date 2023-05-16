@@ -45,4 +45,4 @@ var getTimeStamp = (selectedValue) => {
   }
 };
 
-export { getTimeStamp };
+module.exports = { getTimeStamp };
