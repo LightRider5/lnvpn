@@ -1,45 +1,48 @@
-// Transforms duration into timestamp
-const getTimeStamp = (selectedValue) => {
-  // const date = new Date()
-  if (selectedValue == process.env.PRICE_QUARTER) {
+var getTimeStamp = (selectedValue) => {
+  var date = new Date();
+  if (selectedValue === process.env.NEXT_PUBLIC_price_quater) {
     date = addMonths((date = new Date()), 3);
     return date;
   }
-  if (selectedValue == process.env.PRICE_MONTH) {
+  if (selectedValue === process.env.NEXT_PUBLIC_price_month) {
     date = addMonths((date = new Date()), 1);
+
     return date;
   }
-  if (selectedValue == process.env.PRICE_WEEK) {
+  if (selectedValue === process.env.NEXT_PUBLIC_price_week) {
     date = addWeeks((date = new Date()), 1);
+
     return date;
   }
-  if (selectedValue == process.env.PRICE_DAY) {
-    date = addHour((date = new Date()), 24);
+  if (selectedValue === process.env.NEXT_PUBLIC_price_day) {
+    date = addHours((date = new Date()), 24);
+
     return date;
   }
 
-  if (selectedValue == process.env.PRICE_HOUR) {
-    date = addHour((date = new Date()), 1);
+  if (selectedValue === process.env.NEXT_PUBLIC_price_hour) {
+    date = addHours((date = new Date()), 1);
+
     return date;
   }
 
-  function addHour(date = new Date(), hour) {
-    date.setHours(date.getHours() + hour);
+  function addHours(date = new Date(), hours) {
+    date.setUTCHours(date.getUTCHours() + hours);
     return date;
   }
   function addWeeks(date = new Date(), weeks) {
-    date.setDate(date.getDate() + weeks * 7);
+    date.setUTCDate(date.getUTCDate() + weeks * 7);
     return date;
   }
 
   function addMonths(date = new Date(), months) {
-    const d = date.getDate();
-    date.setMonth(date.getMonth() + +months);
-    if (date.getDate() != d) {
-      date.setDate(0);
+    var d = date.getUTCDate();
+    date.setUTCMonth(date.getUTCMonth() + +months);
+    if (date.getUTCDate() !== d) {
+      date.setUTCDate(0);
     }
     return date;
   }
 };
 
-module.exports = { getTimeStamp };
+export { getTimeStamp };

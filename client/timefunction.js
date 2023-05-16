@@ -15,33 +15,34 @@ var getTimeStamp = (selectedValue) => {
     return date;
   }
   if (selectedValue === process.env.NEXT_PUBLIC_price_day) {
-    date = addHour((date = new Date()), 24);
+    date = addHours((date = new Date()), 24);
 
     return date;
   }
 
   if (selectedValue === process.env.NEXT_PUBLIC_price_hour) {
-    date = addHour((date = new Date()), 1);
+    date = addHours((date = new Date()), 1);
 
     return date;
   }
 
-  function addHour(date = new Date(), hour) {
-    date.setHours(date.getHours() + hour);
+  function addHours(date = new Date(), hours) {
+    date.setUTCHours(date.getUTCHours() + hours);
     return date;
   }
   function addWeeks(date = new Date(), weeks) {
-    date.setDate(date.getDate() + weeks * 7);
+    date.setUTCDate(date.getUTCDate() + weeks * 7);
     return date;
   }
 
   function addMonths(date = new Date(), months) {
-    var d = date.getDate();
-    date.setMonth(date.getMonth() + +months);
-    if (date.getDate() !== d) {
-      date.setDate(0);
+    var d = date.getUTCDate();
+    date.setUTCMonth(date.getUTCMonth() + +months);
+    if (date.getUTCDate() !== d) {
+      date.setUTCDate(0);
     }
     return date;
   }
 };
+
 export { getTimeStamp };

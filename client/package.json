@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.8.1",
     "axios": "^1.2.0",
     "dayjs": "^1.11.7",
+    "dayjs-plugin-utc": "^0.1.2",
     "framer-motion": "^3.10.6",
     "next": "^13.3.0",
     "popper.js": "^1.16.1",

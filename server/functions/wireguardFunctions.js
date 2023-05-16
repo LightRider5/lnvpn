@@ -1,6 +1,11 @@
 const axios = require("axios");
 const sgMail = require("@sendgrid/mail");
 const dayjs = require("dayjs");
+import utc from 'dayjs-plugin-utc';
+
+dayjs.extend(utc);
+
+
 // Get Wireguard Config
 async function getWireguardConfig(
   publicKey,
@@ -33,9 +38,11 @@ async function getWireguardConfig(
     });
 }
 
+
 const parseDate = (date) => {
-  return dayjs(date).format("YYYY-MMM-DD hh:mm:ss A");
+  return dayjs.utc(date).format("YYYY-MMM-DD hh:mm:ss A");
 };
+
 
 // Send Wireguard config file via email
 async function sendEmail(emailAddress, configData, date) {
@@ -57,7 +64,7 @@ async function sendEmail(emailAddress, configData, date) {
   };
 
   sgMail.send(msg).then(
-    () => {},
+    () => { },
     (error) => {
       console.error(error);
 

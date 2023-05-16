@@ -9,6 +9,9 @@ import Head from 'next/head';
 import { getTimeStamp } from "../timefunction.js";
 import { vpnendpoints } from "../data/vpnendpoints";
 import * as dayjs from "dayjs";
+import utc from 'dayjs-plugin-utc';
+
+dayjs.extend(utc);
 
 const KeyInput = dynamic(() => import('../components/KeyInput'), { ssr: false });
 
@@ -197,9 +200,11 @@ function Home() {
         );
     };
 
+
     const parseDate = (date, format) => {
-        return dayjs(date).format(format);
+        return dayjs.utc(date).format(format);
     };
+
 
     return (
         <div>

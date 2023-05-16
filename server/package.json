@@ -25,6 +25,7 @@
     "body-parser": "^1.20.0",
     "concurrently": "^7.4.0",
     "dayjs": "^1.11.1",
+    "dayjs-plugin-utc": "^0.1.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-async-handler": "^1.2.0",
