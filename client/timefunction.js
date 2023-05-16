@@ -37,7 +37,7 @@ var getTimeStamp = (selectedValue) => {
 
   function addMonths(date = new Date(), months) {
     var d = date.getUTCDate();
-    date.setUTCMonth(date.getUTCMonth() + +months);
+    date.setUTCMonth(date.getUTCMonth() + months);
     if (date.getUTCDate() !== d) {
       date.setUTCDate(0);
     }

@@ -202,6 +202,8 @@ function Home() {
 
 
     const parseDate = (date, format) => {
+        console.log(date);
+        console.log(dayjs.utc(date).format(format));
         return dayjs.utc(date).format(format);
     };
 

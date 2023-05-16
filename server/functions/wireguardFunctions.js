@@ -77,6 +77,8 @@ async function sendEmail(emailAddress, configData, date) {
 
 /////////Construct the Config File
 async function buildConfigFile(keyPair, serverResponse, timestamp, location) {
+  console.log("buildConfigFile");
+  console.log(timestamp)
   const configArray = [
     "[Interface]",
     "PrivateKey = " + keyPair.privateKey,
