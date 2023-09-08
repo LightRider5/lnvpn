@@ -329,3 +329,81 @@ html #nav-menu-image {
 .order-ID {
   width: 100%;
 }
+
+.partner-programm-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+  border: 2px solid #6a6b6b;
+  background-color: white;
+  border-radius: 12px;
+  z-index: 5;
+  padding: 5%;
+  margin: 10px 0px 10px 0px;
+}
+
+.partner-programm-input-item {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+}
+
+.partner-programm-input-item input {
+  background-color: white;
+  color: black;
+  border: 2px solid #6a6b6b;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.partner-programm-input-item span.input-group-text {
+  font-size: 1.25rem;
+  min-width: auto;
+}
+
+.partner-programm-input-item .input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.partner-programm-input-container {
+  padding-top: 10%;
+  width: 75%;
+}
+
+.partner-programm-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.partner-programm-spinner {
+  margin-top: 30%;
+}
+
+.partner-programm-success {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  align-content: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+  border: 2px solid #6a6b6b;
+  background-color: white;
+  border-radius: 12px;
+  z-index: 5;
+  padding: 5%;
+  margin: 10px 0px 10px 0px;
+}
+
+.progamm-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const Partner = require("./models/partners");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const vpnServer = require("./functions/getServer");

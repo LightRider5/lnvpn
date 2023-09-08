@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Navbar, Nav, Offcanvas, Container } from "react-bootstrap";
+import { Navbar, Nav, Offcanvas, Container, Badge } from "react-bootstrap";
 import Link from "next/link";
 import Image from 'next/image';
 const Header = (props) => {
@@ -55,6 +55,13 @@ const Header = (props) => {
                 <Nav.Item>
 
                   <Nav.Link className={isActive('/phone-numbers')} href="/phone-numbers" >Phone Numbers</Nav.Link>
+
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link className={isActive('/partners')} href="/partners">Partners{" "}
+                    <Badge bg="danger">New!</Badge>
+                  </Nav.Link>
+
 
                 </Nav.Item>
                 <Nav.Item>
