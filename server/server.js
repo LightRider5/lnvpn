@@ -141,4 +141,40 @@ io.on("connection", (socket) => {
       );
     }
   );
+
+
+  socket.on("addAddressCode", async (payoutAddress, custom_code) => {
+    // Check if a partner with the given custom_code already exists
+    Partner.findOne({ custom_code: custom_code }, (err, existingPartner) => {
+      if (err) {
+        console.error("Error checking for existing partner:", err);
+        socket.emit("addAddressCodeError", "An error occurred while checking for existing referral code.");
+        return;
+      }
+
+      // If a partner with the given custom_code exists, emit an error message
+      if (existingPartner) {
+        console.log("Referral code already exists.");
+        socket.emit("addAddressCodeError", "The referral code already exists. Please choose a different one.");
+        return;
+      }
+
+      // If no partner with the given custom_code exists, proceed with creating and saving the new partner
+      const partner = new Partner();
+      partner.payoutAddress = payoutAddress;
+      partner.custom_code = custom_code;
+      partner.save((err, doc) => {
+        if (err) {
+          console.error("Error saving partner:", err);
+          socket.emit("addAddressCodeError", "An error occurred while saving the referral code.");
+          return;
+        }
+
+        console.log("Document inserted successfully!");
+        socket.emit("addAddressCodeSuccess", doc);
+      });
+    });
+  });
+
 });
+
