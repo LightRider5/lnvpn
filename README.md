@@ -26,7 +26,7 @@ You won't be able to transfer any data over the VPN connection anymore. Your VPN
 
 # Is there a data transfer limit?
 
-Currently, we have four data plans:
+Currently, we have five data plans:
 
     1 hour = 1GB
     1 day = 5GB
