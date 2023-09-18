@@ -50,7 +50,7 @@ const partners = () => {
             });
             return
         }
-        setCustomCodeLink(`https://ordimint.com?ref=${custom_code}`);
+        setCustomCodeLink(`https://lnvpn.net?ref=${custom_code}`);
         setStep(2);
         socket.emit("addAddressCode", payoutAddress, custom_code);
     }
@@ -77,25 +77,26 @@ const partners = () => {
     return (
 
         <>
-            <Head>
+            {/* <Head>
                 <meta name="description" content="Experience true online privacy with our ultra-secure VPN service, payable exclusively with Bitcoin Lightning. Fast, anonymous, and easy to use - pay as you go with no subscriptions required." />
                 <title>LNVPN - Privacy by Design</title>
                 <meta name="keywords" content="Bitcoin, Lightning, VPN" />
-            </Head>
+            </Head> */}
 
-            {/* <Head>
-                <title>Ordimint - Partners</title>
-                <meta name="keywords" content="Bitcoin, Ordinal, Inscriptin, Affiliate, Refferal" />
-                <meta property="og:title" content="Ordimint - A website to mint, receive, store or send your Ordinals" />
+            <Head>
+                <title>LNVPN - Partners</title>
+                <meta name="keywords" content="VPN, Bitcoin, Lightning,Earn Bitcoin, Affiliate, Refferal" />
+                <meta property="og:title" content="LNVPN - Privacy by Design" />
                 <meta property="og:type" content="website" />
-                <meta property="og:image" content="https://ordimint.com/OrdimintSVGLogo-black.svg" />
-                <meta property="og:description" content="A website to mint, receive, store or send your Ordinals. View all new Ordinal Collections, Inscribe or use our wallet." />
+                <meta property="og:image" content="https://lnvpn.net/brand-logo.jpg" />
+                <meta property="og:description" content="Experience true online privacy with our ultra-secure VPN service, payable exclusively with Bitcoin Lightning. Fast, anonymous, and easy to use - pay as you go with no subscriptions required." />
 
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Ordimint - A website to mint, receive, store or send your Ordinals" />
-                <meta name="twitter:description" content="A website to mint, receive, store or send your Ordinals" />
-                <meta name="twitter:image" content="https://ordimint.com/OrdimintSVGLogo-black.svg" />
-            </Head> */}
+                <meta name="twitter:title" content="Experience true online privacy with our ultra-secure VPN service, payable exclusively with Bitcoin Lightning. Fast, anonymous, and easy to use - pay as you go with no subscriptions required.s" />
+                <meta name="twitter:description" content="LNVPN - A Lightning Network enabled VPN service with true privacy." />
+                <meta name="twitter:image" content="https://lnvpn.net/brand-logo.jpg" />
+            </Head>
+
             <div className='container fluid progamm-container'>
 
 
@@ -103,7 +104,7 @@ const partners = () => {
                 {step === 1 && (
                     <>
                         <div className='partner-programm-input-container'>
-                            <h3>Join the Ordimint Affiliate Program <br></br> and earn 20% from inscription referrals.</h3>
+                            <h3>Join the LNVPN Affiliate Program <br></br> and earn 15% from subscription referrals.</h3>
                             <p>Generate your affiliate link below. Promote and start earning Bitcoin rewards!</p>
                             <InputGroup className='partner-programm-input'  >
                                 <Form.Label className='mt-2'>Type your preferred referral code:</Form.Label>

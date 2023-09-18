@@ -332,8 +332,6 @@ html #nav-menu-image {
 
 .partner-programm-input {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   align-content: stretch;
   flex-wrap: wrap;

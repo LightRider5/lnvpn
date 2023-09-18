@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+const Order = require("./models/orders");
 const Partner = require("./models/partners");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
@@ -125,13 +125,13 @@ io.on("connection", (socket) => {
 
   socket.on(
     "getWireguardConfig",
-    (publicKey, presharedKey, priceDollar, country) => {
+    async (publicKey, presharedKey, priceDollar, country, partnerCode) => {
       wg.getWireguardConfig(
         publicKey,
         presharedKey,
         timestamp.getTimeStamp(priceDollar),
         vpnServer.getServer(country).ip,
-        priceDollar
+        priceDollar,
       ).then((result) =>
         socket.emit(
           "reciveConfigData",
@@ -140,9 +140,60 @@ io.on("connection", (socket) => {
           vpnServer.getServer(country).location
         )
       );
+      console.log("Partner Code: " + partnerCode)
+      if (partnerCode !== "none") {
+        const satoshis = await lightning.getPrice().then((result) => {
+          return result;
+        });
+        order = new Order();
+        order.partnerCode = partnerCode;
+        order.amount = priceDollar * satoshis;
+        order.save((err, doc) => {
+          if (err) {
+            console.error("Error saving order:", err);
+            socket.emit("addAddressCodeError", "An error occurred while saving the referral code.");
+            return;
+          }
+          console.log("Saved Order successfully!");
+        }
+        );
+      }
     }
   );
 
+
+  socket.on("addAddressCode", async (payoutAddress, custom_code) => {
+    // Check if a partner with the given custom_code already exists
+    Partner.findOne({ custom_code: custom_code }, (err, existingPartner) => {
+      if (err) {
+        console.error("Error checking for existing partner:", err);
+        socket.emit("addAddressCodeError", "An error occurred while checking for existing referral code.");
+        return;
+      }
+
+      // If a partner with the given custom_code exists, emit an error message
+      if (existingPartner) {
+        console.log("Referral code already exists.");
+        socket.emit("addAddressCodeError", "The referral code already exists. Please choose a different one.");
+        return;
+      }
+
+      // If no partner with the given custom_code exists, proceed with creating and saving the new partner
+      const partner = new Partner();
+      partner.payoutAddress = payoutAddress;
+      partner.custom_code = custom_code;
+      partner.save((err, doc) => {
+        if (err) {
+          console.error("Error saving partner:", err);
+          socket.emit("addAddressCodeError", "An error occurred while saving the referral code.");
+          return;
+        }
+
+        console.log("Document inserted successfully!");
+        socket.emit("addAddressCodeSuccess", doc);
+      });
+    });
+  });
 
   socket.on("addAddressCode", async (payoutAddress, custom_code) => {
     // Check if a partner with the given custom_code already exists
