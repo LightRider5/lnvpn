@@ -10,6 +10,7 @@ import { getTimeStamp } from "../timefunction.js";
 import { vpnendpoints } from "../data/vpnendpoints";
 import * as dayjs from "dayjs";
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import utc from 'dayjs-plugin-utc';
 
 dayjs.extend(utc);
@@ -23,13 +24,14 @@ let isPaid = false; //Is only necessary in the case of socket event is fireing m
 
 function Home() {
     const router = useRouter();
+    const refCodeRef = useRef(null);
     const generateKeypair = async () => {
         const keypair = await wireguard.generateKeypair();
         return keypair;
     };
 
     const [keyPair, displayNewPair] = useState(1);
-    const [partnerCode, setPartnerCode] = useState("none");
+    // const [partnerCode, setPartnerCode] = useState("none");
 
     useEffect(() => {
         const setInitialKeypair = async () => {
@@ -48,21 +50,21 @@ function Home() {
         return null;
     }
 
+
+
     useEffect(() => {
         async function fetchRefCode() {
             const refCode = await getRefCodeFromURL();
             if (refCode) {
-                setPartnerCode(prevCode => {
-                    console.log("Previous Partner Code:", prevCode);
-                    console.log("New Partner Code:", refCode);
-                    return refCode;
-                });
+                refCodeRef.current = refCode;
+                console.log("Ref Code:", refCodeRef.current);
             }
         }
 
         fetchRefCode();
-
     }, [router.isReady]);
+
+
 
 
 
@@ -136,7 +138,7 @@ function Home() {
         presharedKey,
         priceDollar,
         country,
-        partnerCode
+        refCodeRef,
     ) => {
         socket.emit(
             "getWireguardConfig",
@@ -144,9 +146,9 @@ function Home() {
             presharedKey,
             priceDollar,
             country,
-            partnerCode
+            refCodeRef
         );
-        console.log("Partner Code: " + partnerCode);
+        console.log("Partner Code: " + refCodeRef.current);
     };
 
     socket.off("invoicePaid").on("invoicePaid", (paymentHash) => {
@@ -159,7 +161,7 @@ function Home() {
                 keyPair.presharedKey,
                 priceDollar,
                 country,
-                partnerCode
+                refCodeRef.current
             );
         }
     });

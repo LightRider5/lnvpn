@@ -141,7 +141,7 @@ io.on("connection", (socket) => {
         )
       );
       console.log("Partner Code: " + partnerCode)
-      if (partnerCode !== "none") {
+      if (partnerCode !== null) {
         const satoshis = await lightning.getPrice().then((result) => {
           return result;
         });

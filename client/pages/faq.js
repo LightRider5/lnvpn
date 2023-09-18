@@ -317,6 +317,53 @@ const Faq = () => {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
+            <h2 className="faq-headline">Affiliate Program</h2>
+            <Accordion>
+              <Accordion.Item eventKey="101">
+                <Accordion.Header>What is the LNVPN Affiliate Program?</Accordion.Header>
+                <Accordion.Body>
+                  The LNVPN Affiliate Program allows you to earn Bitcoin by referring new customers to our services. When someone signs up using your unique referral link and makes a purchase, you earn a 15% commission in Bitcoin.
+                </Accordion.Body>
+              </Accordion.Item>
+
+
+              <Accordion.Item eventKey="102">
+                <Accordion.Header>How do I join the Affiliate Program?</Accordion.Header>
+                <Accordion.Body>
+                  Simply sign up for our program (details coming soon) and get your unique referral link. Share this link with your friends, family, and followers to start earning.
+                </Accordion.Body>
+              </Accordion.Item>
+
+
+              <Accordion.Item eventKey="103">
+                <Accordion.Header>How much can I earn?</Accordion.Header>
+                <Accordion.Body>
+                  You earn a 15% commission for every user you refer who makes a purchase. There's no limit to how much you can earn! The more users you refer, the more you make.
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="104">
+                <Accordion.Header>When and how do I get paid?</Accordion.Header>
+                <Accordion.Body>
+                  Payouts are made monthly. As soon as you've earned up to 100k Sats, you'll receive your earnings in Bitcoin to your specified wallet address.
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="105">
+                <Accordion.Header>How can I track my earnings?</Accordion.Header>
+                <Accordion.Body>
+                  We're working on a dedicated page where you can check your earnings in real-time. This will give you insights into how many users you've referred and how much you've earned.
+                </Accordion.Body>
+              </Accordion.Item>
+
+
+              <Accordion.Item eventKey="110">
+                <Accordion.Header>What if I have more questions about the Affiliate Program?</Accordion.Header>
+                <Accordion.Body>
+                  Feel free to reach out to our Telegram chanel. We're here to help and answer any questions you might have.
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </Col>
         </Row>
         <Component.Footer />
