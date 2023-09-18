@@ -1,7 +1,6 @@
 import '../public/index.css'
 import '../public/font.css'
 import '../public/bootstrap.css'
-import { SSRProvider } from 'react-bootstrap';
 import Header from '../components/Header.js';
 import Head from 'next/head';
 
@@ -14,9 +13,9 @@ export default function MyApp({ Component, pageProps }) {
             </Head>
 
             <Header />
-            <SSRProvider>
-                <Component {...pageProps} />
-            </SSRProvider>
+
+            <Component {...pageProps} />
+
         </div>
     )
 }

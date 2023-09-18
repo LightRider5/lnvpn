@@ -346,7 +346,7 @@ html #nav-menu-image {
 
 .partner-programm-input-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   width: 100%;
 }
