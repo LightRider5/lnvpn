@@ -128,7 +128,7 @@ const getPartnerBalance = asyncHandler(async (req, res, next) => {
   });
 
   // Calculate 20% of the total satoshis paid
-  const balance = totalSatoshisPaid * 0.20;
+  const balance = Math.floor(totalSatoshisPaid * 0.20);
 
   // Return the balance and the number of orders
   return res.status(200).send({ balance: balance, numberOfOrders: orders.length });
