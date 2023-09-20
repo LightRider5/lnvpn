@@ -1,4 +1,6 @@
 const Payment = require("../models/payments");
+const Partners = require("../models/partners");
+const Order = require("../models/orders");
 const lightning = require("../functions/invoices");
 const asyncHandler = require("express-async-handler");
 const wg = require("../functions/wireguardFunctions");
@@ -105,4 +107,33 @@ const getCountryList = asyncHandler(async (req, res, next) => {
   res.status(200).send(vpnendpoints);
 });
 
-module.exports = { getInvoice, getTunnelConfig, getCountryList };
+
+const getPartnerBalance = asyncHandler(async (req, res, next) => {
+  const payoutAddress = req.params.id;
+  const partner = await Partners.findOne({ payoutAddress: payoutAddress });
+
+  if (!partner) {
+    return res.status(404).send("Address not found");
+  }
+
+  // Find all orders associated with this partner's custom_code
+  const orders = await Order.find({ partnerCode: partner.custom_code });
+
+  // Calculate the total satoshis paid for these orders
+  let totalSatoshisPaid = 0;
+  orders.forEach(order => {
+    if (order.amount) {
+      totalSatoshisPaid += order.amount;
+    }
+  });
+
+  // Calculate 20% of the total satoshis paid
+  const balance = totalSatoshisPaid * 0.20;
+
+  // Return the balance and the number of orders
+  return res.status(200).send({ balance: balance, numberOfOrders: orders.length });
+});
+
+
+
+module.exports = { getInvoice, getTunnelConfig, getCountryList, getPartnerBalance };

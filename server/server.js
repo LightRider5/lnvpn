@@ -7,16 +7,21 @@ const vpnServer = require("./functions/getServer");
 const timestamp = require("./functions/getTimeStamp");
 const wg = require("./functions/wireguardFunctions");
 const lightning = require("./functions/invoices");
+const cors = require("cors")
 const app = express();
 require("dotenv").config();
 connectDB();
 
-// app.use(
-//     cors({
-//         origin: process.env.LOGIN_URL_CLIENT,
-//         credentials: true,
-//     })
-// );
+
+
+app.use(
+  cors(
+    {
+      origin: "*",
+      // credentials: true,
+    }
+  )
+);
 
 // Set up the Webserver
 app.use(bodyParser.json());

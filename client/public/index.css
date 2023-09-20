@@ -346,9 +346,19 @@ html #nav-menu-image {
 
 .partner-programm-input-item {
   display: flex;
-  flex-direction: column;
-
+  flex-direction: row;
   width: 100%;
+}
+@media screen and (max-width: 580px) {
+  .partner-programm-input-item {
+    flex-direction: column;
+  }
+  .partner-programm-input-item input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
 }
 
 .partner-programm-input-item input {
@@ -376,6 +386,7 @@ html #nav-menu-image {
 
 .partner-programm-buttons {
   display: flex;
+  gap: 10px;
   flex-direction: row-reverse;
 }
 
@@ -404,4 +415,11 @@ html #nav-menu-image {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.partner-balance-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
 }

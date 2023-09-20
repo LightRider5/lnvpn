@@ -6,6 +6,7 @@ const router = express.Router();
 const {
   getInvoice,
   getTunnelConfig,
+  getPartnerBalance,
   getCountryList,
 } = require("../controllers/apiController");
 
@@ -140,6 +141,9 @@ router.post("/v1/getTunnelConfig", getTunnelConfig);
  */
 
 router.get("/v1/countrylist", getCountryList);
+
+router.get("/v1/getpartnerbalance/:id", getPartnerBalance);
+
 
 const options = {
   customSiteTitle: "LNVPN API Documentation",
