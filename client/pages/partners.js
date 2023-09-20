@@ -146,6 +146,7 @@ const partners = () => {
                     <>
                         <div className='partner-programm-input-container'>
                             <h3>Join the LNVPN Affiliate Program <br></br> and earn 15% from subscription referrals.</h3>
+                            <h5>Check out our <a href="/faq">FAQ</a> if you have any questions.</h5>
                             <p>Generate your affiliate link below. Promote and start earning Bitcoin rewards!</p>
                             <InputGroup className='partner-programm-input'  >
                                 <Form.Label className='mt-2'>Type your preferred referral code:</Form.Label>
