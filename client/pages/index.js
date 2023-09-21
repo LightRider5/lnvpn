@@ -51,6 +51,12 @@ function Home() {
     }
 
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const refCode = new URLSearchParams(window.location.search).get('ref');
+            console.log("Client-Side Ref Code:", refCode);
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchRefCode() {
@@ -62,7 +68,7 @@ function Home() {
         }
 
         fetchRefCode();
-    }, [router.isReady]);
+    }, [router.isReady, router.query]);
 
 
 
