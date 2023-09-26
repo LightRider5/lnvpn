@@ -388,6 +388,7 @@ html #nav-menu-image {
   display: flex;
   gap: 10px;
   flex-direction: row-reverse;
+  margin-bottom: 2%;
 }
 
 .partner-programm-spinner {

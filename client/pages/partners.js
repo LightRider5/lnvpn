@@ -7,6 +7,7 @@ import AlertModal from '../components/AlertModal'
 import { io } from "socket.io-client";
 import { IoIosCopy } from "react-icons/io";
 import axios from 'axios'
+import { Footer } from '../components'
 var socket = io.connect(process.env.NEXT_PUBLIC_socket_port);
 
 const partners = () => {
@@ -307,6 +308,7 @@ const partners = () => {
                     </Tooltip>
                 )}
             </Overlay>
+            <Footer />
         </>
     )
 }

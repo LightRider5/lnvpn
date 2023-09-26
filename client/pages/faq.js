@@ -199,7 +199,7 @@ const Faq = () => {
                   Is there a data transfer limit?
                 </Accordion.Header>
                 <Accordion.Body>
-                  <h6>Currently, we have four data plans:</h6>
+                  <h6>Currently, we have five data plans:</h6>
                   <ListGroup>
                     <ListGroup.Item>1 hour = 1GB</ListGroup.Item>
                     <ListGroup.Item>1 day = 5GB</ListGroup.Item>
