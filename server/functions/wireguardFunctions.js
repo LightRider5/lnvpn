@@ -24,7 +24,7 @@ async function getWireguardConfig(
     data: {
       publicKey: publicKey,
       presharedKey: presharedKey,
-      bwLimit: 10000 * priceDollar,
+      bwLimit: 50000 * priceDollar,
       subExpiry: parseDate(timestamp),
       ipIndex: 0,
     },

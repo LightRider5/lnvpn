@@ -350,9 +350,9 @@ const Faq = () => {
               </Accordion.Item>
 
               <Accordion.Item eventKey="105">
-                <Accordion.Header>How can I track my earnings?</Accordion.Header>
+                <Accordion.Header>How can I check my balance?</Accordion.Header>
                 <Accordion.Body>
-                  We're working on a dedicated page where you can check your earnings in real-time. This will give you insights into how many users you've referred and how much you've earned.
+                  To check your balance, simply visit our Partners page and enter the Bitcoin address you provided when joining the affiliate program in the designated input field. After clicking on the "Check Balance" button, your current balance in satoshis and the number of orders associated with your referral code will be displayed right below.
                 </Accordion.Body>
               </Accordion.Item>
 
