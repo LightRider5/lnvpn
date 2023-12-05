@@ -3,10 +3,10 @@ export const vpnendpoints = [
     cc: "0",
     country: "Select a country",
   },
-  {
-    cc: "1",
-    country: "🇸🇬 Singapore",
-  },
+  // {
+  //   cc: "1",
+  //   country: "🇸🇬 Singapore",
+  // },
   // {
   //   cc: "2",
   //   country: "🇺🇸 United States",
@@ -43,10 +43,10 @@ export const vpnendpoints = [
     cc: "9",
     country: "🇺🇦 Ukraine",
   },
-  {
-    cc: "10",
-    country: "🇨🇭 Switzerland",
-  },
+  // {
+  //   cc: "10",
+  //   country: "🇨🇭 Switzerland",
+  // },
   {
     cc: "11",
     country: "🇮🇱 Israel",
@@ -55,10 +55,10 @@ export const vpnendpoints = [
     cc: "12",
     country: "🇰🇿 Kazakhstan",
   },
-  {
-    cc: "14",
-    country: "🇷🇴 Romania",
-  },
+  // {
+  //   cc: "14",
+  //   country: "🇷🇴 Romania",
+  // },
   {
     cc: "16",
     country: "🇵🇹 Portugal",

@@ -28,11 +28,11 @@ You won't be able to transfer any data over the VPN connection anymore. Your VPN
 
 Currently, we have five data plans:
 
-    1 hour = 1GB
-    1 day = 5GB
-    1 week = 15GB
-    1 month = 40GB
-    3 months (1 quarter) = 90GB
+    1 hour = 5GB
+    1 day = 25GB
+    1 week = 75GB
+    1 month = 200GB
+    3 months (1 quarter) = 450GB
 
 
 # Can I use this VPN for my Lightning Node?
