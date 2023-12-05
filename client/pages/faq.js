@@ -201,11 +201,11 @@ const Faq = () => {
                 <Accordion.Body>
                   <h6>Currently, we have five data plans:</h6>
                   <ListGroup>
-                    <ListGroup.Item>1 hour = 1GB</ListGroup.Item>
-                    <ListGroup.Item>1 day = 5GB</ListGroup.Item>
-                    <ListGroup.Item>1 week = 15GB</ListGroup.Item>
-                    <ListGroup.Item>1 month = 40GB</ListGroup.Item>
-                    <ListGroup.Item>3 months = 90GB</ListGroup.Item>
+                    <ListGroup.Item>1 hour = 5GB</ListGroup.Item>
+                    <ListGroup.Item>1 day = 25GB</ListGroup.Item>
+                    <ListGroup.Item>1 week = 75GB</ListGroup.Item>
+                    <ListGroup.Item>1 month = 200GB</ListGroup.Item>
+                    <ListGroup.Item>3 months = 450GB</ListGroup.Item>
                   </ListGroup>
                 </Accordion.Body>
               </Accordion.Item>
@@ -350,9 +350,9 @@ const Faq = () => {
               </Accordion.Item>
 
               <Accordion.Item eventKey="105">
-                <Accordion.Header>How can I track my earnings?</Accordion.Header>
+                <Accordion.Header>How can I check my balance?</Accordion.Header>
                 <Accordion.Body>
-                  We're working on a dedicated page where you can check your earnings in real-time. This will give you insights into how many users you've referred and how much you've earned.
+                  To check your balance, simply visit our Partners page and enter the Bitcoin address you provided when joining the affiliate program in the designated input field. After clicking on the "Check Balance" button, your current balance in satoshis and the number of orders associated with your referral code will be displayed right below.
                 </Accordion.Body>
               </Accordion.Item>
 

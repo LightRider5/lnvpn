@@ -52,17 +52,21 @@ const Header = (props) => {
                   <Nav.Link className={isActive('/')} href="/">VPN</Nav.Link>
 
                 </Nav.Item>
+
                 <Nav.Item>
 
                   <Nav.Link className={isActive('/phone-numbers')} href="/phone-numbers" >Phone Numbers</Nav.Link>
 
                 </Nav.Item>
                 <Nav.Item>
+
+                  <Nav.Link className={isActive('/esim')} href="/esim">eSIM</Nav.Link>
+
+                </Nav.Item>
+                <Nav.Item>
                   <Nav.Link className={isActive('/partners')} href="/partners">Partners{" "}
                     <Badge bg="danger">New!</Badge>
                   </Nav.Link>
-
-
                 </Nav.Item>
                 <Nav.Item>
 

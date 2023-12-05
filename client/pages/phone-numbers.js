@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { HeaderInfo } from "../components";
+import { HeaderInfo, Footer } from "../components";
 import * as Component from "../components";
 import Head from 'next/head';
 import {
@@ -160,8 +160,10 @@ const SMS = () => {
             </Button>
           )}
         </div>
-
-        {/* <Component.Footer /> */}
+        <div className="m-2">
+          <h5>If you need an eSIM with a permanent anonymous phone number or data volume, check out <a href="https://silent.link/lnvpn" target="_blank">silent.link</a>. </h5>
+        </div>
+        <Footer />
       </Container>
     </div>
   );

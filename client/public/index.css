@@ -424,3 +424,14 @@ html #nav-menu-image {
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.esim-site {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 100%;
+}
