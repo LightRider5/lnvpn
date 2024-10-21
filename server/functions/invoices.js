@@ -3,48 +3,71 @@ const sgMail = require("@sendgrid/mail");
 
 // Get Invoice Function
 async function getInvoice(amount, memo) {
-  const satoshis = await getPrice().then((result) => {
-    return result;
-  });
-  return axios({
-    method: "post",
-    url: process.env.URL_INVOICE_API,
-    headers: { "X-Api-Key": process.env.INVOICE_KEY },
-    data: {
-      out: false,
-      amount: satoshis * amount,
-      memo: memo,
-      webhook: process.env.URL_WEBHOOK + process.env.WEBHOOK,
-    },
-  })
-    .then(function (response) {
-      const payment_request = response.data.payment_request;
-      const payment_hash = response.data.payment_hash;
-      return { payment_hash, payment_request };
-    })
-    .catch((error) => error);
+  // Ensure the API access token is available
+  const accessToken = process.env.API_ACCESS_TOKEN;
+  if (!accessToken) {
+    throw new Error("Environment variable API_ACCESS_TOKEN is not defined.");
+  }
+
+  try {
+    // Make the POST request to create an invoice
+    const response = await axios({
+      method: "post",
+      url: "https://api.getalby.com/invoices",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${accessToken}`,
+      },
+      data: {
+        amount: amount, // Pass the amount directly in satoshis
+        description: memo,
+      },
+    });
+
+    const data = response.data;
+
+    // Extract payment_request and payment_hash from the response
+    const payment_request = data.payment_request;
+    const payment_hash = data.payment_hash;
+
+    return { payment_hash, payment_request };
+  } catch (error) {
+    console.error("Error in getInvoice:", error.response ? error.response.data : error);
+    throw error;
+  }
 }
 
-// Check for Invoice
-//Check for Invoice
+// Check Invoice Function
 async function checkInvoice(hash) {
-  try {
-    const invoiceData = await axios({
-      method: "get",
-      url: `${process.env.URL_INVOICE_API}/${hash}`,
-      headers: { "X-Api-Key": process.env.INVOICE_KEY },
-    })
-    if (invoiceData.data.paid === true) {
-      return invoiceData.data; ////Edit to return details
-    }
-    else {
-      return false;
-    }
+  // Ensure the API access token is available
+  const accessToken = process.env.API_ACCESS_TOKEN;
+  if (!accessToken) {
+    throw new Error("Environment variable API_ACCESS_TOKEN is not defined.");
   }
-  catch (error) {
-    console.error(`Could not checkInvoice: ${error}`);
+
+  try {
+    // Make the GET request to fetch invoice status
+    const response = await axios({
+      method: "get",
+      url: `https://api.getalby.com/invoices/${hash}`,
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+      },
+    });
+
+    const data = response.data;
+
+    if (data.settled === true) {
+      return data; // Return the invoice details if settled
+    } else {
+      return false; // Invoice not yet settled
+    }
+  } catch (error) {
+    console.error(`Could not checkInvoice:`, error.response ? error.response.data : error);
+    throw error;
   }
 }
+
 // Get Bitcoin Price in Satoshi per Dollar
 async function getPrice() {
   return axios({
