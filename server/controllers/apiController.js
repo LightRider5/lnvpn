@@ -94,12 +94,9 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
         server.location
       );
       if (!!partnerCode) {
-        const satoshis = await lightning.getPrice().then((result) => {
-          return result;
-        });
         order = new Order();
         order.partnerCode = partnerCode;
-        order.amount = data.amount; // get sat value from payment response
+        order.amount = data.amount; // get satoshi value from payment response
         order.save((err, doc) => {
           if (err) {
             console.error("Error saving order:", err);
