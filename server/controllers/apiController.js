@@ -30,15 +30,15 @@ const getInvoice = asyncHandler(async (req, res, next) => {
   ) {
     const err = new Error(
       "Duration not allowed. Use: " +
-      process.env.PRICE_HOUR +
-      " " +
-      process.env.PRICE_DAY +
-      " " +
-      process.env.PRICE_WEEK +
-      " " +
-      process.env.PRICE_MONTH +
-      " " +
-      process.env.PRICE_QUARTER
+        process.env.PRICE_HOUR +
+        " " +
+        process.env.PRICE_DAY +
+        " " +
+        process.env.PRICE_WEEK +
+        " " +
+        process.env.PRICE_MONTH +
+        " " +
+        process.env.PRICE_QUARTER
     );
     err.status = 400;
     next(err);
@@ -49,14 +49,14 @@ const getInvoice = asyncHandler(async (req, res, next) => {
 });
 
 const getTunnelConfig = asyncHandler(async (req, res, next) => {
-  const { paymentHash, location } = req.body;
+  const { paymentHash, location, partnerCode } = req.body;
   if (!paymentHash || !location) {
     const err = new Error("missing Parameter");
     err.status = 400;
     next(err);
   } else {
     const data = await lightning.checkInvoice(paymentHash);
-    const duration = data.details.memo;
+    const duration = data.memo;
 
     const result = await Payment.findOne({ paymentHash: paymentHash });
     if (result) {
@@ -65,7 +65,7 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
       next(err);
     }
 
-    if (!result && !data.detail && data.paid === true) {
+    if (!result && data && data.settled) {
       try {
         const payment = new Payment();
         payment.paymentHash = paymentHash;
@@ -93,6 +93,22 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
         configTimeStamp,
         server.location
       );
+      if (!!partnerCode) {
+        order = new Order();
+        order.partnerCode = partnerCode;
+        order.amount = data.amount; // get satoshi value from payment response
+        order.save((err, doc) => {
+          if (err) {
+            console.error("Error saving order:", err);
+            socket.emit(
+              "addAddressCodeError",
+              "An error occurred while saving the referral code."
+            );
+            return;
+          }
+          console.log("Saved Order successfully!");
+        });
+      }
 
       res.json({ WireguardConfig: configData });
     } else {
@@ -107,7 +123,6 @@ const getCountryList = asyncHandler(async (req, res, next) => {
   res.status(200).send(vpnendpoints);
 });
 
-
 const getPartnerBalance = asyncHandler(async (req, res, next) => {
   const payoutAddress = req.params.id;
   const partner = await Partners.findOne({ payoutAddress: payoutAddress });
@@ -121,19 +136,24 @@ const getPartnerBalance = asyncHandler(async (req, res, next) => {
 
   // Calculate the total satoshis paid for these orders
   let totalSatoshisPaid = 0;
-  orders.forEach(order => {
+  orders.forEach((order) => {
     if (order.amount) {
       totalSatoshisPaid += order.amount;
     }
   });
 
   // Calculate 20% of the total satoshis paid
-  const balance = Math.floor(totalSatoshisPaid * 0.20);
+  const balance = Math.floor(totalSatoshisPaid * 0.2);
 
   // Return the balance and the number of orders
-  return res.status(200).send({ balance: balance, numberOfOrders: orders.length });
+  return res
+    .status(200)
+    .send({ balance: balance, numberOfOrders: orders.length });
 });
 
-
-
-module.exports = { getInvoice, getTunnelConfig, getCountryList, getPartnerBalance };
+module.exports = {
+  getInvoice,
+  getTunnelConfig,
+  getCountryList,
+  getPartnerBalance,
+};
