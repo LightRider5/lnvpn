@@ -26,7 +26,7 @@ const {
  *             properties:
  *               duration:
  *                 type: number
- *                 description: How long the tunnel should be open (0.1, 0.5, 1, 4, 9)
+ *                 description: How long the tunnel should be open (0.1, 0.5, 1.5, 4, 9)
  *                 example: 0.1
  *     responses:
  *       200:
