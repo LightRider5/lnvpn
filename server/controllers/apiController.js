@@ -93,7 +93,7 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
         configTimeStamp,
         server.location
       );
-      if (partnerCode !== null) {
+      if (!!partnerCode) {
         const satoshis = await lightning.getPrice().then((result) => {
           return result;
         });
