@@ -65,7 +65,7 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
       next(err);
     }
 
-    if (!result && !data && data.settled) {
+    if (!result && data && data.settled) {
       try {
         const payment = new Payment();
         payment.paymentHash = paymentHash;
