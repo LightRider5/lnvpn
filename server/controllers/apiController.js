@@ -49,7 +49,7 @@ const getInvoice = asyncHandler(async (req, res, next) => {
 });
 
 const getTunnelConfig = asyncHandler(async (req, res, next) => {
-  const { paymentHash, location } = req.body;
+  const { paymentHash, location, partnerCode } = req.body;
   if (!paymentHash || !location) {
     const err = new Error("missing Parameter");
     err.status = 400;
@@ -93,6 +93,25 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
         configTimeStamp,
         server.location
       );
+      if (partnerCode !== null) {
+        const satoshis = await lightning.getPrice().then((result) => {
+          return result;
+        });
+        order = new Order();
+        order.partnerCode = partnerCode;
+        order.amount = data.amount; // get sat value from payment response
+        order.save((err, doc) => {
+          if (err) {
+            console.error("Error saving order:", err);
+            socket.emit(
+              "addAddressCodeError",
+              "An error occurred while saving the referral code."
+            );
+            return;
+          }
+          console.log("Saved Order successfully!");
+        });
+      }
 
       res.json({ WireguardConfig: configData });
     } else {

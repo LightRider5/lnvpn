@@ -59,7 +59,11 @@ router.post("/v1/getinvoice", getInvoice);
 //  *         description: Location of the endpoint as Number. Look at lnvpn.net/api/v1/countrylist
 //  *         in: x-www-form-urlencoded
 //  *         required: true
+//  *       - name: partnerCode
+//  *         description: Partner Code created in the affiliates page. Look at https://lnvpn.net/partners
 //  *     url: lnvpn.net/api/v1/countrylist
+//  *          in: x-www-form-urlencoded
+//  *          required: false
 //  *
 //  *
 //  *     responses:
@@ -143,7 +147,6 @@ router.post("/v1/getTunnelConfig", getTunnelConfig);
 router.get("/v1/countrylist", getCountryList);
 
 router.get("/v1/getpartnerbalance/:id", getPartnerBalance);
-
 
 const options = {
   customSiteTitle: "LNVPN API Documentation",
