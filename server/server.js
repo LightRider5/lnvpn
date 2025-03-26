@@ -108,7 +108,7 @@ io.on("connection", (socket) => {
       }
       else {
         console.log(result + "when true")
-        io.sockets.emit("invoicePaid", result.details.payment_hash)
+        io.sockets.emit("invoicePaid", result.payment_hash)
       }
     } catch (error) {
       console.log(error)

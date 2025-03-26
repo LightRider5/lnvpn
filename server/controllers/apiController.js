@@ -56,7 +56,7 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
     next(err);
   } else {
     const data = await lightning.checkInvoice(paymentHash);
-    const duration = data.details.memo;
+    const duration = data.memo;
 
     const result = await Payment.findOne({ paymentHash: paymentHash });
     if (result) {
@@ -65,7 +65,7 @@ const getTunnelConfig = asyncHandler(async (req, res, next) => {
       next(err);
     }
 
-    if (!result && !data.detail && data.paid === true) {
+    if (!result && data.settled === true) {
       try {
         const payment = new Payment();
         payment.paymentHash = paymentHash;
