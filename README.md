@@ -1,3 +1,13 @@
+# !!!!!Repository Moved!!!!!
+
+**This repository is no longer actively maintained here.**  
+It has been moved to [lnvpn/lnvpn-web-app](https://github.com/lnvpn/lnvpn-web-app).
+
+Please update your bookmarks and use the new repository moving forward.
+
+######################################################################
+
+
 # Simple VPN with Lightning
 
 Select a country ➡️ Select duration ➡️ Pay with Lightning ➡️ Use your VPN
